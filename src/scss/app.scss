@@ -1,18 +1,14 @@
 body {
-  font-family: $defaultFontFamily;
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: $primaryFontFamily;
+  font-size: $defaultFontSize;
+  line-height: $defaultLineHeight;
   color: $defaultTextColor;
   background: #fff;
-
-  @media (max-width: 500px) {
-    font-size: 14px;
-  }
 }
 
 a {
-  color: $primaryColorDark;
-  transition: color 200ms;
+  color: $primaryColor;
+  transition: color 250ms;
   text-decoration: none;
 
   @media (hover: hover) {
@@ -22,7 +18,7 @@ a {
   }
 }
 
-// Containers
+// Scaffold
 
 .page__wrapper {
   min-height: 100vh;
@@ -33,33 +29,9 @@ a {
 
 .content__wrapper {
   flex: 1;
-  background-color: $primaryColor;
-  margin: 64px 0;
-
-  @media (max-width: 900px) {
-    margin-top: 48px;
-    margin-bottom: 48px;
-  }
-
-  @media (max-width: 600px) {
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-
-  @media (max-width: 420px) {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  &.detail-page {
-    display: flex;
-    flex-direction: column;
-
-    .content__container {
-      flex: 1;
-    }
-  }
 }
+
+// Container
 
 .container {
   position: relative;
@@ -88,226 +60,86 @@ a {
   }
 }
 
-.content-container {
-  position: relative;
-  padding-top: 64px;
-  padding-bottom: 64px;
+// Paragraphs
 
-  @media (max-width: 900px) {
-    padding-top: 48px;
-    padding-bottom: 48px;
+p {
+  margin: 0 0 16px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
+}
+
+// Headlines
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 24px;
 
   @media (max-width: 600px) {
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-
-  &--has-teaser {
-    z-index: 2;
-  }
-
-  &--light {
-    background-color: $secondaryColor;
-
-    &:after {
-      background-color: $secondaryColor;
-    }
-  }
-
-  &--extra-light {
-    background-color: $secondaryColorLight;
-
-    &:after {
-      background-color: $secondaryColorLight;
-    }
-
-    hr {
-      background-color: $secondaryColor;
-    }
-  }
-
-  &--dark {
-    background-color: $primaryColorDark;
-
-    &:after {
-      background-color: $primaryColorDark;
-    }
-  }
-
-  &--extra-dark {
-    background-color: $secondaryColorDark;
-
-    &:after {
-      background-color: $secondaryColorDark;
-    }
-  }
-
-  &--dark,
-  &--extra-dark {
-    color: #fff;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: #fff;
-    }
-  }
-
-  &--highlight {
-    background-color: $primaryColorHighlight;
-
-    &:after {
-      background-color: $primaryColorHighlight;
-    }
-  }
-
-  &--sand {
-    background-color: $secondaryColorSand;
-
-    &:after {
-      background-color: $secondaryColorSand;
-    }
-  }
-
-  &--left,
-  &--right {
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 10000px;
-    }
-  }
-
-  margin-top: 64px;
-  margin-bottom: 64px;
-
-  @media (max-width: 900px) {
-    margin-top: 32px;
-    margin-bottom: 32px;
-  }
-
-  @media (max-width: 600px) {
-    margin-top: 16px;
     margin-bottom: 16px;
   }
+}
 
-  &--top {
-    margin-bottom: 0;
+h1,
+h2 {
+  font-size: 46px;
+  line-height: 1.1;
+  margin: 0 0 24px;
 
-    @media (max-width: 900px) {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: 600px) {
-      margin-bottom: 0;
-    }
+  @media (max-width: 1200px) {
+    font-size: 40px;
+    line-height: 1.2;
   }
 
-  &--bottom {
-    margin-top: 0;
-
-    @media (max-width: 900px) {
-      margin-top: 0;
-    }
-
-    @media (max-width: 600px) {
-      margin-top: 0;
-    }
+  @media (max-width: 900px) {
+    font-size: 34px;
+    line-height: 1.25;
   }
 
-  border-radius: 32px;
+  @media (max-width: 600px) {
+    font-size: 28px;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+}
 
-  &--left {
-    border-radius: 0 32px 32px 0;
+h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
 
-    &:after {
-      right: calc(100% - 1px);
-    }
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+// Horizontal line
+
+hr {
+  display: block;
+  border: 0;
+  height: 2px;
+  background: $primaryColor;
+  margin: 32px 0;
+
+  @media (max-width: 768px) {
+    margin: 24px 0;
   }
 
-  &--right {
-    border-radius: 32px 0 0 32px;
-
-    &:after {
-      left: calc(100% - 1px);
-    }
-  }
-
-  &--left#{&}--bottom {
-    border-radius: 0 0 32px 0;
-
-    @media (max-width: 600px) {
-      border-radius: 0 0 22px 0;
-    }
-  }
-
-  &--right#{&}--bottom {
-    border-radius: 0 0 0 32px;
-
-    @media (max-width: 600px) {
-      border-radius: 0 0 0 22px;
-    }
-  }
-
-  &--left#{&}--top {
-    border-radius: 0 32px 0 0;
-
-    @media (max-width: 900px) {
-      border-radius: 0 24px 0 0;
-    }
-
-    @media (max-width: 600px) {
-      border-radius: 0 20px 0 0;
-    }
-  }
-
-  &--right#{&}--top {
-    border-radius: 32px 0 0 0;
-
-    @media (max-width: 600px) {
-      border-radius: 22px 0 0 0;
-    }
-  }
-
-  &--start {
-    margin-top: -64px;
-    padding-top: 64px;
-
-    @media (max-width: 900px) {
-      margin-top: -48px;
-      padding-top: 48px;
-    }
-
-    @media (max-width: 600px) {
-      margin-top: -24px;
-      padding-top: 24px;
-    }
-  }
-
-  &--end {
-    margin-bottom: -64px;
-    padding-bottom: 64px;
-
-    @media (max-width: 900px) {
-      margin-bottom: -48px;
-      padding-bottom: 48px;
-    }
-
-    @media (max-width: 600px) {
-      margin-bottom: -24px;
-      padding-bottom: 24px;
-    }
-  }
-
-  @media (max-width: 420px) {
-    margin-top: 0;
-    margin-bottom: 0;
-    border-radius: 0 !important;
+  @media (max-width: 600px) {
+    margin: 16px 0;
   }
 }

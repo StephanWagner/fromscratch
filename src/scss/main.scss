@@ -1,21 +1,21 @@
 // Reset browser defaults
-@import 'normalize.scss';
+@import './node_modules/normalize.css/normalize';
 @import 'reset';
 
 // Variables
 @import 'variables';
 
 // Fonts
-@import 'fonts.scss';
+@import 'fonts';
 
 // Adjust wordpress specific styles
-@import 'wp-adjust.scss';
+@import 'wp-adjust';
 
 // Form
-@import 'form.scss';
+@import 'form';
 
 // App
-@import 'app.scss';
-@import 'header.scss';
-@import 'footer.scss';
-@import 'content.scss';
+@import 'app';
+@import 'header';
+@import 'footer';
+@import 'content';

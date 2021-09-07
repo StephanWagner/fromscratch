@@ -4,7 +4,8 @@
   "private": false,
   "homepage": "https://github.com/StephanWagner/fromscratch",
   "dependencies": {
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "normalize.css": "^8.0.1"
   },
   "scripts": {
     "build": "gulp build",
