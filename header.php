@@ -11,6 +11,11 @@
 
 		<header class="header__wrapper">
 			<div class="header__container container">
+
+				<div class="logo__container">
+					<img src="<?= get_template_directory_uri() ?>/img/logo.png" class="logo__image" alt="">
+				</div>
+
 				<div class="header-menu__wrapper">
 					<?php wp_nav_menu([
 						'theme_location' => 'header_menu',

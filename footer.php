@@ -1,7 +1,13 @@
 <footer class="footer__wrapper">
 	<div class="footer__container container">
 		<div class="footer__credits">
-			Wordpress theme FromScratch by <a href="https://stephanwagner.me">Stephan Wagner</a>
+			<?php
+				if (get_option('theme_variable_credits')) {
+					echo get_option('theme_variable_credits');
+				} else {
+					echo 'Go to <a href="/wp-admin/options-general.php?page=custom-theme-settings">Settings › Theme settings</a> to edit this text';
+				}
+			?>
 		</div>
 		<div class="footer-menu__wrapper">
 			<?php wp_nav_menu([

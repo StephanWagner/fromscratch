@@ -3,12 +3,12 @@
 Template Name: Home
 Template Post Type: post, page
 */
-
-get_header();
 ?>
 
+<?php get_header(); ?>
+
 <div class="content__wrapper">
-	<div class="content__container">
+	<div class="content__container container">
 
 		<h1>Different template for home page</h1>
 

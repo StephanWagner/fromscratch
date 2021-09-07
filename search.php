@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <div class="content__wrapper">
-	<div class="content__container">
+	<div class="content__container container">
 
 		<h1>Search</h1>
 

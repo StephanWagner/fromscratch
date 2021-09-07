@@ -1,20 +1,9 @@
 <?php
 
 /**
- * Get an option from the config file
+ * Load config
  */
 $fromscratch_config = include __DIR__ . '/config.php';
-
-function fromscratch_config($key)
-{
-	global $fromscratch_config;
-
-	if (isset($fromscratch_config[$key])) {
-		return $fromscratch_config[$key];
-	}
-
-	return null;
-}
 
 /**
  * Check wheather we are in debug mode
@@ -88,15 +77,15 @@ register_nav_menus([
  */
 function fromscratch_meta_tags()
 {
+	global $fromscratch_config;
+
 	echo '<meta charset="utf-8">' . "\n";
 	foreach ([
 		'meta_viewport',
 		'meta_title',
 		'meta_description',
-	] as $config_key) {
-		if (!empty(fromscratch_config($config_key))) {
-			echo '<meta name="' . str_replace('meta_', '', $config_key) . '" content="' . fromscratch_config($config_key) . '">' . "\n";
-		}
+	] as $meta) {
+		echo '<meta name="' . $meta . '" content="' . $fromscratch_config[$meta] . '">' . "\n";
 	}
 }
 add_action('wp_head', 'fromscratch_meta_tags');
@@ -106,20 +95,24 @@ add_action('wp_head', 'fromscratch_meta_tags');
  */
 function html5_search_form()
 {
-	$form = '<section class="search"><form role="search" method="get" action="' . home_url('/') . '" >
-	<input type="text" value="' . get_search_query() . '" class="search__input" name="s" placeholder="Suche...">
-	<button type="submit" value="" class="search__button icon-search"></button>
-	</form></section>';
+	$form = '
+	<section class="search__wrapper">
+		<form role="search" method="get" action="' . home_url('/') . '" >
+			<input type="text" value="' . get_search_query() . '" class="search__input" name="s" placeholder="Search...">
+			<button type="submit" class="search__button">Search</button>
+		</form>
+	</section>
+	';
+
 	return $form;
 }
-
 add_filter('get_search_form', 'html5_search_form');
 
 /**
  * Allow editors to edit menus
  */
-$role_object = get_role('editor');
-$role_object->add_cap('edit_theme_options');
+// $role_object = get_role('editor');
+// $role_object->add_cap('edit_theme_options');
 
 /**
  * Change excerpt length
@@ -155,8 +148,10 @@ function custom_excerpt_more()
 add_filter('excerpt_more', 'custom_excerpt_more');
 
 /**
- * Remove wordpress generated links and scripts
+ * Clean up HTML
  */
+add_theme_support('title-tag');
+
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -186,25 +181,25 @@ function removeCustomColorsAndSizes()
 		'editor-font-sizes',
 		array(
 			array(
-				'name'      => __('Klein'),
+				'name'      => __('Small'),
 				'shortName' => __('S'),
 				'size'      => 14,
 				'slug'      => 'small',
 			),
 			array(
-				'name'      => __('Regulär'),
+				'name'      => __('Regular'),
 				'shortName' => __('M'),
 				'size'      => 16,
 				'slug'      => 'normal',
 			),
 			array(
-				'name'      => __('Groß'),
+				'name'      => __('Large'),
 				'shortName' => __('L'),
 				'size'      => 20,
 				'slug'      => 'large',
 			),
 			array(
-				'name'      => __('Sehr groß'),
+				'name'      => __('Extra large'),
 				'shortName' => __('XL'),
 				'size'      => 26,
 				'slug'      => 'huge',
@@ -214,8 +209,9 @@ function removeCustomColorsAndSizes()
 }
 add_action('after_setup_theme', 'removeCustomColorsAndSizes');
 
-// Remove default drop cap
-
+/**
+ * Remove drop cap
+ */
 add_filter(
 	'block_editor_settings',
 	function ($editor_settings) {
@@ -225,20 +221,17 @@ add_filter(
 );
 
 /**
- * Theme options
+ * Theme settings
  */
 function theme_settings_page()
 {
 ?>
 	<div class="wrap">
-		<h1>Theme Einstellungen</h1>
+		<h1>Theme settings</h1>
 		<form method="post" action="options.php">
 			<?php
 			settings_fields('section');
-			do_settings_sections('theme_variables_contact');
-			do_settings_sections('theme_variables_social');
-			do_settings_sections('theme_variables_homepage');
-			do_settings_sections('theme_variables_downloads');
+			do_settings_sections('theme_variables_footer');
 			submit_button();
 			?>
 		</form>
@@ -246,198 +239,22 @@ function theme_settings_page()
 <?php
 }
 
-function display_theme_variable_phone()
+function display_theme_variable_credits()
 {
-	echo '<input type="tel" name="theme_variable_phone" value="' . get_option('theme_variable_phone') . '" size="50">';
-}
-
-function display_theme_variable_email()
-{
-	echo '<input type="email" name="theme_variable_email" value="' . get_option('theme_variable_email') . '" size="50">';
-}
-
-function display_theme_variable_address()
-{
-	echo '<textarea name="theme_variable_address" cols="50" rows="5">' . get_option('theme_variable_address') . '</textarea>';
-}
-
-function display_theme_variable_instagram()
-{
-	echo '<input type="text" name="theme_variable_instagram" value="' . get_option('theme_variable_instagram') . '" size="50">';
-}
-
-function display_theme_variable_facebook()
-{
-	echo '<input type="text" name="theme_variable_facebook" value="' . get_option('theme_variable_facebook') . '" size="50">';
-}
-
-function display_theme_variable_slider_id()
-{
-	echo '<input type="number" name="theme_variable_slider_id" value="' . get_option('theme_variable_slider_id') . '" size="5">';
-}
-
-function display_theme_variable_contact_map()
-{
-	echo '<input type="text" name="theme_variable_contact_map" value="' . get_option('theme_variable_contact_map') . '" size="50">';
-}
-
-function display_theme_variable_footer_title()
-{
-	echo '<input type="text" name="theme_variable_footer_title" value="' . get_option('theme_variable_footer_title') . '" size="50">';
-}
-
-function display_theme_variable_footer_text()
-{
-	echo '<textarea name="theme_variable_footer_text" cols="50" rows="5">' . get_option('theme_variable_footer_text') . '</textarea>';
-}
-
-function display_theme_variable_inquiry_button1()
-{
-	echo '<input type="text" name="theme_variable_inquiry_button1_title" placeholder="Button-Text" value="' . get_option('theme_variable_inquiry_button1_title') . '" size="30">';
-	echo '<input type="number" name="theme_variable_inquiry_button1_form_id" placeholder="Formular ID" value="' . get_option('theme_variable_inquiry_button1_form_id') . '" size="5">';
-}
-
-function display_theme_variable_inquiry_button2()
-{
-	echo '<input type="text" name="theme_variable_inquiry_button2_title" placeholder="Button-Text" value="' . get_option('theme_variable_inquiry_button2_title') . '" size="30">';
-	echo '<input type="number" name="theme_variable_inquiry_button2_form_id" placeholder="Formular ID" value="' . get_option('theme_variable_inquiry_button2_form_id') . '" size="5">';
-}
-
-function getDownloadFields($nr)
-{
-	echo '<input type="text" name="theme_variables_download' . $nr . '_title" placeholder="Titel" value="' . get_option('theme_variables_download' . $nr . '_title') . '" size="20">';
-	echo '<input type="text" name="theme_variables_download' . $nr . '_url" placeholder="URL zur Datei" value="' . get_option('theme_variables_download' . $nr . '_url') . '" size="50">';
-}
-
-function display_theme_variables_download1()
-{
-	getDownloadFields(1);
-}
-
-function display_theme_variables_download2()
-{
-	getDownloadFields(2);
-}
-
-function display_theme_variables_download3()
-{
-	getDownloadFields(3);
-}
-
-function display_theme_variables_download4()
-{
-	getDownloadFields(4);
-}
-
-function display_theme_variables_download5()
-{
-	getDownloadFields(5);
-}
-
-function display_theme_variables_download6()
-{
-	getDownloadFields(6);
-}
-
-function display_theme_variables_download7()
-{
-	getDownloadFields(7);
-}
-
-function display_theme_variables_download8()
-{
-	getDownloadFields(8);
-}
-
-function display_theme_variables_download9()
-{
-	getDownloadFields(9);
-}
-
-function display_theme_variables_download10()
-{
-	getDownloadFields(10);
+	echo '<input type="tel" name="theme_variable_credits" value="' . get_option('theme_variable_credits') . '" size="50">';
 }
 
 function display_custom_info_fields()
 {
-	add_settings_section('section', 'Kontakt Informationen', null, 'theme_variables_contact');
+	add_settings_section('section', 'Footer', null, 'theme_variables_footer');
 
-	add_settings_field('theme_variable_phone', 'Telefon', 'display_theme_variable_phone', 'theme_variables_contact', 'section');
-	register_setting('section', 'theme_variable_phone');
-
-	add_settings_field('theme_variable_email', 'E-Mail Adresse', 'display_theme_variable_email', 'theme_variables_contact', 'section');
-	register_setting('section', 'theme_variable_email');
-
-	add_settings_field('theme_variable_address', 'Adresse', 'display_theme_variable_address', 'theme_variables_contact', 'section');
-	register_setting('section', 'theme_variable_address');
-
-	add_settings_section('section', 'Social Media', null, 'theme_variables_social');
-
-	add_settings_field('theme_variable_instagram', 'Instagram Benutzername', 'display_theme_variable_instagram', 'theme_variables_social', 'section');
-	register_setting('section', 'theme_variable_instagram');
-
-	add_settings_field('theme_variable_facebook', 'Facebook Benutzername', 'display_theme_variable_facebook', 'theme_variables_social', 'section');
-	register_setting('section', 'theme_variable_facebook');
-
-	add_settings_section('section', 'Startseite', null, 'theme_variables_homepage');
-
-	add_settings_field('theme_variable_slider_id', 'Slider ID<br>(Siehe MetaSlider)', 'display_theme_variable_slider_id', 'theme_variables_homepage', 'section');
-	register_setting('section', 'theme_variable_slider_id');
-
-	add_settings_field('theme_variable_contact_map', 'Kontakt-Karte URL<br>(Siehe Medien)', 'display_theme_variable_contact_map', 'theme_variables_homepage', 'section');
-	register_setting('section', 'theme_variable_contact_map');
-
-	add_settings_field('theme_variable_footer_title', 'Anfrage: Titel', 'display_theme_variable_footer_title', 'theme_variables_homepage', 'section');
-	register_setting('section', 'theme_variable_footer_title');
-
-	add_settings_field('theme_variable_footer_text', 'Anfrage: Text', 'display_theme_variable_footer_text', 'theme_variables_homepage', 'section');
-	register_setting('section', 'theme_variable_footer_text');
-
-	add_settings_field('theme_variable_inquiry_button1', 'Button Schadensmeldung', 'display_theme_variable_inquiry_button1', 'theme_variables_homepage', 'section');
-	register_setting('section', 'theme_variable_inquiry_button1_title');
-	register_setting('section', 'theme_variable_inquiry_button1_form_id');
-
-	add_settings_field('theme_variable_inquiry_button2', 'Button: Wertgutachten', 'display_theme_variable_inquiry_button2', 'theme_variables_homepage', 'section');
-	register_setting('section', 'theme_variable_inquiry_button2_title');
-	register_setting('section', 'theme_variable_inquiry_button2_form_id');
-
-	add_settings_section('section', 'Downloads', null, 'theme_variables_downloads');
-
-	for ($i = 1; $i <= 10; $i++) {
-		add_settings_field('theme_variables_download' . $i, 'Download ' . $i, 'display_theme_variables_download' . $i, 'theme_variables_downloads', 'section');
-		register_setting('section', 'theme_variables_download' . $i . '_title');
-		register_setting('section', 'theme_variables_download' . $i . '_url');
-	}
+	add_settings_field('theme_variable_credits', 'Credits', 'display_theme_variable_credits', 'theme_variables_footer', 'section');
+	register_setting('section', 'theme_variable_credits');
 }
-
-
 add_action('admin_init', 'display_custom_info_fields');
 
 function add_custom_info_menu_item()
 {
-	add_options_page('Theme Einstellungen', 'Theme Einstellungen', 'manage_options', 'custom-theme-settings', 'theme_settings_page');
+	add_options_page('Theme settings', 'Theme settings', 'manage_options', 'custom-theme-settings', 'theme_settings_page');
 }
-
 add_action('admin_menu', 'add_custom_info_menu_item');
-
-// Custom image with description excerpt
-
-function imageWithDescriptionExcerpt($text, $limit)
-{
-	$excerpt = explode(' ', $text, $limit);
-
-	if (count($excerpt) >= $limit) {
-		array_pop($excerpt);
-		$excerpt = implode(" ", $excerpt) . '...';
-	} else {
-		$excerpt = implode(" ", $excerpt);
-	}
-	$excerpt = preg_replace('`\[[^\]]*\]`', '', $excerpt);
-
-	return $excerpt;
-}
-
-// Add title tag
-
-add_theme_support('title-tag');
