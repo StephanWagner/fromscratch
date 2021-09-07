@@ -13,22 +13,52 @@
   display: flex;
   align-items: center;
   height: 80px;
+
+  @media (max-width: 900px) {
+    height: 50px;
+  }
 }
 
 .content__wrapper {
   padding-top: calc(80px + 32px);
   padding-bottom: 32px;
+
+  @media (max-width: 900px) {
+    padding-top: calc(50px + 32px);
+  }
 }
 
 .logo__image {
   height: 42px;
   width: auto;
+
+  @media (max-width: 900px) {
+    height: 32px;
+  }
 }
 
 // Header menu
 
 .header-menu__wrapper {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #000;
+    border-top: 2px solid $primaryColor;
+    flex-direction: column-reverse;
+    margin: 0;
+    max-width: 260px;
+
+    .menu-open & {
+      display: flex;
+    }
+  }
 }
 
 .header-menu__container {
@@ -37,9 +67,22 @@
   margin: 0;
   display: flex;
 
+  @media (max-width: 900px) {
+    border-top: 2px solid $primaryColor;
+    width: 100%;
+    flex-direction: column;
+    padding: 8px 0;
+  }
+
   > li {
     padding: 0;
     margin: 0 0 0 16px;
+
+    @media (max-width: 900px) {
+      margin: 0;
+      text-align: right;
+      padding: 8px 16px;
+    }
 
     &:first-child {
       margin-left: 0;
@@ -64,4 +107,66 @@
 
 .search__wrapper {
   margin-left: 16px;
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+    padding: 8px 14px;
+  }
+}
+
+// Menu toggler
+
+.header-menu__toggler-container {
+  cursor: pointer;
+  display: none;
+  margin-left: auto;
+
+  @media (max-width: 900px) {
+    display: block;
+  }
+}
+
+.main-menu__toggler-icons {
+  width: 42px;
+  height: 42px;
+  position: relative;
+
+  svg {
+    display: block;
+    fill: #fff;
+    transition: fill 250ms;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      svg {
+        fill: $primaryColor;
+      }
+    }
+  }
+}
+
+.main-menu__toggler-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 250ms, opacity 250ms;
+
+  &--menu {
+    .menu-open & {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+  }
+
+  &--close {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+
+    .menu-open & {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
 }

@@ -10,12 +10,26 @@
   align-items: center;
   height: 60px;
   font-size: 14px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    height: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 // Footer menu
 
 .footer-menu__wrapper {
   margin-left: auto;
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+    margin-top: 16px;
+  }
 }
 
 .footer-menu__container {
@@ -23,6 +37,11 @@
   padding: 0;
   margin: 0;
   display: flex;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 
   > li {
     padding: 0;
