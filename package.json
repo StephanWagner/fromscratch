@@ -1,8 +1,8 @@
 {
-  "name": "schneidergutachten",
-  "description": "",
-  "private": true,
-  "homepage": "https://schneidergutachten.de",
+  "name": "fromscratch",
+  "description": "A minimalistic wordpress theme to start building from scratch",
+  "private": false,
+  "homepage": "https://github.com/StephanWagner/fromscratch",
   "dependencies": {
     "jquery": "^3.6.0"
   },
