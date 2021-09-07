@@ -1,8 +1,5 @@
 <?php
 return [
-	// Enabole or disable debugging
-	'debug' => true,
-
 	// The meta content for viewport
 	'meta_viewport' => 'width=device-width,initial-scale=1',
 

@@ -49,8 +49,10 @@ function fromscratch_init_styles()
 }
 add_action('wp_enqueue_scripts', 'fromscratch_init_styles');
 
-function admin_style()
+function fromscratch_admin_styles()
 {
+	$min = fromscratch_is_debug() ? '' : '.min';
+
 	$file = '/css/admin' . $min . '.css';
 	wp_enqueue_style('fromscratch_admin_styles', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), 'all');
 }
@@ -77,7 +79,6 @@ add_action('wp_enqueue_scripts', 'fromscratch_init_scripts');
 add_theme_support('menus');
 
 register_nav_menus([
-	'main_menu' => __('Main', 'theme'),
 	'header_menu' => __('Header', 'theme'),
 	'footer_menu' => __('Footer', 'theme')
 ]);
