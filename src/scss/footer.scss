@@ -1,1 +1,39 @@
 // Footer styles
+
+.footer__wrapper {
+  background: #ddd;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  font-size: 14px;
+}
+
+// Footer menu
+
+.footer-menu__wrapper {
+  margin-left: auto;
+}
+
+.footer-menu__container {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  > li {
+    padding: 0;
+    margin: 0 0 0 16px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    > a {
+      color: #666;
+    }
+  }
+}
