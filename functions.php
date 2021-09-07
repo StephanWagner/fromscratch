@@ -3,7 +3,7 @@
 /**
  * Check wheather we are in debug mode
  */
-function squareone_is_debug()
+function fromscratch_is_debug()
 {
 	return defined('WP_DEBUG') && true === WP_DEBUG;
 }
@@ -11,10 +11,10 @@ function squareone_is_debug()
 /**
  * Get the hash for assets
  */
-function squareone_get_asset_hash()
+function fromscratch_get_asset_hash()
 {
 	// Return time when debugging
-	if (squareone_is_debug()) {
+	if (fromscratch_is_debug()) {
 		return time();
 	}
 
@@ -42,23 +42,23 @@ function squareone_get_asset_hash()
 /**
  * Init stylesheets
  */
-function squareone_init_styles()
+function fromscratch_init_styles()
 {
-	$min = squareone_is_debug() ? '' : '.min';
-	wp_enqueue_style('squareone_main', get_template_directory_uri() . '/css/main' . $min . '.css', [], squareone_get_asset_hash(), 'all');
+	$min = fromscratch_is_debug() ? '' : '.min';
+	wp_enqueue_style('fromscratch_main', get_template_directory_uri() . '/css/main' . $min . '.css', [], fromscratch_get_asset_hash(), 'all');
 
-	if (!empty(squareone_config('google_fonts'))) {
-		wp_enqueue_style('squareone_google_fonts', squareone_config('google_fonts'), [], null, 'all');
+	if (!empty(fromscratch_config('google_fonts'))) {
+		wp_enqueue_style('fromscratch_google_fonts', fromscratch_config('google_fonts'), [], null, 'all');
 	}
 
-	if (!empty(squareone_config('additional_css'))) {
-		$css_files = is_array(squareone_config('additional_css')) ? squareone_config('additional_css') : [squareone_config('additional_css')];
+	if (!empty(fromscratch_config('additional_css'))) {
+		$css_files = is_array(fromscratch_config('additional_css')) ? fromscratch_config('additional_css') : [fromscratch_config('additional_css')];
 		foreach ($css_files as $index => $css_file) {
-			wp_enqueue_style('squareone_additional_css_' . $index, $css_file, [], null, 'all');
+			wp_enqueue_style('fromscratch_additional_css_' . $index, $css_file, [], null, 'all');
 		}
 	}
 }
-add_action('wp_enqueue_scripts', 'squareone_init_styles');
+add_action('wp_enqueue_scripts', 'fromscratch_init_styles');
 
 function admin_style()
 {
@@ -69,14 +69,14 @@ add_action('admin_enqueue_scripts', 'admin_style');
 /**
  * Init scripts
  */
-function squareone_init_scripts()
+function fromscratch_init_scripts()
 {
-	$min = squareone_is_debug() ? '' : '.min';
-	wp_enqueue_script('squareone_jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', [], squareone_get_asset_hash(), false);
-	wp_enqueue_script('squareone_jbox', 'https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.13/dist/jBox.all.min.js', [], squareone_get_asset_hash(), false);
-	wp_enqueue_script('squareone_main', get_template_directory_uri() . '/js/main' . $min . '.js', [], squareone_get_asset_hash(), true);
+	$min = fromscratch_is_debug() ? '' : '.min';
+	wp_enqueue_script('fromscratch_jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', [], fromscratch_get_asset_hash(), false);
+	wp_enqueue_script('fromscratch_jbox', 'https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.13/dist/jBox.all.min.js', [], fromscratch_get_asset_hash(), false);
+	wp_enqueue_script('fromscratch_main', get_template_directory_uri() . '/js/main' . $min . '.js', [], fromscratch_get_asset_hash(), true);
 }
-add_action('wp_enqueue_scripts', 'squareone_init_scripts');
+add_action('wp_enqueue_scripts', 'fromscratch_init_scripts');
 
 /**
  * Add menus support and register menus
@@ -92,7 +92,7 @@ register_nav_menus([
 /**
  * Add meta data
  */
-function squareone_meta_tags()
+function fromscratch_meta_tags()
 {
 	echo '<meta charset="utf-8">' . "\n";
 	foreach ([
@@ -100,24 +100,24 @@ function squareone_meta_tags()
 		'meta_title',
 		'meta_description',
 	] as $config_key) {
-		if (!empty(squareone_config($config_key))) {
-			echo '<meta name="' . str_replace('meta_', '', $config_key) . '" content="' . squareone_config($config_key) . '">' . "\n";
+		if (!empty(fromscratch_config($config_key))) {
+			echo '<meta name="' . str_replace('meta_', '', $config_key) . '" content="' . fromscratch_config($config_key) . '">' . "\n";
 		}
 	}
 }
-add_action('wp_head', 'squareone_meta_tags');
+add_action('wp_head', 'fromscratch_meta_tags');
 
 /**
  * Get an option from the config file
  */
-$squareone_config = include __DIR__ . '/config.php';
+$fromscratch_config = include __DIR__ . '/config.php';
 
-function squareone_config($key)
+function fromscratch_config($key)
 {
-	global $squareone_config;
+	global $fromscratch_config;
 
-	if (!empty($squareone_config[$key])) {
-		return $squareone_config[$key];
+	if (!empty($fromscratch_config[$key])) {
+		return $fromscratch_config[$key];
 	}
 
 	return null;
