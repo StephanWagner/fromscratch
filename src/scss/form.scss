@@ -1,0 +1,77 @@
+// // Buttons
+
+// TODO
+
+// .button:not(.wp-block-button),
+// .wp-block-button__link,
+// .is-style-outline > .wp-block-button__link,
+// .wp-block-button__link.is-style-outline {
+//   display: inline-block;
+//   border: 0;
+//   color: #fff;
+//   font-size: 16px;
+//   height: 36px;
+//   border-radius: 18px;
+//   line-height: 40px;
+//   padding: 0 20px;
+//   overflow: hidden;
+//   text-align: left;
+//   cursor: pointer;
+//   text-decoration: none;
+//   background: $primaryColor;
+//   transition: background-color 200ms;
+//   font-weight: normal;
+//   font-weight: 500;
+
+//   &.button--large,
+//   .button--large & {
+//     @media (min-width: 600px) {
+//       height: 56px;
+//       border-radius: 28px;
+//       line-height: 52px;
+//       padding: 4px 32px 0;
+//     }
+//   }
+
+//   @media (hover: hover) {
+//     &:hover {
+//       text-decoration: none;
+//       background: $primaryColorDark;
+//     }
+//   }
+
+//   &.button--light,
+//   .button--light & {
+//     color: $primaryColorDark;
+//     background: #fff;
+
+//     @media (hover: hover) {
+//       &:hover {
+//         color: #fff;
+//         background: $primaryColorDark;
+//       }
+//     }
+//   }
+
+//   &[disabled] {
+//     cursor: default !important;
+//     color: #ccc !important;
+//     background: #eee !important;
+//     box-shadow: none !important;
+//   }
+// }
+
+// .is-style-outline > .wp-block-button__link,
+// .wp-block-button__link.is-style-outline,
+// .is-style-outline > .wp-block-button__link:not(.has-background),
+// .wp-block-button__link.is-style-outline:not(.has-background) {
+//   background: #fff;
+//   border: 0;
+//   box-shadow: inset 0 0 0 2px $primaryColor;
+
+//   @media (hover: hover) {
+//     &:hover {
+//       box-shadow: inset 0 0 0 2px $primaryColorDark;
+//     }
+//   }
+// }

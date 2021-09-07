@@ -1,0 +1,42 @@
+// Adjust default wordpress styles
+
+// .wp-block-columns {
+//   margin: 0;
+// }
+
+// .wp-block-column {
+//   margin: 16px 0;
+// }
+
+// .wp-block-image {
+//   img {
+//     height: auto;
+//   }
+// }
+
+figure {
+  margin: 0;
+  padding: 0;
+
+  &.wp-block-image {
+    margin: 0;
+  }
+}
+
+// // Buttons
+
+// TODO
+
+// .wp-block-file a.wp-block-file__button {
+//   background-color: $primaryColor;
+//   transition: background-color 200ms;
+//   color: #fff;
+
+//   @media (hover: hover) {
+//     &:hover {
+//       background-color: $primaryColorDark;
+//       color: #fff;
+//       opacity: 1;
+//     }
+//   }
+// }
