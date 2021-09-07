@@ -213,7 +213,7 @@ add_action('after_setup_theme', 'removeCustomColorsAndSizes');
  * Remove drop cap
  */
 add_filter(
-	'block_editor_settings',
+	'block_editor_settings_all',
 	function ($editor_settings) {
 		$editor_settings['__experimentalFeatures']['global']['typography']['dropCap'] = false;
 		return $editor_settings;
