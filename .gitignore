@@ -3,9 +3,9 @@
 
 # JS and CSS
 /js/*
-!/js/.gitignore
+!/js/.gitkeep
 /css/*
-!/css/.gitignore
+!/css/.gitkeep
 
 # OS generated files #
 ######################
