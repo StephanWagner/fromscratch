@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * Get an option from the config file
+ */
+$fromscratch_config = include __DIR__ . '/config.php';
+
+function fromscratch_config($key)
+{
+	global $fromscratch_config;
+
+	if (isset($fromscratch_config[$key])) {
+		return $fromscratch_config[$key];
+	}
+
+	return null;
+}
+
+/**
  * Check wheather we are in debug mode
  */
 function fromscratch_is_debug()
@@ -11,32 +27,14 @@ function fromscratch_is_debug()
 /**
  * Get the hash for assets
  */
-function fromscratch_get_asset_hash()
+function fromscratch_get_asset_hash($file)
 {
 	// Return time when debugging
 	if (fromscratch_is_debug()) {
 		return time();
 	}
 
-	// Check if hash was cached already
-	if (wp_cache_get('app_version')) {
-		return wp_cache_get('app_version');
-	}
-
-	// Build asset hash with theme version and deploy version
-	$themeVersion = wp_get_theme()->get('Version');
-
-	$appVersion = '';
-	if (file_exists(ABSPATH . '.deploy-version')) {
-		$appVersion = substr(md5(file_exists(ABSPATH . '.deploy-version') ? trim(file_get_contents(ABSPATH . '.deploy-version')) : date('YmdHis')), 0, 4);
-	}
-	$appVersion = $themeVersion . '-' . $appVersion;
-	$appVersion = substr(md5($appVersion), 0, 6);
-
-	// Cache version
-	wp_cache_set('app_version', $appVersion);
-
-	return $appVersion;
+	return filemtime(dirname(__FILE__) . $file);
 }
 
 /**
@@ -45,26 +43,18 @@ function fromscratch_get_asset_hash()
 function fromscratch_init_styles()
 {
 	$min = fromscratch_is_debug() ? '' : '.min';
-	wp_enqueue_style('fromscratch_main', get_template_directory_uri() . '/css/main' . $min . '.css', [], fromscratch_get_asset_hash(), 'all');
 
-	if (!empty(fromscratch_config('google_fonts'))) {
-		wp_enqueue_style('fromscratch_google_fonts', fromscratch_config('google_fonts'), [], null, 'all');
-	}
-
-	if (!empty(fromscratch_config('additional_css'))) {
-		$css_files = is_array(fromscratch_config('additional_css')) ? fromscratch_config('additional_css') : [fromscratch_config('additional_css')];
-		foreach ($css_files as $index => $css_file) {
-			wp_enqueue_style('fromscratch_additional_css_' . $index, $css_file, [], null, 'all');
-		}
-	}
+	$file = '/css/main' . $min . '.css';
+	wp_enqueue_style('fromscratch_main', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), 'all');
 }
 add_action('wp_enqueue_scripts', 'fromscratch_init_styles');
 
 function admin_style()
 {
-	wp_enqueue_style('admin-styles', get_template_directory_uri() . '/css/admin.css');
+	$file = '/css/admin' . $min . '.css';
+	wp_enqueue_style('fromscratch_admin_styles', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), 'all');
 }
-add_action('admin_enqueue_scripts', 'admin_style');
+add_action('admin_enqueue_scripts', 'fromscratch_admin_styles');
 
 /**
  * Init scripts
@@ -72,9 +62,12 @@ add_action('admin_enqueue_scripts', 'admin_style');
 function fromscratch_init_scripts()
 {
 	$min = fromscratch_is_debug() ? '' : '.min';
-	wp_enqueue_script('fromscratch_jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', [], fromscratch_get_asset_hash(), false);
-	wp_enqueue_script('fromscratch_jbox', 'https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.13/dist/jBox.all.min.js', [], fromscratch_get_asset_hash(), false);
-	wp_enqueue_script('fromscratch_main', get_template_directory_uri() . '/js/main' . $min . '.js', [], fromscratch_get_asset_hash(), true);
+
+	$file = '/js/vendor' . $min . '.js';
+	wp_enqueue_script('fromscratch_vendor', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), false);
+
+	$file = '/js/main' . $min . '.js';
+	wp_enqueue_script('fromscratch_main', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), true);
 }
 add_action('wp_enqueue_scripts', 'fromscratch_init_scripts');
 
@@ -108,22 +101,6 @@ function fromscratch_meta_tags()
 add_action('wp_head', 'fromscratch_meta_tags');
 
 /**
- * Get an option from the config file
- */
-$fromscratch_config = include __DIR__ . '/config.php';
-
-function fromscratch_config($key)
-{
-	global $fromscratch_config;
-
-	if (!empty($fromscratch_config[$key])) {
-		return $fromscratch_config[$key];
-	}
-
-	return null;
-}
-
-/**
  * Custom Search
  */
 function html5_search_form()
@@ -148,7 +125,7 @@ $role_object->add_cap('edit_theme_options');
  */
 function custom_excerpt_length()
 {
-	return 55;
+	return 60;
 }
 add_filter('excerpt_length', 'custom_excerpt_length');
 
@@ -177,12 +154,23 @@ function custom_excerpt_more()
 add_filter('excerpt_more', 'custom_excerpt_more');
 
 /**
- * Remove emoji script
+ * Remove wordpress generated links and scripts
  */
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 remove_action('admin_print_scripts', 'print_emoji_detection_script');
 remove_action('admin_print_styles', 'print_emoji_styles');
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'feed_links_extra', 3);
+remove_action('wp_head', 'feed_links', 2);
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+remove_action('wp_head', 'rest_output_link_wp_head');
+remove_action('wp_head', 'wp_oembed_add_discovery_links');
+remove_action('wp_head', 'wp_resource_hints', 2);
+remove_action('wp_head', 'wp_oembed_add_host_js');
 
 /**
  * Remove custom colors and sizes
@@ -191,7 +179,6 @@ function removeCustomColorsAndSizes()
 {
 	add_theme_support('editor-color-palette');
 	add_theme_support('disable-custom-colors');
-
 	add_theme_support('disable-custom-font-sizes');
 
 	add_theme_support(
@@ -224,7 +211,6 @@ function removeCustomColorsAndSizes()
 		)
 	);
 }
-
 add_action('after_setup_theme', 'removeCustomColorsAndSizes');
 
 // Remove default drop cap
@@ -453,4 +439,4 @@ function imageWithDescriptionExcerpt($text, $limit)
 
 // Add title tag
 
-add_theme_support( 'title-tag' );
+add_theme_support('title-tag');
