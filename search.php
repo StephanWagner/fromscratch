@@ -21,7 +21,7 @@
 
 			if ($the_query->have_posts()) {
 
-				_e('<div class="search__amount">' . ($the_query->post_count) . ' ' . ($the_query->post_count == 1 ? 'result' : 'results') . ' for your search term "' . get_query_var('s') . '"</div>');
+				_e('<div class="search__amount">' . ($the_query->post_count) . ' ' . ($the_query->post_count == 1 ? 'result' : 'results') . ' for search term "' . get_query_var('s') . '"</div>');
 				_e('<div class="search-result__wrapper">');
 
 				while ($the_query->have_posts()) {
