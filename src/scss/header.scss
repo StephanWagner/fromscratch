@@ -13,6 +13,11 @@
   display: flex;
   align-items: center;
   height: 80px;
+  transition: height 250ms;
+
+  .nav-fixed & {
+    height: 50px;
+  }
 
   @media (max-width: 900px) {
     height: 50px;
@@ -31,6 +36,11 @@
 .logo__image {
   height: 42px;
   width: auto;
+  transition: height 250ms;
+
+  .nav-fixed & {
+    height: 32px;
+  }
 
   @media (max-width: 900px) {
     height: 32px;
