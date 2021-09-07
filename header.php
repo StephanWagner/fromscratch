@@ -23,5 +23,11 @@
 						'menu_class' => 'header-menu__container'
 					]); ?>
 				</div>
+
+				<div class="search__wrapper">
+					<div class="search__container">
+						<?= get_search_form() ?>
+					</div>
+				</div>
 			</div>
 		</header>

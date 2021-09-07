@@ -96,12 +96,10 @@ add_action('wp_head', 'fromscratch_meta_tags');
 function html5_search_form()
 {
 	$form = '
-	<section class="search__wrapper">
 		<form role="search" method="get" action="' . home_url('/') . '" >
 			<input type="text" value="' . get_search_query() . '" class="search__input" name="s" placeholder="Search...">
 			<button type="submit" class="search__button">Search</button>
 		</form>
-	</section>
 	';
 
 	return $form;
@@ -119,7 +117,8 @@ add_filter('get_search_form', 'html5_search_form');
  */
 function custom_excerpt_length()
 {
-	return 60;
+	global $fromscratch_config;
+	return $fromscratch_config['custom_excerpt_length'];
 }
 add_filter('excerpt_length', 'custom_excerpt_length');
 
@@ -143,7 +142,8 @@ function excerpt($limit)
 
 function custom_excerpt_more()
 {
-	return '...';
+	global $fromscratch_config;
+	return $fromscratch_config['custom_excerpt_more'];
 }
 add_filter('excerpt_more', 'custom_excerpt_more');
 
@@ -223,6 +223,10 @@ add_filter(
 /**
  * Theme settings
  */
+
+// TODO load theme settings from config!!!!
+
+
 function theme_settings_page()
 {
 ?>

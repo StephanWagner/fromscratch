@@ -7,5 +7,12 @@ return [
 	'meta_title' => 'FromScratch',
 
 	// The meta content for description
-	'meta_description' => 'A minimalistic wordpress theme to start building from scratch'
+	'meta_description' => 'A minimalistic wordpress theme to start building from scratch',
+
+	// The length of excerpts
+	'custom_excerpt_length' => 60,
+
+	// The text to show after the excerpt if it was truncated
+	'custom_excerpt_more' => '...',
+
 ];
