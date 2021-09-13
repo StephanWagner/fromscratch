@@ -45,3 +45,16 @@ https://favicon.io/favicon-converter
 ## Manifest
 
 > TODO
+
+---
+
+## Search page
+
+> TODO
+
+---
+
+## Not found page
+
+> TODO
+
