@@ -19,7 +19,6 @@
 				<div class="header-menu__wrapper">
 					<?php wp_nav_menu([
 						'theme_location' => 'header_menu',
-						'container' => false,
 						'menu_class' => 'header-menu__container'
 					]); ?>
 
