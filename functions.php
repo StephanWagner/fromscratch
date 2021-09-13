@@ -62,6 +62,26 @@ function fromscratch_init_scripts()
 }
 add_action('wp_enqueue_scripts', 'fromscratch_init_scripts');
 
+function fromscratch_admin_scripts()
+{
+	$min = fromscratch_is_debug() ? '' : '.min';
+
+	$file = '/js/admin' . $min . '.js';
+	wp_enqueue_script('fromscratch_admin_scripts', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), true);
+}
+add_action('admin_enqueue_scripts', 'fromscratch_admin_scripts');
+
+/**
+ * Add manifest
+ */
+add_action('wp_head', 'inc_manifest_link');
+
+// Creates the link tag
+function inc_manifest_link()
+{
+	echo '<link rel="manifest" href="' . get_template_directory_uri() . '/manifest.json">';
+}
+
 /**
  * Add menus support and register menus
  */
@@ -73,6 +93,22 @@ register_nav_menus([
 ]);
 
 /**
+ * Add widgets
+ */
+function fromscratch_register_sidebars()
+{
+	register_sidebar(array(
+		'name' => 'Footer',
+		'id' => 'footer-widget',
+		'before_widget' => '',
+		'after_widget' => '',
+		'before_title' => '',
+		'after_title' => '',
+	));
+}
+add_action('widgets_init', 'fromscratch_register_sidebars');
+
+/**
  * Add meta data
  */
 function fromscratch_meta_tags()
@@ -81,11 +117,11 @@ function fromscratch_meta_tags()
 
 	echo '<meta charset="utf-8">' . "\n";
 	foreach ([
-		'meta_viewport',
-		'meta_title',
-		'meta_description',
+		'viewport',
+		'title',
+		'description',
 	] as $meta) {
-		echo '<meta name="' . $meta . '" content="' . $fromscratch_config[$meta] . '">' . "\n";
+		echo '<meta name="' . $meta . '" content="' . $fromscratch_config['meta_' . $meta] . '">' . "\n";
 	}
 }
 add_action('wp_head', 'fromscratch_meta_tags');
@@ -179,32 +215,7 @@ function removeCustomColorsAndSizes()
 
 	add_theme_support(
 		'editor-font-sizes',
-		array(
-			array(
-				'name'      => __('Small'),
-				'shortName' => __('S'),
-				'size'      => 14,
-				'slug'      => 'small',
-			),
-			array(
-				'name'      => __('Regular'),
-				'shortName' => __('M'),
-				'size'      => 16,
-				'slug'      => 'normal',
-			),
-			array(
-				'name'      => __('Large'),
-				'shortName' => __('L'),
-				'size'      => 20,
-				'slug'      => 'large',
-			),
-			array(
-				'name'      => __('Extra large'),
-				'shortName' => __('XL'),
-				'size'      => 26,
-				'slug'      => 'huge',
-			),
-		)
+		[]
 	);
 }
 add_action('after_setup_theme', 'removeCustomColorsAndSizes');
@@ -212,13 +223,12 @@ add_action('after_setup_theme', 'removeCustomColorsAndSizes');
 /**
  * Remove drop cap
  */
-add_filter(
-	'block_editor_settings_all',
-	function ($editor_settings) {
-		$editor_settings['__experimentalFeatures']['global']['typography']['dropCap'] = false;
-		return $editor_settings;
-	}
-);
+function disable_drop_cap_editor_settings($editor_settings)
+{
+	$editor_settings['__experimentalFeatures']['typography']['dropCap'] = false;
+	return $editor_settings;
+}
+add_filter('block_editor_settings_all', 'disable_drop_cap_editor_settings');
 
 /**
  * Theme settings
