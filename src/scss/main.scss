@@ -14,9 +14,15 @@
 // Form
 @import 'form';
 
+// Common
+@import 'common';
+
 // App
 @import 'app';
 @import 'header';
 @import 'footer';
 @import 'search';
 @import 'content';
+
+// Pages
+@import 'page-not-found';

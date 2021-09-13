@@ -2,11 +2,13 @@
 
 <div class="content__wrapper">
 	<div class="content__container container">
+		<div class="page-not-found__content">
 
-		<h1>404</h1>
+			<h1>404</h1>
 
-		<h2>Page not found</h2>
+			<h2>Page not found</h2>
 
+		</div>
 	</div>
 </div>
 
