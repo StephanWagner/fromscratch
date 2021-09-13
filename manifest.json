@@ -1,0 +1,20 @@
+{
+  "short_name": "fromscratch",
+  "name": "fromscratch",
+  "icons": [
+    {
+      "src": "/img/favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#00aaff"
+}
