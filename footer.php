@@ -12,7 +12,8 @@
 		<div class="footer-menu__wrapper">
 			<?php wp_nav_menu([
 				'theme_location' => 'footer_menu',
-				'menu_class' => 'footer-menu__container'
+				'menu_class' => 'footer-menu__container',
+				'container' => false
 			]); ?>
 		</div>
 	</div>
