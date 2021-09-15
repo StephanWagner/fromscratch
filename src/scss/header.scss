@@ -7,6 +7,16 @@
   right: 0;
   z-index: 100;
   background: #000;
+
+  // Adjust when wordpress admin bar is present
+
+  .logged-in.admin-bar & {
+    top: 32px;
+
+    @media (max-width: 782px) {
+      top: 46px;
+    }
+  }
 }
 
 .header__container {

@@ -1,3 +1,9 @@
+// Always have wordpress bar in fixed position
+
+#wpadminbar {
+  position: fixed !important;
+}
+
 // Adjust default wordpress styles
 
 .wp-block-columns {
