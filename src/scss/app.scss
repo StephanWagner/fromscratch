@@ -25,6 +25,14 @@ a {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  .logged-in.admin-bar & {
+    min-height: calc(100vh - 32px);
+
+    @media (max-width: 782px) {
+      min-height: calc(100vh - 46px);
+    }
+  }
 }
 
 .content__wrapper {
