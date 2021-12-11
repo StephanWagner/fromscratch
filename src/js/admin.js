@@ -1,1 +1,1 @@
-// JavaScript for wordpress
+// JavaScript when logged into wordpress

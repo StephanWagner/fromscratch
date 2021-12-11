@@ -3,38 +3,32 @@ window.$ = window.jQuery = jQuery;
 
 // Document is ready
 
-jQuery(function () {
+$(function () {
   // Append scroll check events
-  jQuery(window).on('resize', function () {
+  $(window).on('resize', function () {
     checkScroll();
   });
 
-  jQuery(window).on('scroll', function () {
+  $(window).on('scroll', function () {
     checkScroll();
   });
   checkScroll();
+
+  // Append navigation events
+  $('.header-menu__toggler-container').on('click', function () {
+    $('body').toggleClass('menu-open');
+  });
 });
 
 // Check for scrolling position
 
 function checkScroll() {
-  console.log(1);
-  var activateMinimizedNav = 20;
+  var activateMinimizedNav = 120;
 
-  if (jQuery(window).scrollTop() > activateMinimizedNav) {
-    jQuery('body').addClass('nav-fixed');
+  if ($(window).scrollTop() > activateMinimizedNav) {
+    $('body').addClass('nav-fixed');
     return;
   }
 
-  jQuery('body').removeClass('nav-fixed');
-}
-
-// Toggle menu
-
-function toggleMenu() {
-  jQuery('body').toggleClass('menu-open');
-}
-
-function closeMenu() {
-  jQuery('body').removeClass('menu-open');
+  $('body').removeClass('nav-fixed');
 }

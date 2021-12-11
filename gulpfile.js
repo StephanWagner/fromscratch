@@ -121,7 +121,7 @@ for (const script of scripts) {
 
   // Add to watch tasks
   watchTasks.push({
-    src: script.srcWatch,
+    src: script.srcWatch || script.src,
     task: jsTaskMinify
   });
 }
