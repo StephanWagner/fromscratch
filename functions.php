@@ -54,9 +54,6 @@ function fromscratch_init_scripts()
 {
 	$min = fromscratch_is_debug() ? '' : '.min';
 
-	$file = '/js/vendor' . $min . '.js';
-	wp_enqueue_script('fromscratch_vendor', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), false);
-
 	$file = '/js/main' . $min . '.js';
 	wp_enqueue_script('fromscratch_main', get_template_directory_uri() . $file, [], fromscratch_get_asset_hash($file), true);
 }

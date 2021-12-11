@@ -1,39 +1,40 @@
-//import 'jquery';
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
 
 // Document is ready
 
-// $(function () {
-//   // Append scroll check events
-//   $(window).on('resize', function () {
-//     checkScroll();
-//   });
+jQuery(function () {
+  // Append scroll check events
+  jQuery(window).on('resize', function () {
+    checkScroll();
+  });
 
-//   $(window).on('scroll', function () {
-//     checkScroll();
-//   });
-//   checkScroll();
-// });
+  jQuery(window).on('scroll', function () {
+    checkScroll();
+  });
+  checkScroll();
+});
 
-// // Check for scrolling position
+// Check for scrolling position
 
-// function checkScroll() {
-//   console.log(1);
-//   var activateMinimizedNav = 20;
+function checkScroll() {
+  console.log(1);
+  var activateMinimizedNav = 20;
 
-//   if ($(window).scrollTop() > activateMinimizedNav) {
-//     $('body').addClass('nav-fixed');
-//     return;
-//   }
+  if (jQuery(window).scrollTop() > activateMinimizedNav) {
+    jQuery('body').addClass('nav-fixed');
+    return;
+  }
 
-//   $('body').removeClass('nav-fixed');
-// }
+  jQuery('body').removeClass('nav-fixed');
+}
 
-// // Toggle menu
+// Toggle menu
 
-// function toggleMenu() {
-//   $('body').toggleClass('menu-open');
-// }
+function toggleMenu() {
+  jQuery('body').toggleClass('menu-open');
+}
 
-// function closeMenu() {
-//   $('body').removeClass('menu-open');
-// }
+function closeMenu() {
+  jQuery('body').removeClass('menu-open');
+}
