@@ -43,10 +43,11 @@ var scripts = [
 // Tasks
 let defaultTasks = [];
 let watchTasks = [];
+let buildTasks = [];
 
 // Config CSS task
 for (const style of styles) {
-  const cssTask = function () {
+  const cssTaskConcat = function () {
     return gulp
       .src(style.src)
       .pipe(gulpSourcemaps.init())
@@ -57,23 +58,34 @@ for (const style of styles) {
       )
       .pipe(gulpConcat(style.name + '.css'))
       .pipe(gulpSourcemaps.write('./'))
-      .pipe(gulp.dest(style.dest))
+      .pipe(gulp.dest(style.dest));
+  };
+
+  // Store as a task
+  gulp.task('cssTaskConcat-' + style.name, cssTaskConcat);
+
+  // Add to default tasks
+  defaultTasks.push('cssTaskConcat-' + style.name);
+
+  // Add to watch tasks
+  watchTasks.push({
+    src: style.srcWatch || style.src,
+    task: cssTaskConcat
+  });
+
+  const cssTaskMinify = function () {
+    return gulp
+      .src(style.dest + '/' + style.name + '.css')
       .pipe(gulpRename(style.name + '.min.css'))
       .pipe(gulpCleanCSS())
       .pipe(gulp.dest(style.dest));
   };
 
   // Store as a task
-  gulp.task('cssTask-' + style.name, cssTask);
+  gulp.task('cssTaskMinify-' + style.name, cssTaskMinify);
 
-  // Add to default tasks
-  defaultTasks.push('cssTask-' + style.name);
-
-  // Add to watch tasks
-  watchTasks.push({
-    src: style.srcWatch || style.src,
-    task: cssTask
-  });
+  // Add to build tasks
+  buildTasks.push('cssTaskMinify-' + style.name);
 }
 
 // Config JavaScript task
@@ -116,14 +128,8 @@ for (const script of scripts) {
   // Store as a task
   gulp.task('jsTaskMinify-' + script.name, jsTaskMinify);
 
-  // Add to default tasks
-  defaultTasks.push('jsTaskMinify-' + script.name);
-
-  // Add to watch tasks
-  watchTasks.push({
-    src: script.srcWatch || script.src,
-    task: jsTaskMinify
-  });
+  // Add to build tasks
+  buildTasks.push('jsTaskMinify-' + script.name);
 }
 
 // Watch tasks
@@ -136,4 +142,4 @@ function watch() {
 // Exports
 exports.default = gulp.series(defaultTasks);
 exports.watch = gulp.series(defaultTasks, watch);
-exports.build = gulp.series(defaultTasks);
+exports.build = gulp.series(defaultTasks, buildTasks);
