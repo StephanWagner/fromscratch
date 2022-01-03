@@ -207,11 +207,16 @@ remove_action('wp_head', 'wp_oembed_add_host_js');
 function removeCustomColorsAndSizes()
 {
 	add_theme_support('editor-color-palette', [
-		// [
-		// 	'name'  => 'Primary Color',
-		// 	'slug'  => 'primary-color',
-		// 	'color' => '#00aaff',
-		// ],
+		[
+			'name'  => 'Primary',
+			'slug'  => 'primary-color',
+			'color' => '#00aaff',
+		],
+		[
+			'name'  => 'Secondary',
+			'slug'  => 'secondary-color',
+			'color' => '#00ddff',
+		],
 	]);
 
 	add_theme_support('disable-custom-colors');
