@@ -202,6 +202,16 @@ remove_action('wp_head', 'wp_resource_hints', 2);
 remove_action('wp_head', 'wp_oembed_add_host_js');
 
 /**
+ * Remove comments
+ */
+function remove_menu_pages()
+{
+	remove_menu_page('edit-comments.php');
+};
+
+add_action('admin_menu', 'remove_menu_pages');
+
+/**
  * Remove custom colors and sizes
  */
 function removeCustomColorsAndSizes()
