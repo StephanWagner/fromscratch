@@ -2,8 +2,6 @@
 
 A minimalistic wordpress theme to start building from scratch
 
-> TODO
-
 ---
 
 ## Author
@@ -12,17 +10,20 @@ Stephan Wagner, [stephanwagner.me@gmail.com](stephanwagner.me@gmail.com)
 
 ---
 
-## Plugins
-
-> TODO
-
-https://de.wordpress.org/plugins/disable-comments
-
----
-
 ## Assets
 
-> TODO
+CSS and JS files are in folder `wordpress/wp-content/themes/fromscratch/src`. To watch or build assets use the following bash commands:
+
+```bash
+cd wordpress/wp-content/themes/fromscratch
+npm run watch
+```
+
+```bash
+cd wordpress/wp-content/themes/fromscratch
+npm run build
+```
+
 
 ---
 
@@ -36,7 +37,7 @@ See fonts.scss
 
 ## Favicon
 
-> TODO
+A good favicon converter to get the `favicon.ico` file from a PNG file.
 
 https://favicon.io/favicon-converter
 
@@ -44,17 +45,4 @@ https://favicon.io/favicon-converter
 
 ## Manifest
 
-> TODO
-
----
-
-## Search page
-
-> TODO
-
----
-
-## Not found page
-
-> TODO
-
+Remember to adjust the `manifest.json` file.
