@@ -206,7 +206,14 @@ remove_action('wp_head', 'wp_oembed_add_host_js');
  */
 function removeCustomColorsAndSizes()
 {
-	add_theme_support('editor-color-palette');
+	add_theme_support('editor-color-palette', [
+		// [
+		// 	'name'  => 'Primary Color',
+		// 	'slug'  => 'primary-color',
+		// 	'color' => '#00aaff',
+		// ],
+	]);
+
 	add_theme_support('disable-custom-colors');
 	add_theme_support('disable-custom-font-sizes');
 
@@ -232,7 +239,6 @@ add_filter('block_editor_settings_all', 'disable_drop_cap_editor_settings');
  */
 
 // TODO load theme settings from config!!!!
-
 
 function theme_settings_page()
 {
