@@ -112,10 +112,8 @@
       color: #fff;
       text-decoration: none;
 
-      @media (hover: hover) {
-        &:hover {
-          color: $primaryColor;
-        }
+      &:hover {
+        color: $primaryColor;
       }
     }
 
@@ -157,11 +155,9 @@
     transition: fill 250ms;
   }
 
-  @media (hover: hover) {
-    &:hover {
-      svg {
-        fill: $primaryColor;
-      }
+  &:hover {
+    svg {
+      fill: $primaryColor;
     }
   }
 }

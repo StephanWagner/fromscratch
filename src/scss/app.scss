@@ -11,11 +11,16 @@ a {
   transition: color 250ms;
   text-decoration: none;
 
-  @media (hover: hover) {
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
   }
+}
+
+*,
+*:before,
+*:after {
+  outline-offset: 4px;
+  box-sizing: border-box;
 }
 
 // Scaffold

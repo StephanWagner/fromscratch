@@ -30,7 +30,7 @@
 					</div>
 				</div>
 
-				<div class="header-menu__toggler-container">
+				<div class="header-menu__toggler-container" data-toggle-menu>
 					<div class="main-menu__toggler-icons">
 						<div class="main-menu__toggler-icon main-menu__toggler-icon--menu">
 							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
