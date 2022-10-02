@@ -3,13 +3,14 @@
 @import 'reset';
 
 // Variables
+@import 'mixins';
 @import 'variables';
 
 // Fonts
 @import 'fonts';
 
-// Adjust wordpress specific styles
-@import 'wp-adjust';
+// Wordpress
+@import 'wordpress';
 
 // Form
 @import 'form';

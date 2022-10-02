@@ -21,7 +21,7 @@ var styles = [
   {
     name: 'admin',
     src: ['./src/scss/admin.scss'],
-    srcWatch: ['./src/scss/admin.scss'],
+    srcWatch: ['./src/scss/**/*.scss'],
     dest: './css'
   }
 ];
@@ -31,11 +31,13 @@ var scripts = [
   {
     name: 'main',
     src: ['./src/js/main.js'],
+    srcWatch: ['./src/js/**/*.js'],
     dest: './js'
   },
   {
     name: 'admin',
     src: ['./src/js/admin.js'],
+    srcWatch: ['./src/js/**/*.js'],
     dest: './js'
   }
 ];

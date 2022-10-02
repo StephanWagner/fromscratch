@@ -1,3 +1,38 @@
+// Paths
+$themePath: '/wp-content/themes/fromscratch';
+
+// Colors
+// prettier-ignore
+$colors:
+  // Primary colors
+  'primary' #00aaff,
+  'secondary' #00ddff,
+
+  // Grayscale
+  'white' #fff,
+  'black' #000,
+  'off-black' #222,
+  'gray-1' #666,
+  'gray-2' #999,
+  'gray-3' #ccc,
+  'gray-4' #ddd,
+  'gray-5' #eee,
+  'gray-6' #fafafa,
+
+  // Status colors
+  'error' #f33,
+  'warning' #fc0,
+  'success' #5d5;
+
+// Font sizes
+// prettier-ignore
+$fontSizes:
+  'xs' 12px 1.3,
+  's' 14px 1.4,
+  'm' 16px 1.6,
+  'l' 22px 1.5,
+  'xl' 28px 1.4;
+
 // Colors
 $primaryColor: #00aaff;
 $secondaryColor: #00ddff;
@@ -6,5 +41,5 @@ $secondaryColor: #00ddff;
 $primaryFontFamily: 'Montserrat', sans-serif;
 $secondaryFontFamily: 'Roboto', sans-serif;
 $defaultTextColor: #222;
-$defaultFontSize: 16px;
-$defaultLineHeight: 1.6;
+$defaultFontSize: fontSize('m');
+$defaultLineHeight: lineHeight('m');
