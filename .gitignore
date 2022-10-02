@@ -1,12 +1,6 @@
 # npm
 /node_modules
 
-# JS and CSS
-/js/*
-!/js/.gitkeep
-/css/*
-!/css/.gitkeep
-
 # OS generated files #
 ######################
 .DS_Store

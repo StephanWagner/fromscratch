@@ -10,19 +10,21 @@ const vinylSourceStream = require('vinyl-source-stream');
 const browserify = require('browserify');
 const babelify = require('babelify');
 
+var themeFolder = './themes/fromscratch';
+
 // CSS
 var styles = [
   {
     name: 'main',
-    src: ['./src/scss/main.scss'],
-    srcWatch: ['./src/scss/**/*.scss'],
-    dest: './css'
+    src: [themeFolder + '/src/scss/main.scss'],
+    srcWatch: [themeFolder + '/src/scss/**/*.scss'],
+    dest: themeFolder + '/css'
   },
   {
     name: 'admin',
-    src: ['./src/scss/admin.scss'],
-    srcWatch: ['./src/scss/**/*.scss'],
-    dest: './css'
+    src: [themeFolder + '/src/scss/admin.scss'],
+    srcWatch: [themeFolder + '/src/scss/**/*.scss'],
+    dest: themeFolder + '/css'
   }
 ];
 
@@ -30,15 +32,15 @@ var styles = [
 var scripts = [
   {
     name: 'main',
-    src: ['./src/js/main.js'],
-    srcWatch: ['./src/js/**/*.js'],
-    dest: './js'
+    src: [themeFolder + '/src/js/main.js'],
+    srcWatch: [themeFolder + '/src/js/**/*.js'],
+    dest: themeFolder + '/js'
   },
   {
     name: 'admin',
-    src: ['./src/js/admin.js'],
-    srcWatch: ['./src/js/**/*.js'],
-    dest: './js'
+    src: [themeFolder + '/src/js/admin.js'],
+    srcWatch: [themeFolder + '/src/js/**/*.js'],
+    dest: themeFolder + '/js'
   }
 ];
 
