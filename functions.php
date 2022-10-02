@@ -212,32 +212,16 @@ function remove_menu_pages()
 add_action('admin_menu', 'remove_menu_pages');
 
 /**
- * Remove custom colors and sizes
+ * Add custom colors and sizes
  */
-function removeCustomColorsAndSizes()
+function addCustomColorsAndSizes()
 {
-	add_theme_support('editor-color-palette', [
-		[
-			'name'  => 'Primary',
-			'slug'  => 'primary-color',
-			'color' => '#00aaff',
-		],
-		[
-			'name'  => 'Secondary',
-			'slug'  => 'secondary-color',
-			'color' => '#00ddff',
-		],
-	]);
+	global $fromscratch_config;
+	add_theme_support('editor-color-palette', $fromscratch_config['theme_colors']);
 
-	add_theme_support('disable-custom-colors');
-	add_theme_support('disable-custom-font-sizes');
-
-	add_theme_support(
-		'editor-font-sizes',
-		[]
-	);
+	add_theme_support('editor-font-sizes', $fromscratch_config['theme_font_sizes']);
 }
-add_action('after_setup_theme', 'removeCustomColorsAndSizes');
+add_action('after_setup_theme', 'addCustomColorsAndSizes');
 
 /**
  * Remove drop cap
