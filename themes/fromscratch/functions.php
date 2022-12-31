@@ -90,22 +90,6 @@ register_nav_menus([
 ]);
 
 /**
- * Add widgets
- */
-function fromscratch_register_sidebars()
-{
-	register_sidebar(array(
-		'name' => 'Footer',
-		'id' => 'footer-widget',
-		'before_widget' => '',
-		'after_widget' => '',
-		'before_title' => '',
-		'after_title' => '',
-	));
-}
-add_action('widgets_init', 'fromscratch_register_sidebars');
-
-/**
  * Add meta data
  */
 function fromscratch_meta_tags()
@@ -237,40 +221,4 @@ add_filter('block_editor_settings_all', 'disable_drop_cap_editor_settings');
  * Theme settings
  */
 
-// TODO load theme settings from config!!!!
-
-function theme_settings_page()
-{
-?>
-	<div class="wrap">
-		<h1>Theme settings</h1>
-		<form method="post" action="options.php">
-			<?php
-			settings_fields('section');
-			do_settings_sections('theme_variables_footer');
-			submit_button();
-			?>
-		</form>
-	</div>
-<?php
-}
-
-function display_theme_variable_credits()
-{
-	echo '<input type="tel" name="theme_variable_credits" value="' . get_option('theme_variable_credits') . '" size="50">';
-}
-
-function display_custom_info_fields()
-{
-	add_settings_section('section', 'Footer', null, 'theme_variables_footer');
-
-	add_settings_field('theme_variable_credits', 'Credits', 'display_theme_variable_credits', 'theme_variables_footer', 'section');
-	register_setting('section', 'theme_variable_credits');
-}
-add_action('admin_init', 'display_custom_info_fields');
-
-function add_custom_info_menu_item()
-{
-	add_options_page('Theme settings', 'Theme settings', 'manage_options', 'custom-theme-settings', 'theme_settings_page');
-}
-add_action('admin_menu', 'add_custom_info_menu_item');
+require_once 'inc/theme-settings.php';
