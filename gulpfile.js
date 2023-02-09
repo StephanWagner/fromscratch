@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const gulpUtil = require('gulp-util');
+const fancyLog = require('fancy-log');
 const gulpSass = require('gulp-sass')(require('sass'));
 const gulpConcat = require('gulp-concat');
 const gulpCleanCSS = require('gulp-clean-css');
@@ -102,7 +102,7 @@ for (const script of scripts) {
       .transform(babelify, { presets: ['@babel/preset-env'] })
       .bundle()
       .on('error', function (e) {
-        gulpUtil.log(e);
+        fancyLog(e);
       })
       .pipe(vinylSourceStream(script.name + '.js'))
       .pipe(gulp.dest(script.dest));
