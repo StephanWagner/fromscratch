@@ -3,12 +3,6 @@ return [
 	// The meta content for viewport
 	'meta_viewport' => 'width=device-width',
 
-	// The meta content for title
-	'meta_title' => 'FromScratch',
-
-	// The meta content for description
-	'meta_description' => '',
-
 	// Disable blogs
 	'disable_blogs' => false,
 

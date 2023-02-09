@@ -106,9 +106,7 @@ function fromscratch_meta_tags()
 
 	echo '<meta charset="utf-8">' . "\n";
 	foreach ([
-		'viewport',
-		'title',
-		'description',
+		'viewport'
 	] as $meta) {
 		echo '<meta name="' . $meta . '" content="' . $fromscratch_config['meta_' . $meta] . '">' . "\n";
 	}
