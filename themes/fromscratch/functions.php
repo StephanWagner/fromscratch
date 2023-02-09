@@ -5,6 +5,11 @@
  */
 $fromscratch_config = include __DIR__ . '/config.php';
 
+// Hide deprecated errors
+if ($fromscratch_config['hideDeprecatedWarnigs'] && defined('WP_DEBUG') && WP_DEBUG) {
+	error_reporting(E_ALL & ~E_DEPRECATED);
+}
+
 /**
  * Check wheather we are in debug mode
  */
@@ -89,6 +94,9 @@ register_nav_menus([
 	'footer_menu' => __('Footer', 'theme')
 ]);
 
+// Add post thumbnails
+add_theme_support('post-thumbnails', ['news']);
+
 /**
  * Add meta data
  */
@@ -128,6 +136,9 @@ add_filter('get_search_form', 'html5_search_form');
  */
 // $role_object = get_role('editor');
 // $role_object->add_cap('edit_theme_options');
+
+// Allow wide alignments
+add_theme_support('align-wide');
 
 /**
  * Change excerpt length
@@ -184,6 +195,19 @@ remove_action('wp_head', 'rest_output_link_wp_head');
 remove_action('wp_head', 'wp_oembed_add_discovery_links');
 remove_action('wp_head', 'wp_resource_hints', 2);
 remove_action('wp_head', 'wp_oembed_add_host_js');
+
+// Remove blog link
+
+function adjust_admin_panel()
+{
+	add_action('admin_menu', function () {
+		remove_menu_page('edit.php');
+	});
+}
+
+if (!empty($fromscratch_config['disable_blogs'])) {
+	add_action('init', 'adjust_admin_panel');
+}
 
 /**
  * Remove comments

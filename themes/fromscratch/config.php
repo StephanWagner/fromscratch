@@ -7,7 +7,10 @@ return [
 	'meta_title' => 'FromScratch',
 
 	// The meta content for description
-	'meta_description' => 'A minimalistic wordpress theme to start building from scratch',
+	'meta_description' => '',
+
+	// Disable blogs
+	'disable_blogs' => false,
 
 	// The length of excerpts
 	'custom_excerpt_length' => 60,
