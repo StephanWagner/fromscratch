@@ -1,15 +1,3 @@
-<div class="footer-widget__wrapper">
-	<div class="footer-widget__container container">
-
-		<h4>Footer Widget</h4>
-
-		<p>Add content in Wordpress at <a href="/wp-admin/widgets.php">Design › Widgets › Footer</a></p>
-
-		<?php dynamic_sidebar('footer-widget'); ?>
-
-	</div>
-</div>
-
 <footer class="footer__wrapper">
 	<div class="footer__container container">
 		<div class="footer__credits">
