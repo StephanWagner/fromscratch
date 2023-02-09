@@ -1,5 +1,8 @@
 <?php
 return [
+	// Hide deprecated PHP warnings
+	'hideDeprecatedWarnigs' => true,
+
 	// The meta content for viewport
 	'meta_viewport' => 'width=device-width',
 
