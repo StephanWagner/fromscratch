@@ -20,6 +20,7 @@ return [
 		// Black and white
 		['slug' => 'white', 'color' => '#fff', 'name' => 'White'],
 		['slug' => 'black', 'color' => '#000', 'name' => 'Black'],
+		['slug' => 'black-off', 'color' => '#222', 'name' => 'Black Light'],
 
 		// Primary colors
 		['slug' => 'primary', 'color' => '#00aaff', 'name' => 'Primary color'],
@@ -48,7 +49,7 @@ return [
 			'slug' => 's',
 		],
 		[
-			'name' => 'Medium',
+			'name' => 'Regular',
 			'shortName' => 'M',
 			'size' => 16,
 			'slug' => 'm',
@@ -56,13 +57,13 @@ return [
 		[
 			'name' => 'Large',
 			'shortName' => 'L',
-			'size' => 24,
+			'size' => 22,
 			'slug' => 'l',
 		],
 		[
 			'name' => 'Extra large',
 			'shortName' => 'XL',
-			'size' => 32,
+			'size' => 28,
 			'slug' => 'xl',
 		],
 	]

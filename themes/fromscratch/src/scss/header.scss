@@ -70,7 +70,7 @@
     top: 100%;
     right: 0;
     background: #000;
-    border-top: 2px solid $primaryColor;
+    border-top: 2px solid color('primary');
     flex-direction: column-reverse;
     margin: 0;
     max-width: 260px;
@@ -88,7 +88,7 @@
   display: flex;
 
   @media (max-width: 900px) {
-    border-top: 2px solid $primaryColor;
+    border-top: 2px solid color('primary');
     width: 100%;
     flex-direction: column;
     padding: 8px 0;
@@ -113,12 +113,12 @@
       text-decoration: none;
 
       &:hover {
-        color: $primaryColor;
+        color: color('primary');
       }
     }
 
     &.current-menu-item > a {
-      color: $secondaryColor;
+      color: color('secondary');
     }
   }
 }
@@ -157,7 +157,7 @@
 
   &:hover {
     svg {
-      fill: $primaryColor;
+      fill: color('primary');
     }
   }
 }

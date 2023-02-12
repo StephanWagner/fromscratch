@@ -13,13 +13,13 @@
   text-align: left;
   cursor: pointer;
   text-decoration: none;
-  background: $primaryColor;
+  background: color('primary');
   transition: background-color 250ms;
   font-weight: normal;
 
   &:hover {
     text-decoration: none;
-    background: $secondaryColor;
+    background: color('secondary');
   }
 
   &[disabled] {

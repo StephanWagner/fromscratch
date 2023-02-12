@@ -1,0 +1,128 @@
+
+// Container
+
+.container {
+  position: relative;
+  margin: auto;
+  max-width: $maxContent;
+  width: calc(100% - $maxContentPadding - $maxContentPadding);
+
+  @media (max-width: 900px) {
+    width: calc(100% - 48px - 48px);
+  }
+
+  @media (max-width: 600px) {
+    width: calc(100% - 32px - 32px);
+  }
+
+  @media (max-width: 400px) {
+    width: calc(100% - 24px - 24px);
+  }
+}
+
+.alignwide {
+  margin-left: calc($maxContentPadding * -1);
+  margin-right: calc($maxContentPadding * -1);
+
+  &.has-background {
+    padding-left: $maxContentPadding;
+    padding-right: $maxContentPadding;
+  }
+
+  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding + $maxContentPadding + $maxContentPadding)) {
+    margin-left: calc((100vw - $maxContent) / 2 / 2 * -1);
+    margin-right: calc((100vw - $maxContent) / 2 / 2 * -1);
+
+    &.has-background {
+      padding-left: calc((100vw - $maxContent) / 2 / 2);
+      padding-right: calc((100vw - $maxContent) / 2 / 2);
+    }
+  }
+
+  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
+    margin-left: calc($maxContentPadding / 2 * -1);
+    margin-right: calc($maxContentPadding / 2 * -1);
+
+    &.has-background {
+      padding-left: calc($maxContentPadding / 2);
+      padding-right: calc($maxContentPadding / 2);
+    }
+  }
+
+  @media (max-width: 900px) {
+    margin-left: -24px;
+    margin-right: -24px;
+
+    &.has-background {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    margin-left: -32px;
+    margin-right: -32px;
+
+    &.has-background {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    margin-left: -24px;
+    margin-right: -24px;
+
+    &.has-background {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+}
+
+.alignfull {
+  margin-left: calc((100vw - $maxContent) * -0.5);
+  margin-right: calc((100vw - $maxContent) * -0.5);
+
+  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
+    margin-left: $maxContentPadding * -1;
+    margin-right: $maxContentPadding * -1;
+  }
+
+  @media (max-width: 900px) {
+    margin-left: -48px;
+    margin-right: -48px;
+  }
+
+  @media (max-width: 600px) {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+
+  @media (max-width: 400px) {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  > .wp-block-group__inner-container {
+    max-width: calc($maxContent + $maxContentPadding + $maxContentPadding);
+    padding-left: $maxContentPadding;
+    padding-right: $maxContentPadding;
+    margin: auto;
+
+    @media (max-width: 900px) {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    @media (max-width: 600px) {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    @media (max-width: 400px) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+}

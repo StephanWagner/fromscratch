@@ -13,7 +13,9 @@
 			<div class="header__container container">
 
 				<div class="logo__container">
-					<img src="<?= get_template_directory_uri() ?>/img/logo.png" class="logo__image" alt="">
+					<a href="/">
+						<img src="<?= get_template_directory_uri() ?>/img/logo.png" class="logo__image" alt="">
+					</a>
 				</div>
 
 				<div class="header-menu__wrapper">
