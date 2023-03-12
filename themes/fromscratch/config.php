@@ -4,7 +4,7 @@ return [
 	'hideDeprecatedWarnigs' => true,
 
 	// The meta content for viewport
-	'meta_viewport' => 'width=device-width',
+	'meta_viewport' => 'width=device-width, initial-scale=1',
 
 	// Disable blogs
 	'disable_blogs' => false,
