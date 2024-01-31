@@ -95,7 +95,7 @@ register_nav_menus([
 ]);
 
 // Add post thumbnails
-add_theme_support('post-thumbnails', ['news']);
+add_theme_support('post-thumbnails');
 
 /**
  * Add meta data
