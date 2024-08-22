@@ -1,31 +1,32 @@
 // Reset browser defaults
-@import './node_modules/normalize.css/normalize';
-@import 'reset';
+@import "./node_modules/normalize.css/normalize";
+@import "lib/reset";
 
 // Variables
-@import 'mixins';
-@import 'variables';
+@import "mixins";
+@import "variables";
 
 // Fonts
-@import 'fonts';
+@import "layout/fonts";
 
 // Wordpress
-@import 'wordpress';
+@import "layout/wordpress";
+@import "layout/wordpress-block-options";
 
 // Form
-@import 'form';
+@import "layout/form";
 
 // Common
-@import 'common';
+@import "lib/common";
 
 // App
-@import 'app';
-@import "containers";
-@import "tags";
-@import 'header';
-@import 'footer';
-@import 'search';
-@import 'content';
+@import "layout/app";
+@import "layout/containers";
+@import "layout/tags";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/search";
+@import "layout/content";
 
 // Pages
-@import 'page-not-found';
+@import "layout/page-not-found";

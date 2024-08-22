@@ -36,10 +36,12 @@
 // Transitions
 
 @function transition($values...) {
-  $transition: '';
+  $transition: "";
   @each $name in $values {
-    @if ($transition != '') {
-      $transition: $transition, string.unquote($name) $defaultTransitionSpeed;
+    @if ($transition != "") {
+      $transition:
+        $transition,
+        string.unquote($name) $defaultTransitionSpeed;
     } @else {
       $transition: string.unquote($name) $defaultTransitionSpeed;
     }

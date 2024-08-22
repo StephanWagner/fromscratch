@@ -4,6 +4,7 @@
   "private": false,
   "homepage": "https://github.com/StephanWagner/fromscratch",
   "dependencies": {
+    "@babel/preset-react": "^7.24.7",
     "jquery": "^3.7.1",
     "normalize.css": "^8.0.1"
   },

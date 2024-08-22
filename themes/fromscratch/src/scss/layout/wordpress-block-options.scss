@@ -1,0 +1,7 @@
+// Columns
+
+.wp-block-columns.reverse-order-on-mobile {
+  @media (max-width: 782px) {
+    flex-direction: column-reverse;
+  }
+}

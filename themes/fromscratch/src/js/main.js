@@ -1,2 +1,2 @@
-import './lib/menu';
-import './lib/fixed-nav';
+import './main/menu';
+import './main/fixed-nav';

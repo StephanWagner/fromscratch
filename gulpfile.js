@@ -37,6 +37,12 @@ var scripts = [
     dest: themeFolder + '/js'
   },
   {
+    name: 'admin-block-options',
+    src: [themeFolder + '/src/js/admin/block-options.js'],
+    srcWatch: [themeFolder + '/src/js/admin/block-options.js', themeFolder + '/config-block-options.js'],
+    dest: themeFolder + '/js'
+  },
+  {
     name: 'admin',
     src: [themeFolder + '/src/js/admin.js'],
     srcWatch: [themeFolder + '/src/js/**/*.js'],
@@ -99,7 +105,7 @@ for (const script of scripts) {
       entries: script.src,
       debug: true
     })
-      .transform(babelify, { presets: ['@babel/preset-env'] })
+      .transform(babelify, { presets: ['@babel/preset-env', '@babel/preset-react'] })
       .bundle()
       .on('error', function (e) {
         fancyLog(e);

@@ -1,5 +1,5 @@
 // Paths
-$themePath: '/wp-content/themes/fromscratch';
+$themePath: "/wp-content/themes/fromscratch";
 
 // Colors
 // prettier-ignore
@@ -33,10 +33,10 @@ $fontSizes:
   'xl' 24px 1.4;
 
 // Text
-$primaryFontFamily: 'Open Sans', sans-serif;
-$defaultTextColor: color('off-black');
-$defaultFontSize: fontSize('m');
-$defaultLineHeight: lineHeight('m');
+$primaryFontFamily: "Open Sans", sans-serif;
+$defaultTextColor: color("off-black");
+$defaultFontSize: fontSize("m");
+$defaultLineHeight: lineHeight("m");
 
 // Dimensions
 $maxContent: 1200px;
