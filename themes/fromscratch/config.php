@@ -1,19 +1,24 @@
 <?php
 return [
-	// Hide deprecated PHP warnings
-	'hideDeprecatedWarnigs' => true,
-
-	// The meta content for viewport
-	'meta_viewport' => 'width=device-width, initial-scale=1',
-
 	// Disable blogs
 	'disable_blogs' => false,
 
+	// Meta tags
+	'meta' => [
+		'viewport' => 'width=device-width, initial-scale=1',
+	],
+
+	// Menus
+	'menus' => [
+		'header_menu' => 'Header Menu',
+		'footer_menu' => 'Footer Menu',
+	],
+
 	// The length of excerpts
-	'custom_excerpt_length' => 60,
+	'excerpt_length' => 60,
 
 	// The text to show after the excerpt if it was truncated
-	'custom_excerpt_more' => '...',
+	'excerpt_more' => '...',
 
 	// Colors
 	'theme_colors' => [
@@ -57,13 +62,13 @@ return [
 		[
 			'name' => 'Large',
 			'shortName' => 'L',
-			'size' => 22,
+			'size' => 20,
 			'slug' => 'l',
 		],
 		[
 			'name' => 'Extra large',
 			'shortName' => 'XL',
-			'size' => 28,
+			'size' => 24,
 			'slug' => 'xl',
 		],
 	]

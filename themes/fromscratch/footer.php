@@ -2,8 +2,8 @@
 	<div class="footer__container container">
 		<div class="footer__credits">
 			<?php
-			if (get_option('theme_variable_credits')) {
-				echo get_option('theme_variable_credits');
+			if (get_option('theme_variables_footer_text')) {
+				echo get_option('theme_variables_footer_text');
 			} else {
 				echo 'Go to <a href="/wp-admin/options-general.php?page=custom-theme-settings">Settings › Theme settings</a> to edit this text';
 			}

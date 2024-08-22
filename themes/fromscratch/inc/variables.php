@@ -1,57 +1,19 @@
 <?php
+
 /**
- * Base settings
+ * Variables
  */
-
-$languages = [
-	[
-		'id' => 'en',
-		'nameEnglish' => 'English',
-		'nameOriginalLanguage' => 'English',
-	],
-
-	// Add more languages to support translations
-];
-
-$variables = [
-	'title' => 'Theme Settings',
-	'sections' => [
-		[
-			'id' => 'footer',
-			'title' => 'Footer',
-			'variables' => [
-				[
-					'id' => 'text',
-					'title' => 'Text',
-					'translate' => false,
-					'type' => 'textfield',
-					'width' => 400
-				],
-				// [
-				// 	'id' => 'textarea',
-				// 	'title' => 'Textarea Example',
-				// 	'translate' => false,
-				// 	'type' => 'textarea',
-				// 	'rows' => 4,
-				// 	'width' => 400
-				// ]
-			],
-		],
-	]
-];
-
 function theme_settings_page()
 {
-	global $variables;
-	global $languages;
+	global $fs_config_variables;
 ?>
 	<div class="wrap">
-		<h1><?= $variables['title'] ?></h1>
+		<h1><?= $fs_config_variables['title_page'] ?></h1>
 		<form method="post" action="options.php" class="page-settings-form">
 			<div style="margin: 24px 0 32px;">
 				<?php
-				if (sizeof($languages) > 1) {
-					foreach ($languages as $language) {
+				if (sizeof($fs_config_variables['languages']) > 1) {
+					foreach ($fs_config_variables['languages'] as $language) {
 						echo '<div onclick="changeSettingsPageLanguage(\'' . $language['id'] . '\')" class="settings-page-language-button settings-page-language-button-' . $language['id'] . ' button' . ($language['id'] == 'de' ? ' button-primary' : '') . '" style="margin-right: 8px">' . $language['nameEnglish'] . '</div>';
 					}
 				}
@@ -122,7 +84,7 @@ function theme_settings_page()
 				</style>
 			</div>
 			<?php
-			foreach ($variables['sections'] as $section) {
+			foreach ($fs_config_variables['variables']['sections'] as $section) {
 				settings_fields('section');
 				do_settings_sections('theme_variables_' . $section['id']);
 			}
@@ -159,18 +121,16 @@ function display_custom_info_field($variable, $variableId, $languageId = null)
 
 function display_custom_info_fields()
 {
-	global $variables;
+	global $fs_config_variables;
 
-	foreach ($variables['sections'] as $section) {
+	foreach ($fs_config_variables['variables']['sections'] as $section) {
 		add_settings_section('section', $section['title'], null, 'theme_variables_' . $section['id']);
 
 		foreach ($section['variables'] as $variable) {
 			$variableId = 'theme_variables_' . $section['id'] . '_' . $variable['id'];
 
 			if (!empty($variable['translate'])) {
-				global $languages;
-
-				foreach ($languages as $language) {
+				foreach ($fs_config_variables['languages'] as $language) {
 					$variableIdLang = $variableId . '_' . $language['id'];
 					add_settings_field($variableIdLang, $variable['title'], function () use ($variable, $variableIdLang, $language) {
 						display_custom_info_field($variable, $variableIdLang, $language['id']);
@@ -190,37 +150,14 @@ add_action('admin_init', 'display_custom_info_fields');
 
 function add_custom_info_menu_item()
 {
-	global $variables;
-	add_options_page($variables['title'], $variables['title'], 'manage_options', 'custom-theme-settings', 'theme_settings_page');
+	global $fs_config_variables;
+
+	add_options_page(
+		$fs_config_variables['title_page'],
+		$fs_config_variables['title_menu'],
+		'manage_options',
+		'custom-theme-settings',
+		'theme_settings_page'
+	);
 }
 add_action('admin_menu', 'add_custom_info_menu_item');
-
-// Translate Strings
-
-// TODO customize
-
-function txt($de, $en, $fr, $it)
-{
-	$languageId = apply_filters('wpml_current_language', null);
-
-	switch ($languageId) {
-		case 'de':
-			return $de;
-			break;
-		case 'en':
-			return $en;
-			break;
-		case 'fr':
-			return $fr;
-			break;
-		case 'it':
-			return $it;
-			break;
-	}
-}
-
-function getLoginLink()
-{
-	$languageId = apply_filters('wpml_current_language', null);
-	return get_option('theme_variables_global_link_to_member_area') . '?lang=' . $languageId;
-}
