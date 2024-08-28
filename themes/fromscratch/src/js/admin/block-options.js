@@ -6,8 +6,6 @@ const { PanelBody, ToggleControl, SelectControl } = wp.components;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 
-console.log('a');
-
 // Add attributes to the block
 blockOptions.forEach(block => {
   const blockSlug = getBlockSlug(block.name);

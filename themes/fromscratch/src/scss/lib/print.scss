@@ -1,0 +1,134 @@
+@media print {
+  // Margins
+
+  @page {
+    margin: 2cm;
+  }
+
+  .content__wrapper {
+    padding: 0;
+  }
+
+  .entry .entry-header,
+  .site-footer .site-info {
+    margin: 0;
+  }
+
+  // Fonts
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    background: #fff !important;
+    color: #000;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-top: 24px;
+  }
+
+  h3 {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+
+  h4,
+  h5,
+  h6,
+  .has-regular-font-size,
+  .has-large-font-size,
+  .comments-title {
+    font-size: 16pt;
+    margin-top: 16px;
+  }
+
+  // Page breaks
+
+  a {
+    page-break-inside: avoid;
+  }
+
+  blockquote {
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  img {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+
+  ul,
+  ol,
+  dl {
+    page-break-before: avoid;
+  }
+
+  // Links
+
+  a:link,
+  a:visited,
+  a {
+    background: transparent;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: left;
+  }
+
+  a {
+    page-break-inside: avoid;
+  }
+
+  a[href^="http"]:after {
+    content: " < " attr(href) "> ";
+  }
+
+  a:after > img {
+    content: "";
+  }
+
+  article a[href^="#"]:after {
+    content: "";
+  }
+
+  a:not(:local-link):after {
+    content: " < " attr(href) "> ";
+  }
+
+  // Visibility
+
+  .footer__wrapper,
+  .header__wrapper,
+  .header__placeholder,
+  .hero__wrapper,
+  .main-navigation,
+  .author-description:before,
+  .post-navigation,
+  .widget-area,
+  .comment-form-flex,
+  .comment-reply,
+  .comment .comment-metadata .edit-link {
+    display: none;
+  }
+}

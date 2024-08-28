@@ -31,6 +31,16 @@ function fs_add_post_thumbnails()
 add_action('after_setup_theme', 'fs_add_post_thumbnails');
 
 /**
+ * Support support for admin styles
+ */
+function fs_add_admin_style_support()
+{
+	add_theme_support('wp-block-styles');
+	add_theme_support('editor-styles');
+}
+add_action('after_setup_theme', 'fs_add_admin_style_support');
+
+/**
  * Remove blogs
  */
 function fs_adjust_admin_panel()
