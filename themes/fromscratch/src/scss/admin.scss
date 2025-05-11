@@ -1,6 +1,4 @@
-// Variables
-@import "mixins";
-@import "variables";
+@use "variables" as *;
 
 /**
  * Add SCSS for the wordpress admin area

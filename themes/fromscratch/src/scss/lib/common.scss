@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .grayscale {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);

@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 // Wordpress colors
 
 @each $name, $color in $colors {

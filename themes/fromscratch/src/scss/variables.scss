@@ -1,3 +1,54 @@
+@use "sass:string";
+
+// Colors
+
+@function color($value) {
+  @each $name, $color in $colors {
+    @if $name == $value {
+      @return $color;
+    }
+  }
+  @return $value;
+}
+
+// Font sizes
+
+@function fontSize($value) {
+  @each $name, $size in $fontSizes {
+    @if $name == $value {
+      @return $size;
+    }
+  }
+  @return $value;
+}
+
+// Line heights
+
+@function lineHeight($value) {
+  @each $name, $size, $lineHeight in $fontSizes {
+    @if $name == $value {
+      @return $lineHeight;
+    }
+  }
+  @return $value;
+}
+
+// Transitions
+
+@function transition($values...) {
+  $transition: "";
+  @each $name in $values {
+    @if ($transition != "") {
+      $transition:
+        $transition,
+        string.unquote($name) $defaultTransitionSpeed;
+    } @else {
+      $transition: string.unquote($name) $defaultTransitionSpeed;
+    }
+  }
+  @return $transition;
+}
+
 // Paths
 $themePath: "/wp-content/themes/fromscratch";
 
