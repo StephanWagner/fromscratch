@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
 
   // Output directory
   const outputDirJs = path.resolve(__dirname, 'themes/fromscratch/js');
-  const outputDirScss = path.resolve(__dirname, 'themes/romscratch/css');
+  const outputDirScss = path.resolve(__dirname, 'themes/fromscratch/css');
 
   // Webpack setup
   return [
