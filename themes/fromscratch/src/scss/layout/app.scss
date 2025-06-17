@@ -19,7 +19,7 @@ body {
   .logged-in.admin-bar & {
     min-height: calc(100vh - 32px);
 
-    @media (max-width: 782px) {
+    @media (max-width: 781px) {
       min-height: calc(100vh - 46px);
     }
   }
