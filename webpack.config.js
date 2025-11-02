@@ -2,10 +2,12 @@ const path = require('path');
 const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const themeName = 'fromscratch';
+
 class CleanupPlugin {
   apply(compiler) {
     compiler.hooks.afterEmit.tap('CleanupPlugin', (compilation) => {
-      const jsPath = path.resolve(__dirname, 'themes/fromscratch/css/main.js');
+      const jsPath = path.resolve(__dirname, `themes/${themeName}/css/main.js`);
       if (fs.existsSync(jsPath)) {
         fs.unlinkSync(jsPath);
         console.log('\x1b[35m%s\x1b[0m', 'Deleted unwanted file:', jsPath);
@@ -20,14 +22,14 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   // Entry src
-  const entryJs = './themes/fromscratch/src/js/main.js';
-  const entryJsBlockOptions = './themes/fromscratch/src/js/admin/block-options.js';
-  const entryScss = './themes/fromscratch/src/scss/main.scss';
-  const entryScssAdmin = './themes/fromscratch/src/scss/admin.scss';
+  const entryJs = `./themes/${themeName}/src/js/main.js`;
+  const entryJsBlockOptions = `./themes/${themeName}/src/js/admin/block-options.js`;
+  const entryScss = `./themes/${themeName}/src/scss/main.scss`;
+  const entryScssAdmin = `./themes/${themeName}/src/scss/admin.scss`;
 
   // Output directory
-  const outputDirJs = path.resolve(__dirname, 'themes/fromscratch/js');
-  const outputDirScss = path.resolve(__dirname, 'themes/fromscratch/css');
+  const outputDirJs = path.resolve(__dirname, `themes/${themeName}/js`);
+  const outputDirScss = path.resolve(__dirname, `themes/${themeName}/css`);
 
   // Webpack setup
   return [
@@ -83,7 +85,7 @@ module.exports = (env, argv) => {
       },
     },
 
-    // CSS/SCSS Configuration
+    // SCSS Configuration
     {
       entry: entryScss,
       output: {
