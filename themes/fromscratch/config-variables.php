@@ -1,8 +1,8 @@
 <?php
 return [
 	// Titles
-	'title_page' => 'Theme Variables',
-	'title_menu' => 'Theme Variables',
+	'title_page' => 'Theme Settings',
+	'title_menu' => 'Theme Settings',
 
 	// Languages
 	'languages' => [

@@ -28,7 +28,6 @@ function fs_remove_global_styles()
 	wp_dequeue_style('global-styles');
 	wp_dequeue_style('classic-theme-styles');
 }
-
 add_action('wp_enqueue_scripts', 'fs_remove_global_styles', 100);
 
 /**

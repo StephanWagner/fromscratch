@@ -10,11 +10,11 @@ $(function () {
 // Check for scrolling position
 
 function checkScroll() {
-  var startFixedNav = 120;
+  var startFixedNav = 64;
 
   if ($(window).scrollTop() >= startFixedNav) {
-    $('body').addClass('nav-fixed');
+    $('body').addClass('-scrolled');
   } else {
-    $('body').removeClass('nav-fixed');
+    $('body').removeClass('-scrolled');
   }
 }

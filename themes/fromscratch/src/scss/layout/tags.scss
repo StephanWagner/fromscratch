@@ -13,7 +13,7 @@
 
 a {
   color: color('primary');
-  transition: color 250ms;
+  transition: transition('color');
   text-decoration: none;
 
   &:hover {
@@ -24,7 +24,7 @@ a {
 // Paragraphs
 
 p {
-  margin: 0 0 16px;
+  margin-bottom: 16px;
 
   &:last-child {
     margin-bottom: 0;
@@ -36,34 +36,16 @@ p {
 h1,
 .h1,
 h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  @media (max-width: 600px) {
-    br {
-      content: "";
-    }
-
-    br:after {
-      content: " ";
-    }
-  }
-}
-
-h1,
-.h1,
-h2,
-.h2 {
+h3.h1,
+h3.h2,
+h4.h1,
+h4.h2,
+h5.h1,
+h5,h2 {
   font-size: 36px;
   line-height: 1.3;
   font-weight: bold;
-  margin: 0 0 24px;
+  margin-bottom: 24px;
 
   @media (max-width: 1200px) {
     font-size: 32px;
@@ -82,18 +64,41 @@ h2,
   }
 }
 
-h3 {
+h3,
+.h3,
+h1.h3,
+h2.h3,
+h4.h5,
+h5.h6 {
   font-size: 18px;
   font-weight: bold;
-  margin: 0 0 8px;
+  margin-bottom: 8px;
 }
 
 h4,
+.h4,
+h1.h4,
+h2.h4,
+h3.h4,
+h5.h4,
+h6.h4,
 h5,
-h6 {
+.h5,
+h1.h5,
+h2.h5,
+h3.h5,
+h4.h5,
+h6.h5,
+h6,
+.h6,
+h1.h6,
+h2.h6,
+h3.h6,
+h4.h6,
+h5.h6 {
   font-size: 16px;
   font-weight: bold;
-  margin: 0 0 8px;
+  margin-bottom: 8px;
 }
 
 // Horizontal line

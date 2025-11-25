@@ -1,1 +1,1 @@
-// JavaScript when logged into wordpress
+// Admin scripts

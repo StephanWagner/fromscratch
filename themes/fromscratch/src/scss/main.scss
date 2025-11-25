@@ -1,31 +1,31 @@
 // Reset browser defaults
-@use "../../../../node_modules/normalize.css/normalize";
-@use "lib/reset";
+@use '../../../../node_modules/normalize.css/normalize';
+@use 'lib/reset';
 
 // Fonts
-@use "layout/fonts";
+@use 'layout/fonts';
 
 // Wordpress
-@use "layout/wordpress";
-@use "layout/wordpress-block-options";
+@use 'layout/wordpress';
+@use 'layout/wordpress-block-options';
 
 // Form
-@use "layout/form";
+@use 'layout/form';
 
 // Common
-@use "lib/common";
+@use 'lib/common';
 
 // App
-@use "layout/app";
-@use "layout/containers";
-@use "layout/tags";
-@use "layout/header";
-@use "layout/footer";
-@use "layout/search";
-@use "layout/content";
+@use 'layout/app';
+@use 'layout/containers';
+@use 'layout/tags';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/search';
+@use 'layout/content';
 
 // Pages
-@use "layout/page-not-found";
+@use 'layout/page-not-found';
 
 // Print
-@use "lib/print";
+@use 'lib/print';
