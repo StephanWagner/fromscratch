@@ -307,32 +307,6 @@
   }
 }
 
-// Groups
-
-.wp-block-group {
-  &.-has-box-shadow {
-    box-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.1);
-    padding: 64px;
-    border-radius: $largeBorderRadius;
-
-    @media (max-width: 1200px) {
-      padding: 48px;
-    }
-
-    @media (max-width: 900px) {
-      padding: 32px;
-    }
-
-    @media (max-width: 600px) {
-      padding: 24px;
-    }
-
-    @media (max-width: 400px) {
-      padding: 16px;
-    }
-  }
-}
-
 // Images
 
 .wp-block-image {
