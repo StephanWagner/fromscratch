@@ -1,15 +1,15 @@
 {
-  "apiVersion": 2,
-  "name": "fromscratch/anchor-link",
-  "title": "Anchor Link",
-  "category": "widgets",
-  "icon": "admin-links",
-  "description": "Creates an anchor target using an ID.",
-  "attributes": {
-    "anchorId": {
-      "type": "string",
-      "default": ""
-    }
-  },
-  "render": "file:./render.php"
-}
+    "apiVersion": 2,
+    "name": "fromscratch/anchor-link",
+    "title": "Anchor Link",
+    "category": "widgets",
+    "icon": "admin-links",
+    "description": "Creates an anchor target using an ID.",
+    "attributes": {
+      "anchorId": {
+        "type": "string",
+        "default": ""
+      }
+    },
+    "render": "file:./render.php"
+  }

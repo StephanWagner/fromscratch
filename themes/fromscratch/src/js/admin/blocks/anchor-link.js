@@ -1,10 +1,15 @@
-const { InspectorControls } = wp.blockEditor;
+const { InspectorControls, useBlockProps } = wp.blockEditor;
 const { PanelBody, TextControl } = wp.components;
 const { __ } = wp.i18n;
+const { Fragment } = wp.element;
 
 wp.blocks.registerBlockType("fromscratch/anchor-link", {
     edit: ({ attributes, setAttributes }) => {
-        return [
+        const blockProps = useBlockProps();
+        
+        return wp.element.createElement(
+            Fragment,
+            {},
             wp.element.createElement(
                 InspectorControls,
                 {},
@@ -20,10 +25,13 @@ wp.blocks.registerBlockType("fromscratch/anchor-link", {
             ),
             wp.element.createElement(
                 "div",
-                null,
+                blockProps,
                 "Anchor ID: ",
                 attributes.anchorId || "—"
-            ),
-        ];
+            )
+        );
+    },
+    save: () => {
+        return null; // Dynamic block, rendered via PHP
     },
 });
