@@ -23,7 +23,6 @@ module.exports = (env, argv) => {
   // Entry src
   const entryJs = `./themes/${themeName}/src/js/main.js`;
   const entryJsAdmin = `./themes/${themeName}/src/js/admin/main.js`;
-  const entryJsAdminBlocks = `./themes/${themeName}/src/js/admin/blocks.js`;
   const entryJsAdminBlockOptions = `./themes/${themeName}/src/js/admin/block-options.js`;
   const entryScss = `./themes/${themeName}/src/scss/main.scss`;
   const entryScssAdmin = `./themes/${themeName}/src/scss/admin.scss`;
@@ -66,32 +65,6 @@ module.exports = (env, argv) => {
       output: {
         path: outputDirJs,
         filename: isProduction ? `admin.min.js` : `admin.js`
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env', '@babel/preset-react']
-              }
-            }
-          }
-        ]
-      },
-      mode: argv.mode || 'production',
-      optimization: {
-        minimize: isProduction
-      }
-    },
-    // Admin blocks
-    {
-      entry: entryJsAdminBlocks,
-      output: {
-        path: outputDirJs,
-        filename: isProduction ? `admin-blocks.min.js` : `admin-blocks.js`
       },
       module: {
         rules: [
