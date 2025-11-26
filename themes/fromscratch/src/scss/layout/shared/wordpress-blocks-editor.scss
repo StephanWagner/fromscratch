@@ -1,0 +1,5 @@
+@use '../wordpress-blocks' as *;
+
+.editor-styles-wrapper {
+  @include wordpress-blocks();
+}

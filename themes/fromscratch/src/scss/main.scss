@@ -1,30 +1,34 @@
 // Reset browser defaults
-@use '../../../../node_modules/normalize.css/normalize';
-@use 'lib/reset';
+@forward '../../../../node_modules/normalize.css/normalize';
+@forward 'lib/reset';
 
 // Fonts
-@use 'layout/fonts';
+@forward 'layout/fonts';
 
 // Wordpress
-@use 'layout/wordpress';
-@use 'layout/wordpress-block-options';
+@forward 'layout/wordpress';
 
 // Form
-@use 'layout/form';
+@forward 'layout/form';
 
 // Common
-@use 'lib/common';
+@forward 'lib/common';
 
 // App
-@use 'layout/app';
-@use 'layout/containers';
-@use 'layout/tags';
-@use 'layout/header';
-@use 'layout/footer';
-@use 'layout/search';
+@forward 'layout/app';
+@forward 'layout/containers';
+
+// Shared
+@forward 'layout/shared/tags';
+@forward 'layout/shared/wordpress-blocks';
+
+// Layout
+@forward 'layout/header';
+@forward 'layout/footer';
+@forward 'layout/search';
 
 // Pages
-@use 'layout/page-not-found';
+@forward 'layout/page-not-found';
 
 // Print
-@use 'lib/print';
+@forward 'lib/print';

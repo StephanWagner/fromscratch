@@ -20,9 +20,3 @@
     line-height: $lineHeight;
   }
 }
-
-.has-l-font-size {
-  @media (max-width: 600px) {
-    font-size: 20px;
-  }
-}

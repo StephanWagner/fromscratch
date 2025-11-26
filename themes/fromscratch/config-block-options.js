@@ -46,10 +46,30 @@ export const blockOptions = [
       },
       {
         type: 'boolean',
-        label: 'Spalten umgekehrt auf Mobilgeräten',
+        label: 'Spalten auf Mobilgeräten umkehren',
         default: false,
         attributeName: 'columnReverseOrderOnMobile',
         className: '-reverse-order-on-mobile'
+      }
+    ]
+  },
+  {
+    name: 'core/heading',
+    options: [
+      {
+        type: 'select',
+        label: 'Anzeigen als',
+        default: '',
+        attributeName: 'headingShowAs',
+        options: [
+          { label: 'Standard', value: '' },
+          { label: 'H1', value: 'h1' },
+          { label: 'H2', value: 'h2' },
+          { label: 'H3', value: 'h3' },
+          { label: 'H4', value: 'h4' },
+          { label: 'H5', value: 'h5' },
+          { label: 'H6', value: 'h6' }
+        ]
       }
     ]
   },

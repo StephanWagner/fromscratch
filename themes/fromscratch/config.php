@@ -10,8 +10,8 @@ return [
 
 	// Menus
 	'menus' => [
-		'header_menu' => 'Header Menu',
-		'footer_menu' => 'Footer Menu',
+		'header_menu' => 'Header Menü',
+		'footer_menu' => 'Footer Menü',
 	],
 
 	// The length of excerpts
@@ -23,26 +23,26 @@ return [
 	// Colors
 	'theme_colors' => [
 		// Black and white
-		['slug' => 'white', 'color' => '#fff', 'name' => 'White'],
-		['slug' => 'black', 'color' => '#000', 'name' => 'Black'],
-		['slug' => 'black-off', 'color' => '#222', 'name' => 'Black Light'],
+		['slug' => 'white', 'color' => '#fff', 'name' => 'Weiß'],
+		['slug' => 'black', 'color' => '#000', 'name' => 'Schwarz'],
+		['slug' => 'black-off', 'color' => '#222', 'name' => 'Helleres Schwarz'],
 
 		// Primary colors
-		['slug' => 'primary', 'color' => '#00aaff', 'name' => 'Primary color'],
-		['slug' => 'secondary', 'color' => '#00ddff', 'name' => 'Secondary color'],
+		['slug' => 'primary', 'color' => '#00aaff', 'name' => 'Primärfarbe'],
+		['slug' => 'secondary', 'color' => '#00ddff', 'name' => 'Sekundärfarbe'],
 
 		// Grayscale
-		['slug' => 'gray-1', 'color' => '#666', 'name' => 'Gray 1'],
-		['slug' => 'gray-2', 'color' => '#999', 'name' => 'Gray 2'],
-		['slug' => 'gray-3', 'color' => '#ccc', 'name' => 'Gray 3'],
-		['slug' => 'gray-4', 'color' => '#ddd', 'name' => 'Gray 4'],
-		['slug' => 'gray-5', 'color' => '#eee', 'name' => 'Gray 5'],
-		['slug' => 'gray-6', 'color' => '#fafafa', 'name' => 'Gray 6'],
+		['slug' => 'gray-1', 'color' => '#666', 'name' => 'Grau 1'],
+		['slug' => 'gray-2', 'color' => '#999', 'name' => 'Grau 2'],
+		['slug' => 'gray-3', 'color' => '#ccc', 'name' => 'Grau 3'],
+		['slug' => 'gray-4', 'color' => '#ddd', 'name' => 'Grau 4'],
+		['slug' => 'gray-5', 'color' => '#eee', 'name' => 'Grau 5'],
+		['slug' => 'gray-6', 'color' => '#fafafa', 'name' => 'Grau 6'],
 
 		// Status colors
-		['slug' => 'error', 'color' => '#f33', 'name' => 'Status: Error'],
-		['slug' => 'warning', 'color' => '#fc0', 'name' => 'Status: Warning'],
-		['slug' => 'success', 'color' => '#5d5', 'name' => 'Status: Success'],
+		['slug' => 'error', 'color' => '#f33', 'name' => 'Status: Fehler'],
+		['slug' => 'warning', 'color' => '#fc0', 'name' => 'Status: Warnung'],
+		['slug' => 'success', 'color' => '#5d5', 'name' => 'Status: Erfolg'],
 	],
 
 	// Font sizes
@@ -62,13 +62,13 @@ return [
 		[
 			'name' => 'Large',
 			'shortName' => 'L',
-			'size' => 20,
+			'size' => 18,
 			'slug' => 'l',
 		],
 		[
 			'name' => 'Extra large',
 			'shortName' => 'XL',
-			'size' => 24,
+			'size' => 22,
 			'slug' => 'xl',
 		],
 	]
