@@ -87,3 +87,27 @@ function fs_admin_scripts()
 	);
 }
 add_action('admin_enqueue_scripts', 'fs_admin_scripts');
+
+/**
+ * Scripts
+ */
+function fs_editor_scripts()
+{
+    $min = fs_is_debug() ? '' : '.min';
+
+    $file = '/js/editor' . $min . '.js';
+
+    wp_enqueue_script(
+        'fromscratch-editor',
+        get_template_directory_uri() . $file,
+        [
+            'wp-blocks',
+            'wp-element',
+            'wp-block-editor',
+            'wp-components',
+            'wp-i18n'
+        ],
+        fs_asset_hash($file)
+    );
+}
+add_action('enqueue_block_editor_assets', 'fs_editor_scripts');

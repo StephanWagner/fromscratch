@@ -30,8 +30,3 @@ require_once 'inc/assets.php';
  * Variables
  */
 require_once 'inc/variables.php';
-
-/**
- * Blocks
- */
-require_once 'inc/block-options.php';

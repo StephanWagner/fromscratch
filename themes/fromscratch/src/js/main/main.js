@@ -1,5 +1,7 @@
-import './main/menu';
-import './main/scrolled';
+import $ from 'jquery';
+
+import './menu';
+import './scrolled';
 
 $(function () {
   setTimeout(function () {

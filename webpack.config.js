@@ -20,103 +20,75 @@ module.exports = (env, argv) => {
   // Enviroment
   const isProduction = argv.mode === 'production';
 
-  // Entry src
-  const entryJs = `./themes/${themeName}/src/js/main.js`;
-  const entryJsAdmin = `./themes/${themeName}/src/js/admin/main.js`;
-  const entryJsAdminBlockOptions = `./themes/${themeName}/src/js/admin/block-options.js`;
-  const entryScss = `./themes/${themeName}/src/scss/main.scss`;
-  const entryScssAdmin = `./themes/${themeName}/src/scss/admin.scss`;
+  // JS
+  const js = [
+    {
+      entry: `./themes/${themeName}/src/js/main/main.js`,
+      filename: 'main'
+    },
+    {
+      entry: `./themes/${themeName}/src/js/admin/admin.js`,
+      filename: 'admin'
+    },
+    {
+      entry: `./themes/${themeName}/src/js/editor/editor.js`,
+      filename: 'editor'
+    }
+  ];
+
+  // SCSS
+  const scss = [
+    {
+      entry: `./themes/${themeName}/src/scss/main.scss`,
+      filename: 'main'
+    },
+    {
+      entry: `./themes/${themeName}/src/scss/admin.scss`,
+      filename: 'admin'
+    }
+  ];
 
   // Output directory
   const outputDirJs = path.resolve(__dirname, `themes/${themeName}/js`);
   const outputDirScss = path.resolve(__dirname, `themes/${themeName}/css`);
 
-  // Webpack setup
-  return [
-    // Frontend
-    {
-      entry: entryJs,
-      output: {
-        path: outputDirJs,
-        filename: isProduction ? `main.min.js` : `main.js`
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env', '@babel/preset-react']
-              }
-            }
-          }
-        ]
-      },
-      mode: argv.mode || 'production',
-      optimization: {
-        minimize: isProduction
-      }
-    },
-    // Admin
-    {
-      entry: entryJsAdmin,
-      output: {
-        path: outputDirJs,
-        filename: isProduction ? `admin.min.js` : `admin.js`
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env', '@babel/preset-react']
-              }
-            }
-          }
-        ]
-      },
-      mode: argv.mode || 'production',
-      optimization: {
-        minimize: isProduction
-      }
-    },
-    // Admin block options
-    {
-      entry: entryJsAdminBlockOptions,
-      output: {
-        path: outputDirJs,
-        filename: isProduction
-          ? `admin-block-options.min.js`
-          : `admin-block-options.js`
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env', '@babel/preset-react']
-              }
-            }
-          }
-        ]
-      },
-      mode: argv.mode || 'production',
-      optimization: {
-        minimize: isProduction
-      }
-    },
+  // JS config
+  const jsConfig = [];
 
-    // SCSS Configuration
-    {
-      entry: entryScss,
+  js.forEach((js) => {
+    jsConfig.push({
+      entry: js.entry,
+      output: {
+        path: outputDirJs,
+        filename: isProduction ? `${js.filename}.min.js` : `${js.filename}.js`
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env', '@babel/preset-react']
+              }
+            }
+          }
+        ]
+      },
+      mode: argv.mode || 'production',
+      optimization: {
+        minimize: isProduction
+      }
+    });
+  });
+
+  // SCSS config
+  const scssConfig = [];
+
+  scss.forEach((scss) => {
+    scssConfig.push({
+      entry: scss.entry,
       output: {
         path: outputDirScss
       },
@@ -146,48 +118,16 @@ module.exports = (env, argv) => {
       },
       plugins: [
         new MiniCssExtractPlugin({
-          filename: isProduction ? `main.min.css` : `main.css`
+          filename: isProduction
+            ? `${scss.filename}.min.css`
+            : `${scss.filename}.css`
         }),
         new CleanupPlugin()
       ],
       mode: argv.mode || 'production'
-    },
-    {
-      entry: entryScssAdmin,
-      output: {
-        path: outputDirScss
-      },
-      module: {
-        rules: [
-          {
-            test: /\.scss$/,
-            use: [
-              MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  url: false
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sassOptions: {
-                    url: false
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      },
-      plugins: [
-        new MiniCssExtractPlugin({
-          filename: isProduction ? `admin.min.css` : `admin.css`
-        }),
-        new CleanupPlugin()
-      ],
-      mode: argv.mode || 'production'
-    }
-  ];
+    });
+  });
+
+  // Webpack setup
+  return [...jsConfig, ...scssConfig];
 };
