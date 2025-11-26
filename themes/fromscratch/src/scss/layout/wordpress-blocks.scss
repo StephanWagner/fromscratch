@@ -355,4 +355,23 @@
       margin-bottom: 0;
     }
   }
+
+  // Block preview
+  .block-preview__wrapper {
+    border: 1px solid #000;
+    border-left-width: 4px;
+    background: color('gray-6');
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 16px;
+
+    b {
+      font-weight: 600;
+    }
+
+    code {
+      color: color('gray-1');
+      font-size: 14px;
+    }
+  }
 }
