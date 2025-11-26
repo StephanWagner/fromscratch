@@ -1,33 +1,40 @@
 @use '../variables' as *;
 
 // Buttons
-
-.button {
-  display: inline-block;
-  border: 0;
-  color: #fff;
-  font-size: 16px;
-  height: 32px;
-  border-radius: 16px;
-  line-height: 32px;
-  padding: 0 16px;
-  overflow: hidden;
-  text-align: left;
-  cursor: pointer;
-  text-decoration: none;
-  background: color('primary');
-  transition: background-color 250ms;
-  font-weight: normal;
-
-  &:hover {
+@mixin form {
+  .button {
+    display: inline-block;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    height: 32px;
+    border-radius: 16px;
+    line-height: 32px;
+    padding: 0 16px;
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
     text-decoration: none;
-    background: color('secondary');
-  }
+    background: color('primary');
+    transition: background-color 250ms;
+    font-weight: normal;
 
-  &[disabled] {
-    cursor: default !important;
-    color: #ccc !important;
-    background: #eee !important;
-    box-shadow: none !important;
+    &:hover {
+      text-decoration: none;
+      background: color('secondary');
+    }
+
+    &[disabled] {
+      cursor: default !important;
+      color: #ccc !important;
+      background: #eee !important;
+      box-shadow: none !important;
+    }
   }
+}
+
+@include form();
+
+.editor-styles-wrapper {
+  @include form();
 }

@@ -1,0 +1,121 @@
+// Open Sans
+
+// Light 300
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Light.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-LightItalic.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: block;
+}
+
+// Regular 400
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Regular.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Italic.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: block;
+}
+
+// Medium 500
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Medium.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-MediumItalic.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: block;
+}
+
+// Semi Bild  600
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-SemiBold.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-SemiBoldItalic.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: block;
+}
+
+// Bold 700
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Bold.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-BoldItalic.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: block;
+}
+
+// Extra Bold 800
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-ExtraBold.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-ExtraBoldItalic.woff2") format("woff2"),
+    url("#{$themePath}/fonts/OpenSans/webfont/OpenSans-ExtraBoldItalic.woff") format("woff");
+  font-weight: 800;
+  font-style: italic;
+  font-display: block;
+}

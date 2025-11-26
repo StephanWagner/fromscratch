@@ -1,121 +1,164 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 // Global
 
-*,
-*:before,
-*:after {
-  outline-offset: 4px;
-  box-sizing: border-box;
-}
-
-// Links
-
-a {
-  color: color('primary');
-  transition: transition('color');
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
+@mixin tags {
+  *,
+  *:before,
+  *:after {
+    outline-offset: 4px;
+    box-sizing: border-box;
   }
-}
 
-// Paragraphs
+  // Links
 
-p {
-  margin-bottom: 16px;
+  a {
+    color: color('primary');
+    transition: transition('color');
+    text-decoration: none;
 
-  &:last-child {
-    margin-bottom: 0;
+    &:hover {
+      text-decoration: underline;
+    }
   }
-}
 
-// Headlines
+  // Paragraphs
 
-h1,
-.h1,
-h2,
-h3.h1,
-h3.h2,
-h4.h1,
-h4.h2,
-h5.h1,
-h5,h2 {
-  font-size: 36px;
-  line-height: 1.3;
-  font-weight: bold;
-  margin-bottom: 24px;
+  p {
+    margin-top: 16px;
+    margin-bottom: 16px;
 
-  @media (max-width: 1200px) {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Headlines
+
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3.h1,
+  h3.h2,
+  h4.h1,
+  h4.h2,
+  h5.h1,
+  h5.h2,
+  h6.h1,
+  h6.h2 {
     font-size: 32px;
     line-height: 1.3;
+    font-weight: bold;
+    margin-top: 48px;
+    margin-bottom: 24px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1200px) {
+      font-size: 32px;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 900px) {
+      font-size: 26px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 20px;
+      line-height: 1.4;
+      margin-top: 32px;
+      margin-bottom: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
-  @media (max-width: 900px) {
-    font-size: 26px;
-    line-height: 1.4;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 20px;
-    line-height: 1.4;
+  h3,
+  .h3,
+  h1.h3,
+  h2.h3,
+  h4.h5,
+  h5.h6 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 24px;
     margin-bottom: 16px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h4,
+  .h4,
+  h1.h4,
+  h2.h4,
+  h3.h4,
+  h5.h4,
+  h6.h4,
+  h5,
+  .h5,
+  h1.h5,
+  h2.h5,
+  h3.h5,
+  h4.h5,
+  h6.h5,
+  h6,
+  .h6,
+  h1.h6,
+  h2.h6,
+  h3.h6,
+  h4.h6,
+  h5.h6 {
+    font-size: $defaultFontSize;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  // Horizontal line
+
+  hr,
+  hr.wp-block-separator {
+    display: block;
+    border: 0;
+    height: 2px;
+    background: color('primary');
+    margin: 32px 0;
+
+    @media (max-width: 768px) {
+      margin: 24px 0;
+    }
+
+    @media (max-width: 600px) {
+      margin: 16px 0;
+    }
   }
 }
 
-h3,
-.h3,
-h1.h3,
-h2.h3,
-h4.h5,
-h5.h6 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
+@include tags();
 
-h4,
-.h4,
-h1.h4,
-h2.h4,
-h3.h4,
-h5.h4,
-h6.h4,
-h5,
-.h5,
-h1.h5,
-h2.h5,
-h3.h5,
-h4.h5,
-h6.h5,
-h6,
-.h6,
-h1.h6,
-h2.h6,
-h3.h6,
-h4.h6,
-h5.h6 {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-// Horizontal line
-
-hr,
-hr.wp-block-separator {
-  display: block;
-  border: 0;
-  height: 2px;
-  background: color('primary');
-  margin: 32px 0;
-
-  @media (max-width: 768px) {
-    margin: 24px 0;
-  }
-
-  @media (max-width: 600px) {
-    margin: 16px 0;
-  }
+.editor-styles-wrapper {
+  @include tags();
 }
