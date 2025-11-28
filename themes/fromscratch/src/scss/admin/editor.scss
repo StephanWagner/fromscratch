@@ -1,0 +1,7 @@
+@use '../variables' as *;
+
+.editor-post-title {
+  margin-top: 0 !important;
+  margin-bottom: 32px !important;
+  color: color('gray-600');
+}

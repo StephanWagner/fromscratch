@@ -1,18 +1,6 @@
-@use 'variables' as *;
-
 // Fonts
 @forward 'layout/fonts';
 
 // Shared
 @forward 'layout/shared/tags-editor';
 @forward 'layout/shared/wordpress-blocks-editor';
-
-/**
- * Editor styles
- */
-
-.editor-post-title {
-  margin-top: 0 !important;
-  margin-bottom: 32px !important;
-  color: #999;
-}

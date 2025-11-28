@@ -1,7 +1,9 @@
-@use "sass:string";
+@use 'sass:string';
+
+// Paths
+$themePath: '/wp-content/themes/fromscratch';
 
 // Colors
-
 @function color($value) {
   @each $name, $color in $colors {
     @if $name == $value {
@@ -12,7 +14,6 @@
 }
 
 // Font sizes
-
 @function fontSize($value) {
   @each $name, $size in $fontSizes {
     @if $name == $value {
@@ -23,7 +24,6 @@
 }
 
 // Line heights
-
 @function lineHeight($value) {
   @each $name, $size, $lineHeight in $fontSizes {
     @if $name == $value {
@@ -34,23 +34,17 @@
 }
 
 // Transitions
-
 @function transition($values...) {
-  $transition: "";
+  $transition: '';
   @each $name in $values {
-    @if ($transition != "") {
-      $transition:
-        $transition,
-        string.unquote($name) $defaultTransitionSpeed;
+    @if ($transition != '') {
+      $transition: $transition, string.unquote($name) $defaultTransitionSpeed;
     } @else {
       $transition: string.unquote($name) $defaultTransitionSpeed;
     }
   }
   @return $transition;
 }
-
-// Paths
-$themePath: "/wp-content/themes/fromscratch";
 
 // Colors
 // prettier-ignore
@@ -63,12 +57,12 @@ $colors:
   'white' #fff,
   'black' #000,
   'off-black' #222,
-  'gray-1' #666,
-  'gray-2' #999,
-  'gray-3' #ccc,
-  'gray-4' #ddd,
-  'gray-5' #eee,
-  'gray-6' #fafafa,
+  'gray-100' #fafafa,
+  'gray-200' #eee,
+  'gray-300' #ddd,
+  'gray-400' #ccc,
+  'gray-500' #999,
+  'gray-600' #666,
 
   // Status colors
   'error' #f33,
@@ -84,10 +78,10 @@ $fontSizes:
   'xl' 22px 1.4;
 
 // Text
-$primaryFontFamily: "Open Sans", sans-serif;
-$defaultTextColor: color("off-black");
-$defaultFontSize: fontSize("m");
-$defaultLineHeight: lineHeight("m");
+$primaryFontFamily: 'Open Sans', sans-serif;
+$defaultTextColor: color('off-black');
+$defaultFontSize: fontSize('m');
+$defaultLineHeight: lineHeight('m');
 
 // Dimensions
 $maxContent: 1200px;
@@ -97,4 +91,5 @@ $maxContentPadding: 64px;
 $defaultTransitionSpeed: 280ms;
 
 // Border radius
+$smallBorderRadius: 8px;
 $defaultBorderRadius: 16px;
