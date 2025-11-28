@@ -1,12 +1,13 @@
 @use '../variables' as *;
 
 .todo__wrapper {
-  background: color('gray-100');
   border: 1px solid color('gray-400');
+  background: color('gray-100');
   border-radius: $smallBorderRadius;
-  padding: 64px 24px;
-  font-size: 16px;
-  line-height: 1.5;
-  font-weight: 600;
+}
+
+.todo__content {
+  padding: 48px 24px;
   text-align: center;
+  font-weight: 600;
 }

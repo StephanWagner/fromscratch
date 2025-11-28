@@ -1,0 +1,5 @@
+@use '../form' as *;
+
+.editor-styles-wrapper {
+  @include form();
+}
