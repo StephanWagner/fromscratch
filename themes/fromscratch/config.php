@@ -45,6 +45,15 @@ return [
 		['slug' => 'success', 'color' => '#5d5', 'name' => 'Status: Erfolg'],
 	],
 
+	// Gradients
+	'theme_gradients' => [
+		[
+			'slug' => 'primary',
+			'name' => 'Primär',
+			'gradient' => 'linear-gradient(to bottom, #00aaff, #00ddff)',
+		],
+	],
+
 	// Font sizes
 	'theme_font_sizes' => [
 		[

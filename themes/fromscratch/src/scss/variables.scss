@@ -13,6 +13,16 @@ $themePath: '/wp-content/themes/fromscratch';
   @return $value;
 }
 
+// Gradients
+@function gradient($value) {
+  @each $name, $direction, $color1, $color2 in $gradients {
+    @if $name == $value {
+      @return linear-gradient(to $direction, $color1, $color2);
+    } 
+  }
+  @return '';
+}
+
 // Font sizes
 @function fontSize($value) {
   @each $name, $size in $fontSizes {
@@ -68,6 +78,11 @@ $colors:
   'error' #f33,
   'warning' #fc0,
   'success' #5d5;
+
+// Gradiens
+// prettier-ignore
+$gradients:
+  'primary' 'bottom' #00aaff #00ddff;
 
 // Font sizes
 // prettier-ignore

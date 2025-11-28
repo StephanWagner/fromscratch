@@ -98,6 +98,7 @@ function addCustomColorsAndSizes()
 {
 	global $fs_config;
 	add_theme_support('editor-color-palette', $fs_config['theme_colors']);
+    // add_theme_support('editor-gradient-presets', $fs_config['theme_gradients']);
 	add_theme_support('editor-font-sizes', $fs_config['theme_font_sizes']);
 }
 add_action('after_setup_theme', 'addCustomColorsAndSizes');

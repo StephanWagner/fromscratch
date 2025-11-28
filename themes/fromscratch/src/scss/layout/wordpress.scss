@@ -12,6 +12,14 @@
   }
 }
 
+// Wordpress gradients
+
+@each $name, $direction, $color1, $color2 in $gradients {
+  .has-#{$name}-gradient-background {
+    background-image: gradient($name);
+  }
+}
+
 // Wordpress font sizes
 
 @each $name, $size, $lineHeight in $fontSizes {
