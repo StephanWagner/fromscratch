@@ -8,5 +8,5 @@ $id = ecb_field('id');
         <b>Anker Link:</b> <code><?= $id ?></code>
     </div>
 <?php } else { ?>
-    <div data-anchor="<?= $id ?>"></div>
+    <div data-anchor-id="<?= $id ?>"></div>
 <?php } ?>
