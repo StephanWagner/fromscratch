@@ -1,6 +1,22 @@
 @use '../variables' as *;
 
 @mixin wordpress-blocks {
+  // Groups
+
+  .wp-block-group {
+    position: relative;
+
+    &.has-background {
+      &:not(.alignfull) {
+        border-radius: $defaultBorderRadius;
+      }
+    }
+
+    &.has-black-background-color {
+      color: #fff;
+    }
+  }
+
   // Columns
 
   .wp-block-columns {

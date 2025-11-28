@@ -140,15 +140,8 @@
     display: block;
     border: 0;
     height: 2px;
-    background: color('primary');
-    margin: 32px 0;
-
-    @media (max-width: 768px) {
-      margin: 24px 0;
-    }
-
-    @media (max-width: 600px) {
-      margin: 16px 0;
-    }
+    background: color('gray-500');
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }

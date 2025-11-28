@@ -1,0 +1,5 @@
+@use '../wordpress' as *;
+
+.editor-styles-wrapper {
+  @include wordpress();
+}
