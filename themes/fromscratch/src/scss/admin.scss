@@ -4,3 +4,9 @@
 // Shared
 @forward 'layout/shared/tags-editor';
 @forward 'layout/shared/wordpress-blocks-editor';
+
+// Editor
+@forward 'admin/editor';
+
+// Blocks
+@forward 'blocks/all';
