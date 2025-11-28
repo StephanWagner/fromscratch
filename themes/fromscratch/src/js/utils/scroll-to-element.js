@@ -26,7 +26,6 @@ export function scrollToElement(element, offset, triggerComplete) {
 
 export function getOffset(element) {
   let offset = -16;
-  offset += parseInt(element.next().css('margin-top')) || 0;
 
   offset -= $('header').outerHeight();
 
