@@ -7,6 +7,24 @@
     position: relative;
 
     &.has-background {
+      padding-top: 64px;
+      padding-bottom: 64px;
+
+      @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      @media (max-width: 900px) {
+        padding-top: 32px;
+        padding-bottom: 32px;
+      }
+
+      @media (max-width: 400px) {
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+
       &:not(.alignfull) {
         border-radius: $defaultBorderRadius;
       }

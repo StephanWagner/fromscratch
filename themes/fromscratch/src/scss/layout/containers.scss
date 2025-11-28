@@ -22,45 +22,45 @@
 }
 
 .alignwide {
-  margin-left: calc($maxContentPadding * -1);
-  margin-right: calc($maxContentPadding * -1);
+  margin-left: calc(80px * -1);
+  margin-right: calc(80px * -1);
 
   &.has-background {
-    padding-left: $maxContentPadding;
-    padding-right: $maxContentPadding;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
-  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding + $maxContentPadding + $maxContentPadding)) {
-    margin-left: calc((100vw - $maxContent) / 2 / 2 * -1);
-    margin-right: calc((100vw - $maxContent) / 2 / 2 * -1);
+  @media (max-width: calc($maxContent + 80px + 80px + 24px + 24px)) {
+    margin-left: calc($maxContentPadding * -1);
+    margin-right: calc($maxContentPadding * -1);
 
     &.has-background {
-      padding-left: calc((100vw - $maxContent) / 2 / 2);
-      padding-right: calc((100vw - $maxContent) / 2 / 2);
+      padding-left: $maxContentPadding;
+      padding-right: $maxContentPadding;
+    }
+  }
+
+  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding + 24px + 24px)) {
+    margin-left: calc((100vw - $maxContent) / 2 / 2 * -1 - 16px);
+    margin-right: calc((100vw - $maxContent) / 2 / 2 * -1 - 16px);
+
+    &.has-background {
+      padding-left: calc((100vw - $maxContent) / 2 / 2 + 16px);
+      padding-right: calc((100vw - $maxContent) / 2 / 2 + 16px);
     }
   }
 
   @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
-    margin-left: calc($maxContentPadding / 2 * -1);
-    margin-right: calc($maxContentPadding / 2 * -1);
+    margin-left: calc($maxContentPadding / 2 * -1 - 12px);
+    margin-right: calc($maxContentPadding / 2 * -1 - 12px);
 
     &.has-background {
-      padding-left: calc($maxContentPadding / 2);
-      padding-right: calc($maxContentPadding / 2);
+      padding-left: calc($maxContentPadding / 2 + 12px);
+      padding-right: calc($maxContentPadding / 2 + 12px);
     }
   }
 
   @media (max-width: 900px) {
-    margin-left: -24px;
-    margin-right: -24px;
-
-    &.has-background {
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-  }
-
-  @media (max-width: 600px) {
     margin-left: -32px;
     margin-right: -32px;
 
@@ -70,13 +70,23 @@
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     margin-left: -24px;
     margin-right: -24px;
 
     &.has-background {
       padding-left: 24px;
       padding-right: 24px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    margin-left: -16px;
+    margin-right: -16px;
+
+    &.has-background {
+      padding-left: 16px;
+      padding-right: 16px;
     }
   }
 }
