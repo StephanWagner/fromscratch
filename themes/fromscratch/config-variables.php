@@ -1,21 +1,21 @@
 <?php
 return [
 	// Titles
-	'title_page' => 'Theme Settings',
-	'title_menu' => 'Theme Settings',
+	'title_page' => 'Globale Einstellungen',
+	'title_menu' => 'Globale Einstellungen',
 
 	// Languages
 	'languages' => [
-		[
-			'id' => 'en',
-			'nameEnglish' => 'English',
-			'nameOriginalLanguage' => 'English',
-		],
 		// [
-		// 	'id' => 'de',
-		// 	'nameEnglish' => 'German',
-		// 	'nameOriginalLanguage' => 'Deutsch',
+		// 	'id' => 'en',
+		// 	'nameEnglish' => 'English',
+		// 	'nameOriginalLanguage' => 'English',
 		// ],
+		[
+			'id' => 'de',
+			'nameEnglish' => 'German',
+			'nameOriginalLanguage' => 'Deutsch',
+		],
 	],
 
 	'variables' => [

@@ -1,9 +1,9 @@
 <?php
 // Fields
-$id = block_field('id');
+$id = ecb_field('id');
 ?>
 
-<?php if (is_admin()) { ?>
+<?php if (ecb_admin()) { ?>
     <div class="block-preview__wrapper">
         <b>Anker Link:</b> <code><?= $id ?></code>
     </div>

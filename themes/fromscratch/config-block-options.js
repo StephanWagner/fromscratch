@@ -15,6 +15,20 @@ function getContentMarginOptions(defaultValue = '') {
   };
 }
 
+function getLimitWidthOptions() {
+  return {
+    type: 'select',
+    label: 'Weite limitieren',
+    default: '',
+    attributeName: 'limitWidth',
+    options: [
+      { label: 'Ohne', value: '' },
+      { label: 'Eng', value: '-narrow' },
+      { label: 'Sehr Eng', value: '-very-narrow' }
+    ]
+  };
+}
+
 export const blockOptions = [
   {
     name: 'core/columns',
@@ -70,24 +84,13 @@ export const blockOptions = [
           { label: 'H5', value: 'h5' },
           { label: 'H6', value: 'h6' }
         ]
-      }
+      },
+      getLimitWidthOptions()
     ]
   },
   {
     name: 'core/paragraph',
-    options: [
-      {
-        type: 'select',
-        label: 'Weite limitieren',
-        default: '',
-        attributeName: 'narrowParagraph',
-        options: [
-          { label: 'Ohne', value: '' },
-          { label: 'Eng', value: '-narrow' },
-          { label: 'Sehr Eng', value: '-very-narrow' }
-        ]
-      }
-    ]
+    options: [getLimitWidthOptions()]
   },
   {
     name: 'core/column',
