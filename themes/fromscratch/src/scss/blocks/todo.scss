@@ -1,8 +1,8 @@
 @use '../variables' as *;
 
 .todo__wrapper {
-  border: 1px solid color('gray-400');
-  background: color('gray-100');
+  border: 1px dashed #bbb;
+  background: #f6f6f6;
   border-radius: $smallBorderRadius;
 }
 
