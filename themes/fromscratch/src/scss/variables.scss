@@ -1,4 +1,5 @@
 @use 'sass:string';
+@use "sass:list";
 
 // Paths
 $themePath: '/wp-content/themes/fromscratch';
@@ -15,9 +16,12 @@ $themePath: '/wp-content/themes/fromscratch';
 
 // Gradients
 @function gradient($value) {
-  @each $name, $direction, $color1, $color2 in $gradients {
+  @each $name, $values in $gradients {
     @if $name == $value {
-      @return linear-gradient(to $direction, $color1, $color2);
+      $direction: list.nth($values, 1);
+      $color1: list.nth($values, 2);
+      $color2: list.nth($values, 3);
+      @return linear-gradient($direction, $color1, $color2);
     } 
   }
   @return '';
@@ -81,8 +85,9 @@ $colors:
 
 // Gradiens
 // prettier-ignore
-$gradients:
-  'primary' 'bottom' #00aaff #00ddff;
+$gradients: (
+  "primary": ((to bottom), #00aaff, #00ddff)
+);
 
 // Font sizes
 // prettier-ignore
