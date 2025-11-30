@@ -2,6 +2,15 @@
 
 // Search form
 
+.search__wrapper {
+  margin-left: 16px;
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+    padding: 8px 14px;
+  }
+}
+
 .search__container {
   > form {
     display: flex;

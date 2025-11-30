@@ -106,6 +106,13 @@ $defaultLineHeight: lineHeight('m');
 // Dimensions
 $maxContent: 1200px;
 $maxContentPadding: 64px;
+$headerHeight: 144px;
+$headerHeightMobile: 108px;
+$headerHeightScrolled: 74px;
+$headerMenuWidth: 280px;
+
+// Breakpoints
+$mobileBreakpoint: 1200px;
 
 // Transitions
 $defaultTransitionSpeed: 280ms;

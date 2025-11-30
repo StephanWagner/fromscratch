@@ -1,6 +1,13 @@
 @use '../variables' as *;
 
 @mixin wordpress {
+  // Admin bar
+  
+  #wpadminbar {
+    top: 0 !important;
+    position: fixed !important;
+  }
+
   // Wordpress colors
 
   @each $name, $color in $colors {

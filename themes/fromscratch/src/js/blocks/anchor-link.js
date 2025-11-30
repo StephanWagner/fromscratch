@@ -31,6 +31,8 @@ $(function () {
 
       let offset = 16 + 4;
 
+      offset += $('header').height();
+
       if ($('#wpadminbar').length) {
         offset += $('#wpadminbar').height();
       }
