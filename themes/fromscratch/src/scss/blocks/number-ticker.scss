@@ -1,20 +1,7 @@
 @use '../variables' as *;
 
-$colorCol1: color('primary-light');
-$colorCol2: color('primary');
-$colorCol3: color('secondary');
-$colorCol4: color('primary-light');
-
 .number-ticker__wrapper {
-  width: calc(100% + 64px);
-  margin-left: -32px;
-  margin-right: -32px;
-
-  @media (max-width: 900px) {
-    width: calc(100% + 32px);
-    margin-left: -16px;
-    margin-right: -16px;
-  }
+  position: relative;
 }
 
 .number-ticker__items {
@@ -40,40 +27,6 @@ $colorCol4: color('primary-light');
     flex: revert;
     padding: 8px 0;
     width: calc(100% / 2 - 8px * 1 / 2);
-  }
-
-  &.-col1 {
-    color: $colorCol1;
-  }
-
-  &.-col2 {
-    color: $colorCol2;
-  }
-
-  &.-col3 {
-    color: $colorCol3;
-  }
-
-  &.-col4 {
-    color: $colorCol4;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -4px;
-    bottom: 0;
-    width: 2px;
-    border-radius: 1px;
-    background: color('gray-400');
-    transform: translateX(50%);
-  }
-
-  &:last-child {
-    &::after {
-      display: none;
-    }
   }
 
   @media (max-width: 900px) {
