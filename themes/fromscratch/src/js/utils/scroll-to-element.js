@@ -24,10 +24,10 @@ export function scrollToElement(element, offset, triggerComplete) {
 
 // Get offset
 
-export function getOffset(element) {
-  let offset = -16;
+export function getOffset() {
+  let offset = config.defaultScrollOffset * -1;
 
-  offset -= $('header').outerHeight();
+  offset -= config.scrolledHeaderHeight;
 
   if ($('#wpadminbar').length) {
     offset -= $('#wpadminbar').outerHeight();

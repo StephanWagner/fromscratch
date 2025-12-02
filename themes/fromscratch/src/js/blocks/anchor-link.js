@@ -3,16 +3,21 @@ import $ from 'jquery';
 import { scrollToElement, getOffset } from '../utils/scroll-to-element';
 import { closeMenu } from '../main/menu';
 
+import config from '../config';
+
 $(function () {
   if ($('[data-anchor-id]').length) {
     $('a[href*="#"]').each(function (index, item) {
       const link = $(item);
       const href = link.attr('href');
       const hrefSplit = href.split('#');
-      const targetEl = $(
+      let targetEl = $(
         '[data-anchor-id="' + hrefSplit[hrefSplit.length - 1] + '"]'
       );
       if (targetEl.length) {
+        if (targetEl.next().length) {
+          targetEl = targetEl.next();
+        }
         link.on('click', function () {
           closeMenu();
           const offset = getOffset(targetEl);
@@ -26,12 +31,14 @@ $(function () {
     $($('[data-anchor-id]').get().reverse()).each(function (index, item) {
       var id = $(item).attr('data-anchor-id');
       var windowTop = $(document).scrollTop();
-      var itemTop = $(item).offset().top;
+      let itemTop = $(item).offset().top;
+      if ($(item).next().length) {
+        itemTop = $(item).next().offset().top;
+      }
       $('header .menu-item').removeClass('-current-active');
 
-      let offset = 16 + 4;
-
-      offset += $('header').height();
+      let offset = config.defaultScrollOffset + 4;
+      offset += config.scrolledHeaderHeight;
 
       if ($('#wpadminbar').length) {
         offset += $('#wpadminbar').height();

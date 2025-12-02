@@ -60,6 +60,18 @@ $themePath: '/wp-content/themes/fromscratch';
   @return $transition;
 }
 
+@function transitionSlow($values...) {
+  $transition: '';
+  @each $name in $values {
+    @if ($transition != '') {
+      $transition: $transition, string.unquote($name) $slowTransitionSpeed;
+    } @else {
+      $transition: string.unquote($name) $slowTransitionSpeed;
+    }
+  }
+  @return $transition;
+}
+
 // Colors
 // prettier-ignore
 $colors:
@@ -116,6 +128,7 @@ $mobileBreakpoint: 1200px;
 
 // Transitions
 $defaultTransitionSpeed: 280ms;
+$slowTransitionSpeed: 460ms;
 
 // Border radius
 $smallBorderRadius: 8px;
