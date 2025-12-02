@@ -28,14 +28,6 @@
     padding: 8px 0;
     width: calc(100% / 2 - 8px * 1 / 2);
   }
-
-  @media (max-width: 900px) {
-    &:nth-child(2) {
-      &::after {
-        display: none;
-      }
-    }
-  }
 }
 
 .number-ticker__number-container {
