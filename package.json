@@ -4,8 +4,11 @@
   "private": false,
   "homepage": "https://github.com/StephanWagner/fromscratch",
   "dependencies": {
+    "countup.js": "^2.9.0",
+    "in-viewport": "^3.6.0",
     "jquery": "^3.7.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "swiper": "^12.0.3"
   },
   "scripts": {
     "build": "webpack --mode development && webpack --mode production",

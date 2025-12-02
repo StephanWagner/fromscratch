@@ -5,6 +5,9 @@
 // Fonts
 @forward 'layout/fonts';
 
+// Utils
+@forward 'utils/animations';
+
 // Wordpress
 @forward 'layout/shared/wordpress';
 
@@ -31,7 +34,7 @@
 @forward 'layout/page-not-found';
 
 // Blocks
-@forward 'blocks/all';
+@forward 'blocks/all-blocks';
 
 // Print
 @forward 'lib/print';

@@ -1,0 +1,10 @@
+@use '../variables' as *;
+
+*[data-animation='move-up'] {
+  transform: translateY(12px);
+  transition: transform 560ms ease-out var(--animation-delay);
+
+  &[data-animation-active] {
+    transform: translateY(0);
+  }
+}
