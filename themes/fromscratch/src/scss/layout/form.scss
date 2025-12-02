@@ -2,6 +2,41 @@
 
 // Buttons
 @mixin form {
+  .buttons,
+  .wp-block-buttons {
+    margin: 24px 0;
+    display: flex;
+    gap: 8px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+      margin: 16px 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .wp-block-button {
+    line-height: 0;
+  }
+
+  .-button-trigger {
+    cursor: pointer;
+  }
+
   .button,
   .wp-block-button__link {
     display: inline-block;
@@ -20,7 +55,8 @@
     font-weight: 600;
     height: auto;
 
-    &:hover {
+    &:hover,
+    .-button-trigger:hover & {
       text-decoration: none !important;
       background: color('primary');
     }
