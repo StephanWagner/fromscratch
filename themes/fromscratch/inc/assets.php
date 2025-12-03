@@ -27,7 +27,6 @@ function fs_styles()
 		get_template_directory_uri() . $file,
 		[],
 		fs_asset_hash($file),
-		'all'
 	);
 }
 add_action('wp_enqueue_scripts', 'fs_styles');
@@ -45,10 +44,9 @@ function fs_admin_styles()
 		get_template_directory_uri() . $file,
 		[],
 		fs_asset_hash($file),
-		'all'
 	);
 }
-add_action('admin_enqueue_scripts', 'fs_admin_styles');
+add_action('enqueue_block_assets', 'fs_admin_styles');
 
 /**
  * Scripts

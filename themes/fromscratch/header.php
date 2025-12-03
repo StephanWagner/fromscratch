@@ -22,7 +22,7 @@
 					<?php wp_nav_menu([
 						'theme_location' => 'header_menu',
 						'menu_class' => 'header-menu__container',
-						'container' => false
+						'container' => 'nav'
 					]); ?>
 				</div>
 
