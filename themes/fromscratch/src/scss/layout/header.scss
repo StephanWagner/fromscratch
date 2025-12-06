@@ -112,31 +112,31 @@
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       padding: 24px 48px 24px 24px;
       right: calc($headerMenuWidth * -1 - 8px - 48px);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       right: calc($headerMenuWidth * -1 - 8px - 32px);
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: $breakpointXS) {
       right: calc($headerMenuWidth * -1 - 8px - 24px);
     }
 
     .-menu-open & {
       right: -64px;
 
-      @media (max-width: 900px) {
+      @media (max-width: $breakpointM) {
         right: -48px;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: $breakpointS) {
         right: -32px;
       }
 
-      @media (max-width: 400px) {
+      @media (max-width: $breakpointXS) {
         right: -24px;
       }
     }

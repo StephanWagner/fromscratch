@@ -61,17 +61,17 @@
       margin-bottom: 0;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: $breakpointL) {
       font-size: 32px;
       line-height: 1.3;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       font-size: 26px;
       line-height: 1.4;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       font-size: 20px;
       line-height: 1.4;
       margin-top: 32px;

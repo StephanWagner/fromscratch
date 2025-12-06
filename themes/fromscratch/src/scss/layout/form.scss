@@ -4,7 +4,8 @@
 @mixin form {
   .buttons,
   .wp-block-buttons {
-    margin: 24px 0;
+    margin-top: 24px;
+    margin-bottom: 24px;
     display: flex;
     gap: 8px;
 
@@ -16,8 +17,9 @@
       margin-bottom: 0;
     }
 
-    @media (max-width: 600px) {
-      margin: 16px 0;
+    @media (max-width: $breakpointS) {
+      margin-top: 16px;
+      margin-bottom: 16px;
 
       &:first-child {
         margin-top: 0;

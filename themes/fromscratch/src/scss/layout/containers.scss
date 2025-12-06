@@ -6,18 +6,18 @@
   position: relative;
   margin: auto;
   max-width: $maxContent;
-  width: calc(100% - $maxContentPadding - $maxContentPadding);
+  width: calc(100% - $contentPaddingL - $contentPaddingL);
 
-  @media (max-width: 900px) {
-    width: calc(100% - 48px - 48px);
+  @media (max-width: $breakpointM) {
+    width: calc(100% - $contentPaddingM - $contentPaddingM);
   }
 
-  @media (max-width: 600px) {
-    width: calc(100% - 32px - 32px);
+  @media (max-width: $breakpointS) {
+    width: calc(100% - $contentPaddingS - $contentPaddingS);
   }
 
-  @media (max-width: 400px) {
-    width: calc(100% - 24px - 24px);
+  @media (max-width: $breakpointXS) {
+    width: calc(100% - $contentPaddingXS - $contentPaddingXS);
   }
 }
 
@@ -31,16 +31,16 @@
   }
 
   @media (max-width: calc($maxContent + 80px + 80px + 24px + 24px)) {
-    margin-left: calc($maxContentPadding * -1);
-    margin-right: calc($maxContentPadding * -1);
+    margin-left: calc($contentPaddingL * -1);
+    margin-right: calc($contentPaddingL * -1);
 
     &.has-background {
-      padding-left: $maxContentPadding;
-      padding-right: $maxContentPadding;
+      padding-left: $contentPaddingL;
+      padding-right: $contentPaddingL;
     }
   }
 
-  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding + 24px + 24px)) {
+  @media (max-width: calc($maxContent + $contentPaddingL + $contentPaddingL + 24px + 24px)) {
     margin-left: calc((100vw - $maxContent) / 2 / 2 * -1 - 16px);
     margin-right: calc((100vw - $maxContent) / 2 / 2 * -1 - 16px);
 
@@ -50,43 +50,43 @@
     }
   }
 
-  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
-    margin-left: calc($maxContentPadding / 2 * -1 - 12px);
-    margin-right: calc($maxContentPadding / 2 * -1 - 12px);
+  @media (max-width: calc($maxContent + $contentPaddingL + $contentPaddingL)) {
+    margin-left: calc($contentPaddingL / 2 * -1 - 12px);
+    margin-right: calc($contentPaddingL / 2 * -1 - 12px);
 
     &.has-background {
-      padding-left: calc($maxContentPadding / 2 + 12px);
-      padding-right: calc($maxContentPadding / 2 + 12px);
+      padding-left: calc($contentPaddingL / 2 + 12px);
+      padding-right: calc($contentPaddingL / 2 + 12px);
     }
   }
 
-  @media (max-width: 900px) {
-    margin-left: -32px;
-    margin-right: -32px;
+  @media (max-width: $breakpointM) {
+    margin-left: calc($contentPaddingM * -1 + 16px);
+    margin-right: calc($contentPaddingM * -1 + 16px);
 
     &.has-background {
-      padding-left: 32px;
-      padding-right: 32px;
+      padding-left: calc($contentPaddingM - 16px);
+      padding-right: calc($contentPaddingM - 16px);
     }
   }
 
-  @media (max-width: 600px) {
-    margin-left: -24px;
-    margin-right: -24px;
+  @media (max-width: $breakpointS) {
+    margin-left: calc($contentPaddingS * -1 + 8px);
+    margin-right: calc($contentPaddingS * -1 + 8px);
 
     &.has-background {
-      padding-left: 24px;
-      padding-right: 24px;
+      padding-left: calc($contentPaddingS - 8px);
+      padding-right: calc($contentPaddingS - 8px);
     }
   }
 
-  @media (max-width: 400px) {
-    margin-left: -16px;
-    margin-right: -16px;
+  @media (max-width: $breakpointXS) {
+    margin-left: calc($breakpointXS * -1 + 8px);
+    margin-right: calc($breakpointXS * -1 + 8px);
 
     &.has-background {
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: calc($breakpointXS - 8px);
+      padding-right: calc($breakpointXS - 8px);
     }
   }
 }
@@ -95,45 +95,45 @@
   margin-left: calc((100vw - $maxContent) * -0.5);
   margin-right: calc((100vw - $maxContent) * -0.5);
 
-  @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
-    margin-left: $maxContentPadding * -1;
-    margin-right: $maxContentPadding * -1;
+  @media (max-width: calc($maxContent + $contentPaddingL + $contentPaddingL)) {
+    margin-left: $contentPaddingL * -1;
+    margin-right: $contentPaddingL * -1;
   }
 
-  @media (max-width: 900px) {
-    margin-left: -48px;
-    margin-right: -48px;
+  @media (max-width: $breakpointM) {
+    margin-left: calc($contentPaddingM * -1);
+    margin-right: calc($contentPaddingM * -1);
   }
 
-  @media (max-width: 600px) {
-    margin-left: -32px;
-    margin-right: -32px;
+  @media (max-width: $breakpointS) {
+    margin-left: calc($contentPaddingS * -1);
+    margin-right: calc($contentPaddingS * -1);
   }
 
-  @media (max-width: 400px) {
-    margin-left: -24px;
-    margin-right: -24px;
+  @media (max-width: $breakpointXS) {
+    margin-left: calc($contentPaddingXS * -1);
+    margin-right: calc($contentPaddingXS * -1);
   }
 
   > .wp-block-group__inner-container {
-    max-width: calc($maxContent + $maxContentPadding + $maxContentPadding);
-    padding-left: $maxContentPadding;
-    padding-right: $maxContentPadding;
+    max-width: calc($maxContent + $contentPaddingL + $contentPaddingL);
+    padding-left: $contentPaddingL;
+    padding-right: $contentPaddingL;
     margin: auto;
 
-    @media (max-width: 900px) {
-      padding-left: 48px;
-      padding-right: 48px;
+    @media (max-width: $breakpointM) {
+      padding-left: $contentPaddingM;
+      padding-right: $contentPaddingM; 
     }
 
-    @media (max-width: 600px) {
-      padding-left: 32px;
-      padding-right: 32px;
+    @media (max-width: $breakpointS) {
+      padding-left: $contentPaddingS;
+      padding-right: $contentPaddingS;
     }
 
-    @media (max-width: 400px) {
-      padding-left: 24px;
-      padding-right: 24px;
+    @media (max-width: $breakpointXS) {
+      padding-left: $contentPaddingXS;
+      padding-right: $contentPaddingXS;
     }
   }
 }

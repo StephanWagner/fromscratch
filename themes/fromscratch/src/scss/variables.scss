@@ -115,16 +115,26 @@ $defaultTextColor: color('off-black');
 $defaultFontSize: fontSize('m');
 $defaultLineHeight: lineHeight('m');
 
-// Dimensions
+// Content
 $maxContent: 1200px;
-$maxContentPadding: 64px;
-$headerHeight: 144px;
-$headerHeightMobile: 108px;
-$headerHeightScrolled: 74px;
+$contentPaddingL: 64px;
+$contentPaddingM: 48px;
+$contentPaddingS: 32px;
+$contentPaddingXS: 24px;
+
+// Header
+$headerHeight: 120px;
+$headerHeightMobile: 80px;
+$headerHeightScrolled: 62px;
 $headerMenuWidth: 280px;
 
 // Breakpoints
 $mobileBreakpoint: 1200px;
+$breakpointXL: 1400px;
+$breakpointL: 1200px;
+$breakpointM: 900px;
+$breakpointS: 600px;
+$breakpointXS: 400px;
 
 // Transitions
 $defaultTransitionSpeed: 280ms;

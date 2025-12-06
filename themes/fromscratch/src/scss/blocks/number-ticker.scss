@@ -8,11 +8,11 @@
   display: flex;
   gap: 32px 8px;
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpointM) {
     flex-wrap: wrap;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     gap: 24px 8px;
   }
 }
@@ -23,7 +23,7 @@
   text-align: center;
   flex: 1;
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpointM) {
     flex: revert;
     padding: 8px 0;
     width: calc(100% / 2 - 8px * 1 / 2);
@@ -35,15 +35,15 @@
   font-weight: bold;
   line-height: 1;
 
-  @media (max-width: 1200px) {
+  @media (max-width: $breakpointL) {
     font-size: 80px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $breakpointS) {
     font-size: 70px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     font-size: 60px;
   }
 }
@@ -55,15 +55,15 @@
 .number-ticker__number-text {
   margin: 24px 0 0;
 
-  @media (max-width: 1200px) {
+  @media (max-width: $breakpointL) {
     margin-top: 20px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpointM) {
     margin-top: 16px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     margin-top: 8px;
     font-size: 20px;
   }

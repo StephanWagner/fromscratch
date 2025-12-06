@@ -10,17 +10,17 @@
       padding-top: 64px;
       padding-bottom: 64px;
 
-      @media (max-width: calc($maxContent + $maxContentPadding + $maxContentPadding)) {
+      @media (max-width: calc($maxContent + $contentPaddingL + $contentPaddingL)) {
         padding-top: 48px;
         padding-bottom: 48px;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: $breakpointM) {
         padding-top: 32px;
         padding-bottom: 32px;
       }
 
-      @media (max-width: 400px) {
+      @media (max-width: $breakpointXS) {
         padding-top: 24px;
         padding-bottom: 24px;
       }
@@ -42,11 +42,11 @@
     margin-bottom: 0;
     gap: 48px;
 
-    @media (max-width: 1200px) {
+    @media (max-width: $breakpointL) {
       gap: 32px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       gap: 24px;
     }
 
@@ -57,7 +57,7 @@
     &.-column-gap-s {
       gap: 32px;
 
-      @media (max-width: 600px) {
+      @media (max-width: $breakpointS) {
         gap: 24px;
       }
     }
@@ -65,15 +65,15 @@
     &.-column-gap-l {
       gap: 48px 64px;
 
-      @media (max-width: 1200px) {
+      @media (max-width: $breakpointL) {
         gap: 48px;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: $breakpointM) {
         gap: 32px;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: $breakpointS) {
         gap: 24px;
       }
     }
@@ -81,15 +81,15 @@
     &.-column-gap-xl {
       gap: 48px 96px;
 
-      @media (max-width: 1200px) {
+      @media (max-width: $breakpointL) {
         gap: 48px 64px;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: $breakpointM) {
         gap: 32px 48px;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: $breakpointS) {
         gap: 24px 32px;
       }
     }
@@ -140,15 +140,15 @@
       > .wp-block-group {
         padding: 64px;
 
-        @media (max-width: 1200px) {
+        @media (max-width: $breakpointL) {
           padding: 48px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: $breakpointS) {
           padding: 32px;
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: $breakpointXS) {
           padding: 24px;
         }
       }
@@ -209,7 +209,7 @@
       margin-bottom: 0;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: $breakpointL) {
       margin-top: 64px;
       margin-bottom: 64px;
 
@@ -222,7 +222,7 @@
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       margin-top: 48px;
       margin-bottom: 48px;
 
@@ -235,7 +235,7 @@
       }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: $breakpointXS) {
       margin-top: 32px;
       margin-bottom: 32px;
 
@@ -261,7 +261,7 @@
       margin-bottom: 0;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       margin-top: 48px;
       margin-bottom: 48px;
 
@@ -274,7 +274,7 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       margin-top: 32px;
       margin-bottom: 32px;
 
@@ -300,7 +300,7 @@
       margin-bottom: 0;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       margin-top: 32px;
       margin-bottom: 32px;
 
@@ -313,7 +313,7 @@
       }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: $breakpointXS) {
       margin-top: 24px;
       margin-bottom: 24px;
 
@@ -339,7 +339,7 @@
       margin-bottom: 0;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       margin-top: 24px;
       margin-bottom: 24px;
 

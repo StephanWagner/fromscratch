@@ -14,18 +14,18 @@
   + .accordion__wrapper {
     margin-top: -16px;
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       margin-top: -20px;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: $breakpointXS) {
       margin-top: -24px;
     }
 
     &.-design-image-subtitle {
       margin-top: -8px;
 
-      @media (max-width: 600px) {
+      @media (max-width: $breakpointS) {
         margin-top: -16px;
       }
     }
@@ -58,22 +58,22 @@
     padding: 32px;
     align-items: flex-end;
 
-    @media (max-width: 1200px) {
+    @media (max-width: $breakpointL) {
       padding: 24px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       padding: 16px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     padding-left: 16px;
   }
 }
@@ -83,7 +83,7 @@
   align-items: center;
   gap: 48px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: $breakpointL) {
     gap: 32px;
   }
 
@@ -91,11 +91,11 @@
     gap: 24px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $breakpointS) {
     gap: 16px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
@@ -118,7 +118,7 @@
   position: relative;
   margin: 32px 0 0;
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpointM) {
     margin-top: 24px;
   }
 
@@ -135,7 +135,7 @@
     top: -16px;
     transform: translateY(-50%);
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       top: -12px;
     }
   }
@@ -148,11 +148,11 @@
   background: no-repeat center center / cover;
   border-radius: $smallBorderRadius;
 
-  @media (max-width: 1200px) {
+  @media (max-width: $breakpointL) {
     width: 300px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpointM) {
     width: 240px;
   }
 
@@ -160,11 +160,11 @@
     width: 33.333%;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $breakpointS) {
     width: 120px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     width: 100%;
   }
 
@@ -180,7 +180,7 @@
   margin: 0;
   padding: 16px 0;
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     font-weight: 400;
     padding: 12px 0;
   }
@@ -189,7 +189,7 @@
     padding: 0;
     margin: 0;
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       font-size: 32px;
     }
 
@@ -197,12 +197,12 @@
       font-size: 28px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       font-size: 26px;
       hyphens: auto;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: $breakpointXS) {
       font-size: 24px;
       font-weight: 300;
     }
@@ -232,7 +232,7 @@
       height: 50px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       align-self: flex-end;
       width: 40px;
       height: 40px;
@@ -293,22 +293,22 @@
 .accordion__content-inner {
   padding: 16px 24px 24px;
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     padding: 8px 16px 16px;
   }
 
   .accordion__wrapper.-design-image-subtitle & {
     padding: 16px calc(32px + 24px) 32px;
 
-    @media (max-width: 1200px) {
+    @media (max-width: $breakpointL) {
       padding: 16px calc(24px + 16px) 24px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $breakpointM) {
       padding: 16px 24px 24px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $breakpointS) {
       padding: 8px 16px 16px;
     }
   }
@@ -329,15 +329,15 @@
   color: color('secondary');
   padding: 0 0 8px;
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpointM) {
     width: 100%;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $breakpointS) {
     font-size: 21px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: $breakpointXS) {
     font-size: 20px;
   }
 
