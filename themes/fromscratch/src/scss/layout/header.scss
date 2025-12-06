@@ -11,7 +11,6 @@
   background: #ccc;
 
   // Adjust when wordpress admin bar is present
-
   .logged-in.admin-bar & {
     top: 32px;
 
@@ -84,13 +83,12 @@
     display: block;
     top: 100%;
     width: $headerMenuWidth;
-    // TODO $pagePaddingS / $breakpointXL / L / M / S / XS
-    right: calc($headerMenuWidth * -1 - 8px - 64px);
+    right: calc($headerMenuWidth * -1 - 8px - $contentPaddingL);
     background: #fff;
     margin: 0;
     transition: transition('right');
     height: calc(100vh - $headerHeight);
-    padding: 24px 64px 24px 24px;
+    padding: 24px $contentPaddingL 24px 24px;
 
     body.-scrolled & {
       height: calc(100vh - $headerHeightScrolled);
@@ -113,31 +111,34 @@
     }
 
     @media (max-width: $breakpointM) {
-      padding: 24px 48px 24px 24px;
-      right: calc($headerMenuWidth * -1 - 8px - 48px);
+      padding-right: $contentPaddingM;
+      right: calc($headerMenuWidth * -1 - $contentPaddingM);
     }
 
     @media (max-width: $breakpointS) {
-      right: calc($headerMenuWidth * -1 - 8px - 32px);
+      padding-right: $contentPaddingS;
+      right: calc($headerMenuWidth * -1 - $contentPaddingS);
     }
 
     @media (max-width: $breakpointXS) {
-      right: calc($headerMenuWidth * -1 - 8px - 24px);
+      padding-right: $contentPaddingXS;
+      width: 100vw;
+      right: calc(100vw * -1 - $contentPaddingXS);
     }
 
-    .-menu-open & {
-      right: -64px;
+    body.-menu-open & {
+      right: calc($contentPaddingL * -1);
 
       @media (max-width: $breakpointM) {
-        right: -48px;
+        right: calc($contentPaddingM * -1);
       }
 
       @media (max-width: $breakpointS) {
-        right: -32px;
+        right: calc($contentPaddingS * -1);
       }
 
       @media (max-width: $breakpointXS) {
-        right: -24px;
+        right: calc($contentPaddingXS * -1);
       }
     }
   }
