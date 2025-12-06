@@ -21,16 +21,49 @@
       }
 
       @media (max-width: $breakpointXS) {
-        padding-top: 24px;
-        padding-bottom: 24px;
+        padding-top: 16px;
+        padding-bottom: 16px;
       }
 
       &:not(.alignfull) {
         border-radius: $defaultBorderRadius;
+
+        @media (max-width: $breakpointXS) {
+          border-radius: $smallBorderRadius;
+        }
+      }
+
+      &:not(.alignfull):not(.alignwide) {
+        padding-left: 48px;
+        padding-right: 48px;
+
+        @media (max-width: $breakpointM) {
+          padding-left: 32px;
+          padding-right: 32px;
+        }
+
+        @media (max-width: $breakpointS) {
+          padding-left: 24px;
+          padding-right: 24px;
+          padding-top: 16px;
+          padding-bottom: 16px;
+        }
+
+        @media (max-width: $breakpointXS) {
+          padding-left: 16px;
+          padding-right: 16px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+        }
       }
     }
-
-    &.has-black-background-color {
+    
+    &.has-black-background-color,
+    &.has-off-black-background-color,
+    &.has-gray-600-background-color,
+    &.has-gray-700-background-color,
+    &.has-gray-800-background-color,
+    &.has-gray-900-background-color {
       color: #fff;
     }
   }

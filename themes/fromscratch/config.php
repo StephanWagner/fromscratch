@@ -25,7 +25,7 @@ return [
 		// Black and white
 		['slug' => 'white', 'color' => '#fff', 'name' => 'Weiß'],
 		['slug' => 'black', 'color' => '#000', 'name' => 'Schwarz'],
-		['slug' => 'black-off', 'color' => '#222', 'name' => 'Helleres Schwarz'],
+		['slug' => 'off-black', 'color' => '#222', 'name' => 'Helleres Schwarz'],
 
 		// Primary colors
 		['slug' => 'primary', 'color' => '#00aaff', 'name' => 'Primärfarbe'],
