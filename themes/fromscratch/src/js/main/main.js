@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 // Utils
 import '../utils/animations';
 
@@ -11,8 +9,8 @@ import './scrolled';
 import '../blocks/all-blocks';
 
 // Page init
-$(function () {
+document.addEventListener('DOMContentLoaded', () => {
   setTimeout(function () {
-    $('body').addClass('-init');
+    document.body.classList.add('-init');
   }, 64);
 });

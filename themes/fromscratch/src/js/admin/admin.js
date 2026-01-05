@@ -1,1 +1,3 @@
-// Admin scripts
+document.addEventListener('DOMContentLoaded', () => {
+  // Admin scripts
+});

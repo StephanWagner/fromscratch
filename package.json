@@ -3,27 +3,32 @@
   "description": "A minimalistic wordpress theme to start building from scratch.",
   "private": false,
   "homepage": "https://github.com/StephanWagner/fromscratch",
+  "type": "module",
+  "scripts": {
+    "watch": "concurrently \"npm run watch:js\" \"npm run watch:css\"",
+    "watch:js": "rollup -c -w",
+    "watch:css": "sass themes/fromscratch/src/scss:themes/fromscratch/css --watch --source-map",
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "MODE=dev rollup -c && MODE=prod rollup -c",
+    "build:css": "npm run build:css:dev && npm run build:css:prod && test -d themes/fromscratch/css/min && rm -rf themes/fromscratch/css/min",
+    "build:css:dev": "sass themes/fromscratch/src/scss:themes/fromscratch/css --style=expanded --source-map",
+    "build:css:prod": "sass themes/fromscratch/src/scss/min:themes/fromscratch/css --style=compressed --no-source-map"
+  },
   "dependencies": {
     "countup.js": "^2.9.0",
-    "in-viewport": "^3.6.0",
-    "jquery": "^3.7.1",
     "normalize.css": "^8.0.1",
     "swiper": "^12.0.3"
   },
-  "scripts": {
-    "build": "webpack --mode development && webpack --mode production",
-    "watch": "webpack --watch --mode development"
-  },
   "devDependencies": {
+    "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
-    "babel-loader": "^10.0.0",
-    "css-loader": "^7.1.2",
-    "mini-css-extract-plugin": "^2.9.4",
-    "sass": "^1.94.2",
-    "sass-loader": "^16.0.6",
-    "style-loader": "^4.0.0",
-    "webpack": "^5.103.0",
-    "webpack-cli": "^6.0.1"
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "baseline-browser-mapping": "^2.9.11",
+    "concurrently": "^9.2.1",
+    "rollup": "^4.9.6",
+    "sass": "^1.97.1"
   }
 }

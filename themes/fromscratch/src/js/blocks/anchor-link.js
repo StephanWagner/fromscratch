@@ -1,74 +1,74 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 
-import { scrollToElement, getOffset } from '../utils/scroll-to-element';
-import { closeMenu } from '../main/menu';
+// import { scrollToElement, getOffset } from '../utils/scroll-to-element';
+// import { closeMenu } from '../main/menu';
 
-import config from '../config';
+// import config from '../config';
 
-$(function () {
-  if ($('[data-anchor-id]').length) {
-    $('a[href*="#"]').each(function (index, item) {
-      const link = $(item);
-      const href = link.attr('href');
-      const hrefSplit = href.split('#');
-      let targetEl = $(
-        '[data-anchor-id="' + hrefSplit[hrefSplit.length - 1] + '"]'
-      );
-      if (targetEl.length) {
-        if (targetEl.next().length) {
-          targetEl = targetEl.next();
-        }
-        link.on('click', function () {
-          closeMenu();
-          const offset = getOffset(targetEl);
-          scrollToElement(targetEl, offset, true);
-        });
-      }
-    });
-  }
+// document.addEventListener('DOMContentLoaded', () => {
+//   if ($('[data-anchor-id]').length) {
+//     $('a[href*="#"]').each(function (index, item) {
+//       const link = $(item);
+//       const href = link.attr('href');
+//       const hrefSplit = href.split('#');
+//       let targetEl = $(
+//         '[data-anchor-id="' + hrefSplit[hrefSplit.length - 1] + '"]'
+//       );
+//       if (targetEl.length) {
+//         if (targetEl.next().length) {
+//           targetEl = targetEl.next();
+//         }
+//         link.on('click', function () {
+//           closeMenu();
+//           const offset = getOffset(targetEl);
+//           scrollToElement(targetEl, offset, true);
+//         });
+//       }
+//     });
+//   }
 
-  var checkActiveNav = function () {
-    $($('[data-anchor-id]').get().reverse()).each(function (index, item) {
-      var id = $(item).attr('data-anchor-id');
-      var windowTop = $(document).scrollTop();
-      let itemTop = $(item).offset().top;
-      if ($(item).next().length) {
-        itemTop = $(item).next().offset().top;
-      }
-      $('header .menu-item').removeClass('-current-active');
+//   var checkActiveNav = function () {
+//     $($('[data-anchor-id]').get().reverse()).each(function (index, item) {
+//       var id = $(item).attr('data-anchor-id');
+//       var windowTop = $(document).scrollTop();
+//       let itemTop = $(item).offset().top;
+//       if ($(item).next().length) {
+//         itemTop = $(item).next().offset().top;
+//       }
+//       $('header .menu-item').removeClass('-current-active');
 
-      let offset = config.defaultScrollOffset + 4;
-      offset += config.scrolledHeaderHeight;
+//       let offset = config.defaultScrollOffset + 4;
+//       offset += config.scrolledHeaderHeight;
 
-      if ($('#wpadminbar').length) {
-        offset += $('#wpadminbar').height();
-      }
+//       if ($('#wpadminbar').length) {
+//         offset += $('#wpadminbar').height();
+//       }
 
-      if (windowTop >= 16 && windowTop > itemTop - offset) {
-        $('header .menu-item').each(function (index, item) {
-          const link = $(item).find('> a[href*="#' + id + '"]');
-          if (link.length) {
-            $(item).addClass('-current-active');
-          }
-        });
-        return false;
-      }
-    });
-  };
+//       if (windowTop >= 16 && windowTop > itemTop - offset) {
+//         $('header .menu-item').each(function (index, item) {
+//           const link = $(item).find('> a[href*="#' + id + '"]');
+//           if (link.length) {
+//             $(item).addClass('-current-active');
+//           }
+//         });
+//         return false;
+//       }
+//     });
+//   };
 
-  $(window).on('scroll resize', checkActiveNav);
-  checkActiveNav();
-});
+//   $(window).on('scroll resize', checkActiveNav);
+//   checkActiveNav();
+// });
 
-// Add automatic scroll
+// // Add automatic scroll
 
-$(window).on('load', function () {
-  if (window.location.hash) {
-    const hashid = window.location.hash.replace('#', '');
-    const targetEl = $('[data-anchor-id="' + hashid + '"]');
-    if (targetEl.length) {
-      const offset = getOffset(targetEl);
-      scrollToElement(targetEl, offset, true);
-    }
-  }
-});
+// $(window).on('load', function () {
+//   if (window.location.hash) {
+//     const hashid = window.location.hash.replace('#', '');
+//     const targetEl = $('[data-anchor-id="' + hashid + '"]');
+//     if (targetEl.length) {
+//       const offset = getOffset(targetEl);
+//       scrollToElement(targetEl, offset, true);
+//     }
+//   }
+// });

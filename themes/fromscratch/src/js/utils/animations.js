@@ -1,8 +1,7 @@
-import $ from 'jquery';
-import inViewport from 'in-viewport';
+import { onEnterViewport } from './viewport';
 
-$(function () {
-  $.each($('[data-animation]'), function (index, el) {
+document.addEventListener('DOMContentLoaded', () => {
+  onEnterViewport('[data-animation]', (el) => {
     // Delay
     // let delay = 0;
     // if ($(window).width() > 900) {
@@ -13,8 +12,6 @@ $(function () {
 
     // $(el).css('--animation-delay', `${delay}ms`);
 
-    inViewport(el, { offset: 0 }, function () {
-      $(el).attr('data-animation-active', '');
-    });
+    el.setAttribute('data-animation-active', '');
   });
 });

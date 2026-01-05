@@ -75,21 +75,34 @@ function fs_excerpt_more()
 add_filter('excerpt_more', 'fs_excerpt_more');
 
 /**
- * Remove comments
+ * Disable comments
  */
-function fs_remove_comments()
-{
-	remove_post_type_support('post', 'comments');
-	remove_post_type_support('page', 'comments');
-}
-add_action('init', 'fs_remove_comments');
+add_action('init', function () {
 
-function fs_remove_comments_in_admin()
-{
-	remove_menu_page('edit-comments.php');
-	remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
-}
-add_action('admin_menu', 'fs_remove_comments_in_admin');
+    // Remove comments support from ALL post types
+    foreach (get_post_types() as $post_type) {
+        if (post_type_supports($post_type, 'comments')) {
+            remove_post_type_support($post_type, 'comments');
+            remove_post_type_support($post_type, 'trackbacks');
+        }
+    }
+});
+
+add_filter('comments_open', '__return_false', 20, 2);
+add_filter('pings_open', '__return_false', 20, 2);
+add_filter('comments_array', '__return_empty_array', 10, 2);
+
+add_action('admin_menu', function () {
+    remove_menu_page('edit-comments.php');
+});
+
+add_action('admin_bar_menu', function ($wp_admin_bar) {
+    $wp_admin_bar->remove_node('comments');
+}, 999);
+
+add_action('wp_dashboard_setup', function () {
+    remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
+});
 
 /**
  * Add custom colors and sizes

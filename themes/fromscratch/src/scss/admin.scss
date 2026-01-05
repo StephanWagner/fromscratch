@@ -1,14 +1,1 @@
-// Fonts
-@forward 'layout/fonts';
-
-// Shared
-@forward 'layout/shared/wordpress';
-@forward 'layout/shared/form-editor';
-@forward 'layout/shared/tags-editor';
-@forward 'layout/shared/wordpress-blocks-editor';
-
-// Editor
-@forward 'admin/editor';
-
-// Blocks
-@forward 'blocks/all-blocks';
+@forward 'admin/app';
