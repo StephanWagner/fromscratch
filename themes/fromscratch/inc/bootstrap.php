@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Check wheather we are in debug mode
+ * Check if we are in debug mode
  */
 function fs_is_debug()
 {

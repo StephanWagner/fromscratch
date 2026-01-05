@@ -46,7 +46,7 @@ function fs_admin_styles()
 		fs_asset_hash($file),
 	);
 }
-add_action('enqueue_block_assets', 'fs_admin_styles');
+add_action('admin_enqueue_scripts', 'fs_admin_styles');
 
 /**
  * Scripts
