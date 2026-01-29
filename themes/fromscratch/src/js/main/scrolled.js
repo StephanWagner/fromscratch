@@ -1,21 +1,18 @@
-// import $ from 'jquery';
-// import config from '../config';
+import config from '../config';
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   $(window).on('scroll resize', function () {
-//     checkScroll();
-//   });
-//   checkScroll();
-// });
+document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('resize', checkScroll);
+  checkScroll();
+});
 
-// // Check for scrolling position
+let isScrolled = false;
 
-// function checkScroll() {
-//   const startFixedNav = config.startScrolledNav;
+function checkScroll() {
+  const shouldBeScrolled = window.scrollY >= config.startScrolled;
 
-//   if ($(window).scrollTop() >= startFixedNav) {
-//     $('body').addClass('-scrolled');
-//   } else {
-//     $('body').removeClass('-scrolled');
-//   }
-// }
+  if (shouldBeScrolled !== isScrolled) {
+    document.body.classList.toggle('-scrolled', shouldBeScrolled);
+    isScrolled = shouldBeScrolled;
+  }
+}

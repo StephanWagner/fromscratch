@@ -1,6 +1,6 @@
 export default {
   // Scrolled
-  startScrolledNav: 64,
+  startScrolled: 64,
   scrolledHeaderHeight: 74,
   defaultScrollOffset: 16,
 
