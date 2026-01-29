@@ -1,37 +1,38 @@
-// import $ from 'jquery';
+import config from '../config';
 
-// // Scroll to element
+/**
+ * Scroll to element
+ * @param {Element} element - The element to scroll to
+ * @param {number} offset - The offset to scroll to
+ * @returns {void}
+ */
+export function scrollToElement(element, offset = 0) {
+  if (!element) return;
 
-// export function scrollToElement(element, offset, triggerComplete) {
-//   let scrollTop = $(element).offset().top;
-//   scrollTop = scrollTop + (offset || 0);
+  const elementTop =
+    element.getBoundingClientRect().top + window.pageYOffset;
 
-//   $('html, body').animate(
-//     { scrollTop: scrollTop },
-//     {
-//       duration: 400,
-//       queue: false,
-//       complete: function () {
-//         if (triggerComplete) {
-//           let scrollTop = $(element).offset().top;
-//           scrollTop = scrollTop + (offset || 0);
-//           window.scrollTo(0, scrollTop);
-//         }
-//       }
-//     }
-//   );
-// }
+  const scrollTop = elementTop + offset;
 
-// // Get offset
+  window.scrollTo({
+    top: scrollTop,
+    behavior: 'smooth'
+  });
+}
 
-// export function getOffset() {
-//   let offset = config.defaultScrollOffset * -1;
+/**
+ * Get offset
+ * @returns {number} The offset
+ */
+export function getOffset() {
+  let offset = config.defaultScrollOffset * -1;
 
-//   offset -= config.scrolledHeaderHeight;
+  offset -= config.scrolledHeaderHeight;
 
-//   if ($('#wpadminbar').length) {
-//     offset -= $('#wpadminbar').outerHeight();
-//   }
+  const adminBar = document.getElementById('wpadminbar');
+  if (adminBar) {
+    offset -= adminBar.offsetHeight;
+  }
 
-//   return offset;
-// }
+  return offset;
+}

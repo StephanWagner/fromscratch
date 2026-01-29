@@ -1,45 +1,61 @@
-// import $ from 'jquery';
-// import { scrollToElement, getOffset } from '../utils/scroll-to-element';
+import { scrollToElement, getOffset } from '../utils/scroll-to-element';
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   $('.accordion__header').on('click', function () {
-//     var wrapper = $(this).parents('.accordion__wrapper');
-//     var accordionIsOpen = wrapper.hasClass('-accordion-open');
-//     if (accordionIsOpen) {
-//       closeAccordion(wrapper);
-//       return;
-//     }
-//     if (wrapper.is('[data-close-other-accordions]')) {
-//       closeAccordion($('.accordion__wrapper.-accordion-open'));
-//     }
-//     openAccordion(wrapper);
-//   });
+document.addEventListener('DOMContentLoaded', () => {
 
-//   $('.accordion__wrapper').each(function (index, item) {
-//     if (!$(item).next().hasClass('accordion__wrapper')) {
-//       $(item).addClass('-last');
-//     }
-//     if (!$(item).prev().hasClass('accordion__wrapper')) {
-//       $(item).addClass('-first');
-//     }
-//   });
-// });
+  document.querySelectorAll('.accordion__header').forEach((header) => {
+    header.addEventListener('click', () => {
+      const wrapper = header.closest('.accordion__wrapper');
+      if (!wrapper) return;
 
-// function openAccordion(wrapper) {
-//   wrapper.addClass('-accordion-open');
-//   wrapper.find('.accordion__content').slideDown({
-//     duration: 250,
-//     complete: function () {
-//       if (wrapper.is('[data-scroll-to-accordion-top]')) {
-//         scrollToElement(wrapper, getOffset() + 8, true);
-//       }
-//     }
-//   });
-// }
+      const isOpen = wrapper.classList.contains('-accordion-open');
 
-// function closeAccordion(wrapper) {
-//   wrapper.removeClass('-accordion-open');
-//   wrapper.find('.accordion__content').slideUp({
-//     duration: 250
-//   });
-// }
+      if (isOpen) {
+        closeAccordion(wrapper);
+        return;
+      }
+
+      if (wrapper.hasAttribute('data-close-other-accordions')) {
+        document
+          .querySelectorAll('.accordion__wrapper.-accordion-open')
+          .forEach((openWrapper) => {
+            if (openWrapper !== wrapper) {
+              closeAccordion(openWrapper);
+            }
+          });
+      }
+
+      openAccordion(wrapper);
+    });
+  });
+
+  const wrappers = document.querySelectorAll('.accordion__wrapper');
+
+  wrappers.forEach((item, index) => {
+    if (!wrappers[index + 1]) {
+      item.classList.add('-last');
+    }
+    if (!wrappers[index - 1]) {
+      item.classList.add('-first');
+    }
+  });
+});
+
+function openAccordion(wrapper) {
+  const content = wrapper.querySelector('.accordion__content');
+  if (!content) return;
+
+  wrapper.classList.add('-accordion-open');
+  slideDown(content, 250, () => {
+    if (wrapper.hasAttribute('data-scroll-to-accordion-top')) {
+      scrollToElement(wrapper, getOffset() + 8, true);
+    }
+  });
+}
+
+function closeAccordion(wrapper) {
+  const content = wrapper.querySelector('.accordion__content');
+  if (!content) return;
+
+  wrapper.classList.remove('-accordion-open');
+  slideUp(content, 250);
+}

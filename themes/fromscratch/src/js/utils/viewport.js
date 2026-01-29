@@ -7,9 +7,9 @@
  */
 export function onEnterViewport(selector, callback, options = {}) {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        callback(entry.target);
+        callback(entry.target, index);
         observer.unobserve(entry.target);
       }
     });
