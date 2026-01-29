@@ -12,6 +12,11 @@ $fs_config_variables = include __DIR__ . '/config-variables.php';
 require_once 'inc/bootstrap.php';
 
 /**
+ * Languages
+ */
+require_once 'inc/lang.php';
+
+/**
  * Theme setup
  */
 require_once 'inc/theme-setup.php';
@@ -20,6 +25,11 @@ require_once 'inc/theme-setup.php';
  * Head
  */
 require_once 'inc/head.php';
+
+/**
+ * Menu
+ */
+require_once 'inc/menu.php';
 
 /**
  * Assets

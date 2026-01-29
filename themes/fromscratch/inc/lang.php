@@ -1,0 +1,49 @@
+<?php
+
+function fs_get_lang(): string
+{
+    $locale = function_exists('determine_locale')
+        ? determine_locale()
+        : get_locale();
+
+    return substr($locale, 0, 2);
+}
+
+function fs_load_translations(string $lang): array
+{
+    static $cache = [];
+
+    if (isset($cache[$lang])) {
+        return $cache[$lang];
+    }
+
+    $base = get_template_directory() . '/lang/';
+
+    $file = $base . $lang . '.php';
+
+    if (file_exists($file)) {
+        $cache[$lang] = require $file;
+    } else {
+        $cache[$lang] = [];
+    }
+
+    return $cache[$lang];
+}
+
+function fs_t(string $key): string
+{
+    $lang = fs_get_lang();
+
+    $translations = fs_load_translations($lang);
+    $fallback     = fs_load_translations('en');
+
+    if (isset($translations[$key])) {
+        return $translations[$key];
+    }
+
+    if (isset($fallback[$key])) {
+        return $fallback[$key];
+    }
+
+    return $key;
+}
