@@ -34,6 +34,7 @@ return [
     'INSTALL_PAGES_PRIVACY_TITLE' => 'Datenschutz',
     'INSTALL_PAGES_PRIVACY_FORM_TITLE' => 'Datenschutz',
     'INSTALL_PAGES_PRIVACY_FORM_SLUG' => 'datenschutz',
+    'INSTALL_MENU_LINK_SLIDER_TITLE' => 'Slider',
     'INSTALL_MENUS_TITLE' => 'Menüs',
     'INSTALL_MENUS_DESCRIPTION' => 'Platziere erstellte Seiten in ihren jeweiligen Menüs.',
     'INSTALL_RUN_SETUP_BUTTON' => 'Setup ausführen',

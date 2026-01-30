@@ -34,6 +34,7 @@ return [
     'INSTALL_PAGES_PRIVACY_TITLE' => 'Privacy',
     'INSTALL_PAGES_PRIVACY_FORM_TITLE' => 'Privacy',
     'INSTALL_PAGES_PRIVACY_FORM_SLUG' => 'privacy',
+    'INSTALL_MENU_LINK_SLIDER_TITLE' => 'Slider',
     'INSTALL_MENUS_TITLE' => 'Menus',
     'INSTALL_MENUS_DESCRIPTION' => 'Place created pages in their respective menus.',
     'INSTALL_RUN_SETUP_BUTTON' => 'Run setup',

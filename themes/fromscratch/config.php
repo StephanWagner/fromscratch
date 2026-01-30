@@ -10,8 +10,8 @@ return [
 
 	// Menus
 	'menus' => [
-		'header_menu' => 'Header Menü',
-		'footer_menu' => 'Footer Menü',
+		'main_menu' => 'Hauptmenü',
+		'footer_menu' => 'Footermenü',
 	],
 
 	// The length of excerpts

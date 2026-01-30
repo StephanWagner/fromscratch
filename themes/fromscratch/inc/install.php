@@ -4,8 +4,8 @@
  * Debug
  */
 add_action('admin_init', function () {
-  delete_option('fromscratch_install_skipped');
-  delete_option('fromscratch_install_success');
+  // delete_option('fromscratch_install_skipped');
+  // delete_option('fromscratch_install_success');
 });
 
 /**
@@ -89,7 +89,7 @@ function fromscratch_render_installer()
 
       <p>
         <a
-          href="<?php echo esc_url( admin_url() ); ?>"
+          href="<?php echo esc_url(admin_url()); ?>"
           class="button button-primary"><?= fs_t('INSTALL_GO_TO_DASHBOARD_BUTTON') ?></a>
       </p>
 
@@ -329,7 +329,6 @@ add_action('admin_init', function () {
 /**
  * Run FromScratch installation
  */
-
 if (isset($_POST['fromscratch_run_install'])) {
   check_admin_referer('fromscratch_install');
 
@@ -370,7 +369,6 @@ Tags:
   /**
    * Media sizes
    */
-
   $installMedia = isset($_POST['install']['media']) && $_POST['install']['media'] === 'on';
 
   if ($installMedia) {
@@ -401,7 +399,6 @@ Tags:
   /**
    * Permalinks
    */
-
   $installPermalinks = isset($_POST['install']['permalinks']) && $_POST['install']['permalinks'] === 'on';
 
   if ($installPermalinks) {
@@ -416,7 +413,6 @@ Tags:
   /**
    * Required pages
    */
-
   $installPages = isset($_POST['install']['pages']) && $_POST['install']['pages'] === 'on';
 
   if ($installPages) {
@@ -501,6 +497,77 @@ Tags:
   }
 
   /**
+   * Menus
+   */
+  $installMenus = isset($_POST['install']['menus']) && $_POST['install']['menus'] === 'on';
+
+  if ($installMenus) {
+    $menuItems = [
+      // Main menu
+      'slider' => [
+        'title' => fs_t('INSTALL_MENU_LINK_SLIDER_TITLE'),
+        'menu' => 'main_menu',
+        'link' => '/#slider'
+      ],
+      'contact' => [
+        'title' => fs_t('INSTALL_PAGES_CONTACT_FORM_TITLE'),
+        'menu' => 'main_menu',
+        'is-button' => true
+      ],
+
+      // Footer menu
+      'imprint' => [
+        'title' => fs_t('INSTALL_PAGES_IMPRINT_FORM_TITLE'),
+        'menu' => 'footer_menu'
+      ],
+      'privacy' => [
+        'title' => fs_t('INSTALL_PAGES_PRIVACY_FORM_TITLE'),
+        'menu' => 'footer_menu'
+      ],
+    ];
+
+
+    foreach ($menuItems as $slug => $config) {
+
+      $menu_id = fs_get_or_create_menu_id($config['menu']);
+      if (!$menu_id) {
+        continue;
+      }
+
+      // Custom link
+      if (!empty($config['link'])) {
+
+        $item_id = wp_update_nav_menu_item($menu_id, 0, [
+          'menu-item-title'  => $config['title'],
+          'menu-item-url'    => $config['link'],
+          'menu-item-status' => 'publish',
+          'menu-item-type'   => 'custom',
+        ]);
+
+        // Page link
+      } else {
+
+        $page_id = fs_get_page_id_by_slug($slug);
+        if (!$page_id) {
+          continue;
+        }
+
+        $item_id = wp_update_nav_menu_item($menu_id, 0, [
+          'menu-item-object-id' => $page_id,
+          'menu-item-object'    => 'page',
+          'menu-item-type'      => 'post_type',
+          'menu-item-status'    => 'publish',
+        ]);
+      }
+
+      // Link is a button
+      if (!empty($config['is-button']) && $item_id) {
+        update_post_meta($item_id, '_menu_item_is_button', '1');
+      }
+    }
+  }
+
+  /**
    * Rename theme
    */
   $themes_dir = WP_CONTENT_DIR . '/themes';
@@ -530,4 +597,53 @@ Tags:
     admin_url('themes.php?page=fromscratch-install&fromscratch_success=1')
   );
   exit;
+}
+
+/**
+ * Get menu ID by slug
+ */
+function fs_get_or_create_menu_id(string $menu_slug): int
+{
+  global $fs_config;
+
+  if (!isset($fs_config['menus'][$menu_slug])) {
+    throw new RuntimeException("Menu config missing for slug: {$menu_slug}");
+  }
+
+  $menu_name = $fs_config['menus'][$menu_slug];
+
+  $menu = wp_get_nav_menu_object($menu_name);
+
+  if ($menu) {
+    return (int) $menu->term_id;
+  }
+
+  // Create menu with name
+  $menu_id = wp_create_nav_menu($menu_name);
+  fs_assign_menu_to_location($menu_slug, $menu_id);
+
+  return (int) $menu_id;
+}
+
+/**
+ * Get page ID by slug
+ */
+function fs_get_page_id_by_slug(string $slug): ?int
+{
+  $page = get_page_by_path($slug);
+  return $page ? (int) $page->ID : null;
+}
+
+/**
+ * Assign menu to location
+ */
+function fs_assign_menu_to_location(string $location, int $menu_id): void
+{
+  $locations = get_theme_mod('nav_menu_locations', []);
+
+  // Only update if not already assigned
+  if (!isset($locations[$location]) || (int) $locations[$location] !== $menu_id) {
+    $locations[$location] = $menu_id;
+    set_theme_mod('nav_menu_locations', $locations);
+  }
 }
