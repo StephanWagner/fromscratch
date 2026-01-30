@@ -17,6 +17,13 @@ require_once 'inc/bootstrap.php';
 require_once 'inc/lang.php';
 
 /**
+ * Install
+ */
+if (is_admin()) {
+    require_once 'inc/install.php';
+}
+
+/**
  * Theme setup
  */
 require_once 'inc/theme-setup.php';

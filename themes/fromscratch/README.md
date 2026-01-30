@@ -1,48 +1,54 @@
 # fromscratch
 
-A minimalistic wordpress theme to start building from scratch
-
----
+A minimalistic wordpress theme to start building from scratch.
 
 ## Author
 
 Stephan Wagner, [stephanwagner.me@gmail.com](stephanwagner.me@gmail.com)
 
----
-
 ## Assets
 
-CSS and JS files are in folder `wordpress/wp-content/themes/fromscratch/src`. To watch or build assets use the following bash commands:
+All CSS and JavaScript source files live in: `wordpress/wp-content/themes/fromscratch/src`.
+
+To work on assets, navigate to the theme directory and run one of the following commands:
+
+### Watch (development)
+Continuously rebuild assets while you work:
 
 ```bash
 cd wordpress/wp-content/themes/fromscratch
+
 npm run watch
 ```
 
+### Build (production)
+
+Create an optimized production build:
+
 ```bash
 cd wordpress/wp-content/themes/fromscratch
+
 npm run build
 ```
 
+## Install
 
----
+This theme provides optional developer tools via **WP-CLI**.
 
-## Fonts
+If you don’t have WP-CLI installed yet, install it first:
 
-> TODO
+```bash
+brew install wp-cli
+```
 
-See fonts.scss
+Verify the installation:
 
----
+```bash
+wp --info
+```
 
-## Favicon
+Once WP-CLI is available, you can run the theme’s setup command:
 
-A good favicon converter to get the `favicon.ico` file from a PNG file.
-
-https://favicon.io/favicon-converter
-
----
-
-## Manifest
-
-Remember to adjust the `manifest.json` file.
+```bash
+wp fromscratch:install
+```
