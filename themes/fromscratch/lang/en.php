@@ -38,6 +38,8 @@ return [
     'INSTALL_MENUS_DESCRIPTION' => 'Place created pages in their respective menus.',
     'INSTALL_RUN_SETUP_BUTTON' => 'Run setup',
     'INSTALL_SKIP_SETUP_BUTTON' => 'Skip',
+    'INSTALL_COMPLETE_MESSAGE' => 'FromScratch is installed.',
+    'INSTALL_GO_TO_DASHBOARD_BUTTON' => 'Go to dashboard',
 
     // Menu
     'MENU_SHOW_AS_BUTTON' => 'Show this menu item as a button',

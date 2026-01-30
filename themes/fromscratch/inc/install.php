@@ -4,8 +4,8 @@
  * Debug
  */
 add_action('admin_init', function () {
-  update_option('fromscratch_install_skipped', false);
-  update_option('fromscratch_installed', false);
+  delete_option('fromscratch_install_skipped');
+  delete_option('fromscratch_install_success');
 });
 
 /**
@@ -13,7 +13,7 @@ add_action('admin_init', function () {
  */
 function fromscratch_should_show_installer(): bool
 {
-  if (get_option('fromscratch_installed')) {
+  if (get_option('fromscratch_install_success')) {
     return false;
   }
 
@@ -28,7 +28,7 @@ function fromscratch_should_show_installer(): bool
  * Add FromScratch installer to admin menu
  */
 add_action('admin_menu', function () {
-  if (!fromscratch_should_show_installer()) {
+  if (!fromscratch_should_show_installer() && !isset($_GET['fromscratch_success'])) {
     return;
   }
 
@@ -81,216 +81,229 @@ function fromscratch_render_installer()
   <div class="wrap">
     <h1><?= fs_t('INSTALL_TITLE') ?></h1>
 
-    <p>
-      <?= fs_t('INSTALL_DESCRIPTION') ?>
-    </p>
+    <?php if (get_option('fromscratch_install_success')) { ?>
 
-    <form method="post">
-      <?php wp_nonce_field('fromscratch_install'); ?>
-
-      <table class="form-table" role="presentation">
-
-        <!-- Theme name and description -->
-
-        <tr>
-          <th scope="row">
-            <label>
-              <?= fs_t('INSTALL_THEME_NAME_TITLE') ?>
-            </label>
-          </th>
-          <td>
-            <input type="text" name="theme[name]" value="<?= get_bloginfo('name') ?>" class="regular-text">
-          </td>
-        </tr>
-        <th scope="row">
-          <label>
-            <?= fs_t('INSTALL_THEME_SLUG_TITLE') ?>
-          </label>
-        </th>
-        <td>
-          <input type="text" name="theme[slug]" value="<?= sanitize_title(get_bloginfo('name')); ?>" class="regular-text">
-        </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <label>
-              <?= fs_t('INSTALL_THEME_DESCRIPTION_TITLE') ?>
-            </label>
-          </th>
-          <td>
-            <input type="text" name="theme[description]" value="<?= fs_t('INSTALL_THEME_DESCRIPTION_FORM_DESCRIPTION', ['NAME' => get_bloginfo('name')]) ?>" class="regular-text">
-          </td>
-        </tr>
-
-        <!-- Media sizes -->
-        <tr>
-          <th scope="row">
-            <label>
-              <input type="checkbox" name="install[media]" checked>
-              <?= fs_t('INSTALL_MEDIA_SIZES_TITLE') ?>
-            </label>
-          </th>
-          <td>
-            <input type="number" name="media[thumbnail]" value="600" class="small-text"> px
-            <input type="number" name="media[medium]" value="1200" class="small-text"> px
-            <input type="number" name="media[large]" value="2400" class="small-text"> px
-            <p class="description">
-              <?= fs_t('INSTALL_MEDIA_SIZES_DESCRIPTION') ?>
-            </p>
-          </td>
-        </tr>
-
-        <!-- Permalinks -->
-        <tr>
-          <th scope="row">
-            <label>
-              <input type="checkbox" name="install[permalinks]" checked>
-              <?= fs_t('INSTALL_PERMALINKS_TITLE') ?>
-            </label>
-          </th>
-          <td>
-            <p class="description">
-              <?= fs_t('INSTALL_PERMALINKS_DESCRIPTION') ?>
-            </p>
-          </td>
-        </tr>
-
-        <!-- Pages -->
-        <tr>
-          <th scope="row">
-            <label>
-              <input type="checkbox" name="install[pages]" checked>
-              <?= fs_t('INSTALL_PAGES_TITLE') ?>
-            </label>
-          </th>
-          <td>
-
-            <table class="widefat striped" style="max-width: 600px">
-              <thead>
-                <tr>
-                  <td><b><?= fs_t('INSTALL_PAGES_TABLE_HEADING_PAGE') ?></b></td>
-                  <td><b><?= fs_t('INSTALL_PAGES_TABLE_HEADING_TITLE') ?></b></td>
-                  <td><b><?= fs_t('INSTALL_PAGES_TABLE_HEADING_SLUG') ?></b></td>
-                </tr>
-              </thead>
-              <tbody>
-
-                <tr>
-                  <td><strong><?= fs_t('INSTALL_PAGES_HOMEPAGE_TITLE') ?></strong></td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[homepage][title]"
-                      value="<?= fs_t('INSTALL_PAGES_HOMEPAGE_FORM_TITLE') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[homepage][slug]"
-                      value="<?= fs_t('INSTALL_PAGES_HOMEPAGE_FORM_SLUG') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><strong><?= fs_t('INSTALL_PAGES_CONTACT_TITLE') ?></strong></td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[contact][title]"
-                      value="<?= fs_t('INSTALL_PAGES_CONTACT_FORM_TITLE') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[contact][slug]"
-                      value="<?= fs_t('INSTALL_PAGES_CONTACT_FORM_SLUG') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><strong><?= fs_t('INSTALL_PAGES_IMPRINT_TITLE') ?></strong></td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[imprint][title]"
-                      value="<?= fs_t('INSTALL_PAGES_IMPRINT_FORM_TITLE') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[imprint][slug]"
-                      value="<?= fs_t('INSTALL_PAGES_IMPRINT_FORM_SLUG') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><strong><?= fs_t('INSTALL_PAGES_PRIVACY_TITLE') ?></strong></td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[privacy][title]"
-                      value="<?= fs_t('INSTALL_PAGES_PRIVACY_FORM_TITLE') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="pages[privacy][slug]"
-                      value="<?= fs_t('INSTALL_PAGES_PRIVACY_FORM_SLUG') ?>"
-                      class="regular-text" style="width: 180px">
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-
-            <p class="description">
-              <?= fs_t('INSTALL_PAGES_DESCRIPTION') ?>
-            </p>
-
-          </td>
-        </tr>
-
-
-
-        <!-- Menus -->
-        <tr>
-          <th scope="row">
-            <label>
-              <input type="checkbox" name="install[menus]" checked>
-              <?= fs_t('INSTALL_MENUS_TITLE') ?>
-            </label>
-          </th>
-          <td>
-            <?= fs_t('INSTALL_MENUS_DESCRIPTION') ?>
-          </td>
-        </tr>
-
-      </table>
+      <div class="notice notice-success">
+        <p><?= fs_t('INSTALL_COMPLETE_MESSAGE') ?></p>
+      </div>
 
       <p>
-        <button class="button button-primary" name="fromscratch_run_install">
-          <?= fs_t('INSTALL_RUN_SETUP_BUTTON') ?>
-        </button>
-
         <a
-          href="<?php echo esc_url(
-                  wp_nonce_url(
-                    admin_url('themes.php?page=fromscratch-install&fromscratch_skip=1'),
-                    'fromscratch_skip'
-                  )
-                ); ?>"
-          class="button">
-          <?= fs_t('INSTALL_SKIP_SETUP_BUTTON') ?>
-        </a>
+          href="<?php echo esc_url( admin_url() ); ?>"
+          class="button button-primary"><?= fs_t('INSTALL_GO_TO_DASHBOARD_BUTTON') ?></a>
       </p>
-    </form>
+
+    <?php } else { ?>
+      <p>
+        <?= fs_t('INSTALL_DESCRIPTION') ?>
+      </p>
+
+      <form method="post">
+        <?php wp_nonce_field('fromscratch_install'); ?>
+
+        <table class="form-table" role="presentation">
+
+          <!-- Theme name and description -->
+
+          <tr>
+            <th scope="row">
+              <label>
+                <?= fs_t('INSTALL_THEME_NAME_TITLE') ?>
+              </label>
+            </th>
+            <td>
+              <input type="text" name="theme[name]" value="<?= get_bloginfo('name') ?>" class="regular-text">
+            </td>
+          </tr>
+          <th scope="row">
+            <label>
+              <?= fs_t('INSTALL_THEME_SLUG_TITLE') ?>
+            </label>
+          </th>
+          <td>
+            <input type="text" name="theme[slug]" value="<?= sanitize_title(get_bloginfo('name')); ?>" class="regular-text">
+          </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <label>
+                <?= fs_t('INSTALL_THEME_DESCRIPTION_TITLE') ?>
+              </label>
+            </th>
+            <td>
+              <input type="text" name="theme[description]" value="<?= fs_t('INSTALL_THEME_DESCRIPTION_FORM_DESCRIPTION', ['NAME' => get_bloginfo('name')]) ?>" class="regular-text">
+            </td>
+          </tr>
+
+          <!-- Media sizes -->
+          <tr>
+            <th scope="row">
+              <label>
+                <input type="checkbox" name="install[media]" checked>
+                <?= fs_t('INSTALL_MEDIA_SIZES_TITLE') ?>
+              </label>
+            </th>
+            <td>
+              <input type="number" name="media[thumbnail]" value="600" class="small-text"> px
+              <input type="number" name="media[medium]" value="1200" class="small-text"> px
+              <input type="number" name="media[large]" value="2400" class="small-text"> px
+              <p class="description">
+                <?= fs_t('INSTALL_MEDIA_SIZES_DESCRIPTION') ?>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Permalinks -->
+          <tr>
+            <th scope="row">
+              <label>
+                <input type="checkbox" name="install[permalinks]" checked>
+                <?= fs_t('INSTALL_PERMALINKS_TITLE') ?>
+              </label>
+            </th>
+            <td>
+              <p class="description">
+                <?= fs_t('INSTALL_PERMALINKS_DESCRIPTION') ?>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Pages -->
+          <tr>
+            <th scope="row">
+              <label>
+                <input type="checkbox" name="install[pages]" checked>
+                <?= fs_t('INSTALL_PAGES_TITLE') ?>
+              </label>
+            </th>
+            <td>
+
+              <table class="widefat striped" style="max-width: 600px">
+                <thead>
+                  <tr>
+                    <td><b><?= fs_t('INSTALL_PAGES_TABLE_HEADING_PAGE') ?></b></td>
+                    <td><b><?= fs_t('INSTALL_PAGES_TABLE_HEADING_TITLE') ?></b></td>
+                    <td><b><?= fs_t('INSTALL_PAGES_TABLE_HEADING_SLUG') ?></b></td>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr>
+                    <td><strong><?= fs_t('INSTALL_PAGES_HOMEPAGE_TITLE') ?></strong></td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[homepage][title]"
+                        value="<?= fs_t('INSTALL_PAGES_HOMEPAGE_FORM_TITLE') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[homepage][slug]"
+                        value="<?= fs_t('INSTALL_PAGES_HOMEPAGE_FORM_SLUG') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong><?= fs_t('INSTALL_PAGES_CONTACT_TITLE') ?></strong></td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[contact][title]"
+                        value="<?= fs_t('INSTALL_PAGES_CONTACT_FORM_TITLE') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[contact][slug]"
+                        value="<?= fs_t('INSTALL_PAGES_CONTACT_FORM_SLUG') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong><?= fs_t('INSTALL_PAGES_IMPRINT_TITLE') ?></strong></td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[imprint][title]"
+                        value="<?= fs_t('INSTALL_PAGES_IMPRINT_FORM_TITLE') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[imprint][slug]"
+                        value="<?= fs_t('INSTALL_PAGES_IMPRINT_FORM_SLUG') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong><?= fs_t('INSTALL_PAGES_PRIVACY_TITLE') ?></strong></td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[privacy][title]"
+                        value="<?= fs_t('INSTALL_PAGES_PRIVACY_FORM_TITLE') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="pages[privacy][slug]"
+                        value="<?= fs_t('INSTALL_PAGES_PRIVACY_FORM_SLUG') ?>"
+                        class="regular-text" style="width: 180px">
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <p class="description">
+                <?= fs_t('INSTALL_PAGES_DESCRIPTION') ?>
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- Menus -->
+          <tr>
+            <th scope="row">
+              <label>
+                <input type="checkbox" name="install[menus]" checked>
+                <?= fs_t('INSTALL_MENUS_TITLE') ?>
+              </label>
+            </th>
+            <td>
+              <?= fs_t('INSTALL_MENUS_DESCRIPTION') ?>
+            </td>
+          </tr>
+
+        </table>
+
+        <p>
+          <button class="button button-primary" name="fromscratch_run_install">
+            <?= fs_t('INSTALL_RUN_SETUP_BUTTON') ?>
+          </button>
+
+          <a
+            href="<?php echo esc_url(
+                    wp_nonce_url(
+                      admin_url('themes.php?page=fromscratch-install&fromscratch_skip=1'),
+                      'fromscratch_skip'
+                    )
+                  ); ?>"
+            class="button">
+            <?= fs_t('INSTALL_SKIP_SETUP_BUTTON') ?>
+          </a>
+        </p>
+      </form>
+
+    <?php } ?>
   </div>
 <?php
 }
@@ -327,6 +340,10 @@ if (isset($_POST['fromscratch_run_install'])) {
 
 function fromscratch_run_install()
 {
+  if (get_option('fromscratch_installed')) {
+    wp_die('FromScratch installation is already complete.');
+    return;
+  }
 
   $theme_name = sanitize_text_field($_POST['theme']['name'] ?? '');
   $theme_desc = sanitize_text_field($_POST['theme']['description'] ?? '');
@@ -484,58 +501,33 @@ Tags:
   }
 
   /**
-   * Menus
+   * Rename theme
    */
+  $themes_dir = WP_CONTENT_DIR . '/themes';
 
-  //   $menu_name = 'Main Menu';
-  //   $menu = wp_get_nav_menu_object($menu_name);
+  $old_slug = 'fromscratch';
+  $new_slug = sanitize_title($_POST['theme']['slug']);
 
-  //   if (!$menu) {
-  //     $menu_id = wp_create_nav_menu($menu_name);
-  //   } else {
-  //     $menu_id = $menu->term_id;
-  //   }
+  $old_dir = $themes_dir . '/' . $old_slug;
+  $new_dir = $themes_dir . '/' . $new_slug;
 
-  //   // Assign menu to primary location if available
-  //   $locations = get_theme_mod('nav_menu_locations', []);
-  //   if (isset($locations['primary']) === false) {
-  //     $locations['primary'] = $menu_id;
-  //     set_theme_mod('nav_menu_locations', $locations);
-  //   }
+  // Rename at the VERY END
+  if (is_dir($old_dir) && is_dir($new_dir) && $old_dir !== $new_dir) {
+    rename($old_dir, $new_dir);
+    switch_theme($new_slug);
+  }
 
-  //   // Add menu items (Home + Contact) if missing
-  //   fromscratch_ensure_menu_item($menu_id, $home_id);
-  //   fromscratch_ensure_menu_item($menu_id, $page_ids['contact'] ?? null);
+  /**
+   * Save install complete
+   */
+  update_option('fromscratch_install_success', true);
+  delete_option('fromscratch_install_skipped');
 
-  //   // --- 6. Mark as installed ----------------------------------
-
-  //   update_option('fromscratch_installed', true);
-  //   delete_option('fromscratch_install_skipped');
+  /**
+   * Redirect
+   */
+  wp_safe_redirect(
+    admin_url('themes.php?page=fromscratch-install&fromscratch_success=1')
+  );
+  exit;
 }
-
-/**
- * Ensure a menu item exists for a page
- */
-// function fromscratch_ensure_menu_item(int $menu_id, ?int $page_id): void
-// {
-//   if (!$page_id) {
-//     return;
-//   }
-
-//   $items = wp_get_nav_menu_items($menu_id);
-
-//   if ($items) {
-//     foreach ($items as $item) {
-//       if ((int) $item->object_id === $page_id) {
-//         return; // already exists
-//       }
-//     }
-//   }
-
-//   wp_update_nav_menu_item($menu_id, 0, [
-//     'menu-item-object-id' => $page_id,
-//     'menu-item-object'    => 'page',
-//     'menu-item-type'      => 'post_type',
-//     'menu-item-status'    => 'publish',
-//   ]);
-// }

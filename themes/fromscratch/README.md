@@ -30,25 +30,3 @@ cd wordpress/wp-content/themes/fromscratch
 
 npm run build
 ```
-
-## Install
-
-This theme provides optional developer tools via **WP-CLI**.
-
-If you don’t have WP-CLI installed yet, install it first:
-
-```bash
-brew install wp-cli
-```
-
-Verify the installation:
-
-```bash
-wp --info
-```
-
-Once WP-CLI is available, you can run the theme’s setup command:
-
-```bash
-wp fromscratch:install
-```

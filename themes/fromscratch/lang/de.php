@@ -38,6 +38,8 @@ return [
     'INSTALL_MENUS_DESCRIPTION' => 'Platziere erstellte Seiten in ihren jeweiligen Menüs.',
     'INSTALL_RUN_SETUP_BUTTON' => 'Setup ausführen',
     'INSTALL_SKIP_SETUP_BUTTON' => 'Überspringen',
+    'INSTALL_COMPLETE_MESSAGE' => 'FromScratch ist installiert.',
+    'INSTALL_GO_TO_DASHBOARD_BUTTON' => 'Zum Dashboard',
 
     // Menu
     'MENU_SHOW_AS_BUTTON' => 'Diesen Menüpunkt als Button anzeigen',
