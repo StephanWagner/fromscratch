@@ -79,13 +79,13 @@ add_filter('excerpt_more', 'fs_excerpt_more');
  */
 add_action('init', function () {
 
-    // Remove comments support from ALL post types
-    foreach (get_post_types() as $post_type) {
-        if (post_type_supports($post_type, 'comments')) {
-            remove_post_type_support($post_type, 'comments');
-            remove_post_type_support($post_type, 'trackbacks');
-        }
-    }
+	// Remove comments support from ALL post types
+	foreach (get_post_types() as $post_type) {
+		if (post_type_supports($post_type, 'comments')) {
+			remove_post_type_support($post_type, 'comments');
+			remove_post_type_support($post_type, 'trackbacks');
+		}
+	}
 });
 
 add_filter('comments_open', '__return_false', 20, 2);
@@ -93,15 +93,20 @@ add_filter('pings_open', '__return_false', 20, 2);
 add_filter('comments_array', '__return_empty_array', 10, 2);
 
 add_action('admin_menu', function () {
-    remove_menu_page('edit-comments.php');
+	remove_menu_page('edit-comments.php');
+});
+
+add_action('add_meta_boxes', function () {
+	remove_meta_box('commentstatusdiv', 'post', 'normal');
+	remove_meta_box('commentstatusdiv', 'page', 'normal');
 });
 
 add_action('admin_bar_menu', function ($wp_admin_bar) {
-    $wp_admin_bar->remove_node('comments');
+	$wp_admin_bar->remove_node('comments');
 }, 999);
 
 add_action('wp_dashboard_setup', function () {
-    remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
+	remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
 });
 
 /**
@@ -111,7 +116,7 @@ function addCustomColorsAndSizes()
 {
 	global $fs_config;
 	add_theme_support('editor-color-palette', $fs_config['theme_colors']);
-    add_theme_support('editor-gradient-presets', $fs_config['theme_gradients']);
+	add_theme_support('editor-gradient-presets', $fs_config['theme_gradients']);
 	add_theme_support('editor-font-sizes', $fs_config['theme_font_sizes']);
 }
 add_action('after_setup_theme', 'addCustomColorsAndSizes');

@@ -30,20 +30,26 @@ function fs_load_translations(string $lang): array
     return $cache[$lang];
 }
 
-function fs_t(string $key): string
+function fs_t(string $key, array $replace = []): string
 {
     $lang = fs_get_lang();
 
     $translations = fs_load_translations($lang);
     $fallback     = fs_load_translations('en');
 
+    $text = $key;
+
     if (isset($translations[$key])) {
-        return $translations[$key];
+        $text = $translations[$key];
     }
 
     if (isset($fallback[$key])) {
-        return $fallback[$key];
+        $text = $fallback[$key];
     }
 
-    return $key;
+    foreach ($replace as $key => $value) {
+        $text = str_replace('%' . $key . '%', $value, $text);
+    }
+
+    return $text;
 }

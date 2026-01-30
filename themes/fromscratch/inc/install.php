@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Debug
+ */
+add_action('admin_init', function () {
+  update_option('fromscratch_install_skipped', false);
+  update_option('fromscratch_installed', false);
+});
+
+/**
+ * Should show FromScratch installer
+ */
 function fromscratch_should_show_installer(): bool
 {
   if (get_option('fromscratch_installed')) {
@@ -13,6 +24,9 @@ function fromscratch_should_show_installer(): bool
   return true;
 }
 
+/** 
+ * Add FromScratch installer to admin menu
+ */
 add_action('admin_menu', function () {
   if (!fromscratch_should_show_installer()) {
     return;
@@ -27,6 +41,9 @@ add_action('admin_menu', function () {
   );
 });
 
+/**
+ * Show FromScratch installer notice
+ */
 add_action('admin_notices', function () {
   if (!fromscratch_should_show_installer()) {
     return;
@@ -51,6 +68,9 @@ add_action('admin_notices', function () {
 });
 
 
+/**
+ * Render FromScratch installer
+ */
 function fromscratch_render_installer()
 {
   if (!current_user_can('manage_options')) {
@@ -79,17 +99,17 @@ function fromscratch_render_installer()
             </label>
           </th>
           <td>
-            <input type="text" name="theme[name]" value="<?= fs_t('INSTALL_THEME_NAME_FORM_TITLE') ?>" class="regular-text">
+            <input type="text" name="theme[name]" value="<?= get_bloginfo('name') ?>" class="regular-text">
           </td>
         </tr>
-          <th scope="row">
-            <label>
-              <?= fs_t('INSTALL_THEME_SLUG_TITLE') ?>
-            </label>
-          </th>
-          <td>
-            <input type="text" name="theme[slug]" value="<?= fs_t('INSTALL_THEME_SLUG_FORM_SLUG') ?>" class="regular-text">
-          </td>
+        <th scope="row">
+          <label>
+            <?= fs_t('INSTALL_THEME_SLUG_TITLE') ?>
+          </label>
+        </th>
+        <td>
+          <input type="text" name="theme[slug]" value="<?= sanitize_title(get_bloginfo('name')); ?>" class="regular-text">
+        </td>
         </tr>
         <tr>
           <th scope="row">
@@ -98,7 +118,7 @@ function fromscratch_render_installer()
             </label>
           </th>
           <td>
-            <input type="text" name="theme[description]" value="<?= fs_t('INSTALL_THEME_DESCRIPTION_FORM_DESCRIPTION') ?>" class="regular-text">
+            <input type="text" name="theme[description]" value="<?= fs_t('INSTALL_THEME_DESCRIPTION_FORM_DESCRIPTION', ['NAME' => get_bloginfo('name')]) ?>" class="regular-text">
           </td>
         </tr>
 
@@ -111,9 +131,9 @@ function fromscratch_render_installer()
             </label>
           </th>
           <td>
-            <input type="number" name="media[medium]" value="600" class="small-text"> px
-            <input type="number" name="media[large]" value="1200" class="small-text"> px
-            <input type="number" name="media[full]" value="2400" class="small-text"> px
+            <input type="number" name="media[thumbnail]" value="600" class="small-text"> px
+            <input type="number" name="media[medium]" value="1200" class="small-text"> px
+            <input type="number" name="media[large]" value="2400" class="small-text"> px
             <p class="description">
               <?= fs_t('INSTALL_MEDIA_SIZES_DESCRIPTION') ?>
             </p>
@@ -279,10 +299,6 @@ function fromscratch_render_installer()
  * Skip FromScratch installation
  */
 add_action('admin_init', function () {
-
-  // Debug
-  // update_option('fromscratch_install_skipped', false);
-
   if (
     isset($_GET['fromscratch_skip']) &&
     $_GET['fromscratch_skip'] === '1' &&
@@ -312,89 +328,164 @@ if (isset($_POST['fromscratch_run_install'])) {
 function fromscratch_run_install()
 {
 
-  // --- 1. Media sizes ----------------------------------------
+  $theme_name = sanitize_text_field($_POST['theme']['name'] ?? '');
+  $theme_desc = sanitize_text_field($_POST['theme']['description'] ?? '');
 
-  update_option('medium_size_w', 600);
-  update_option('large_size_w', 1200);
-  update_option('big_image_size_threshold', 2400);
+  /**
+   * Theme infos
+   */
+  $style_css = '/*
+Theme Name: ' . $theme_name . '
+Author: Stephan Wagner
+Author URI: https://stephanwagner.me
+Description: ' . $theme_desc . '
+Version: 1.0.0
+License: Proprietary
+License URI: 
+Text Domain: 
+Tags: 
+*/
+';
 
-  // --- 2. Permalinks -----------------------------------------
+  $style_file = get_stylesheet_directory() . '/style.css';
+  file_put_contents($style_file, $style_css);
 
-  //   global $wp_rewrite;
+  /**
+   * Media sizes
+   */
 
-  //   if ($wp_rewrite->permalink_structure !== '/%postname%/') {
-  //     $wp_rewrite->set_permalink_structure('/%postname%/');
-  //     flush_rewrite_rules();
-  //   }
+  $installMedia = isset($_POST['install']['media']) && $_POST['install']['media'] === 'on';
 
-  //   // --- 3. Required pages -------------------------------------
+  if ($installMedia) {
+    // Thumbnail
+    $thumbnail = $_POST['media']['thumbnail'];
+    update_option('thumbnail_size_w', $thumbnail);
+    update_option('thumbnail_size_h', $thumbnail);
+    update_option('thumbnail_crop', 0);
 
-  //   $pages = [
-  //     'imprint' => 'Imprint',
-  //     'privacy' => 'Privacy',
-  //     'contact' => 'Contact',
-  //   ];
+    // Medium
+    $medium = $_POST['media']['medium'];
+    update_option('medium_size_w', $medium);
+    update_option('medium_size_h', $medium);
 
-  //   $page_ids = [];
+    // Medium Large (often forgotten!)
+    update_option('medium_large_size_w', $medium);
+    update_option('medium_large_size_h', $medium);
 
-  //   foreach ($pages as $slug => $title) {
-  //     $page_ids[$slug] = fromscratch_ensure_page($slug, $title);
-  //   }
+    // Large
+    $large = $_POST['media']['large'];
+    update_option('large_size_w', $large);
+    update_option('large_size_h', $large);
 
-  //   // --- 4. Home page ------------------------------------------
+    // Big image threshold (WP auto downscaling)
+    update_option('big_image_size_threshold', $large);
+  }
 
-  //   $home_id = fromscratch_ensure_page('home', 'Home');
+  /**
+   * Permalinks
+   */
 
-  //   if (
-  //     $home_id &&
-  //     !get_post_meta($home_id, '_fromscratch_home_initialized', true)
-  //   ) {
+  $installPermalinks = isset($_POST['install']['permalinks']) && $_POST['install']['permalinks'] === 'on';
 
-  //     $content = <<<HTML
-  // <!-- wp:heading -->
-  // <h1>Welcome to FromScratch</h1>
-  // <!-- /wp:heading -->
+  if ($installPermalinks) {
+    global $wp_rewrite;
 
-  // <!-- wp:paragraph -->
-  // <p>This page was created by the FromScratch installer and contains example blocks.</p>
-  // <!-- /wp:paragraph -->
+    if ($wp_rewrite->permalink_structure !== '/%postname%/') {
+      $wp_rewrite->set_permalink_structure('/%postname%/');
+      flush_rewrite_rules();
+    }
+  }
 
-  // <!-- wp:columns -->
-  // <div class="wp-block-columns">
-  //   <!-- wp:column -->
-  //   <div class="wp-block-column">
-  //     <!-- wp:paragraph -->
-  //     <p>Column one</p>
-  //     <!-- /wp:paragraph -->
-  //   </div>
-  //   <!-- /wp:column -->
+  /**
+   * Required pages
+   */
 
-  //   <!-- wp:column -->
-  //   <div class="wp-block-column">
-  //     <!-- wp:paragraph -->
-  //     <p>Column two</p>
-  //     <!-- /wp:paragraph -->
-  //   </div>
-  //   <!-- /wp:column -->
-  // </div>
-  // <!-- /wp:columns -->
-  // HTML;
+  $installPages = isset($_POST['install']['pages']) && $_POST['install']['pages'] === 'on';
 
-  //     wp_update_post([
-  //       'ID'           => $home_id,
-  //       'post_content' => $content,
-  //     ]);
+  if ($installPages) {
 
-  //     update_post_meta($home_id, '_fromscratch_home_initialized', 1);
-  //   }
+    // Delete "Sample Page"
+    $sample_page = get_page_by_path('sample-page', OBJECT, 'page');
+    if ($sample_page) {
+      wp_delete_post($sample_page->ID, true);
+    }
 
-  //   // Set static front page if not set yet
-  //   if (get_option('show_on_front') !== 'page') {
-  //     update_option('show_on_front', 'page');
-  //     update_option('page_on_front', $home_id);
-  //   }
+    // Delete "Hello World!" post
+    $hello_post = get_page_by_path('hello-world', OBJECT, 'post');
+    if ($hello_post) {
+      wp_delete_post($hello_post->ID, true);
+    }
 
-  //   // --- 5. Menus ----------------------------------------------
+    // Delete Privacy Policy page (ONLY if WP created/assigned it)
+    $privacy_id = (int) get_option('wp_page_for_privacy_policy');
+    if ($privacy_id && $privacy_id < 3) { // TODO check post id
+      wp_delete_post($privacy_id, true);
+      update_option('wp_page_for_privacy_policy', 0);
+    }
+
+    // Delete comments
+    $comments = get_comments([
+      'number' => -1,
+    ]);
+
+    foreach ($comments as $comment) {
+      wp_delete_comment($comment->comment_ID, true);
+    }
+
+    // Add pages
+    $pages = $_POST['pages'];
+
+    foreach ($pages as $page_id => $page) {
+
+      $page_obj = get_page_by_path($page['slug']);
+
+      if (!$page_obj) {
+        $page_content = <<<HTML
+        <!-- wp:heading {\"level\":1} -->
+        <h1>{$page['title']}</h1>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <!-- /wp:paragraph -->
+        HTML;
+
+        if ($page_id === 'homepage') {
+          $page_content = <<<HTML
+          <!-- wp:heading {\"level\":1} -->
+          <h1>Welcome to FromScratch</h1>
+          <!-- /wp:heading -->
+
+          <!-- wp:paragraph -->
+          <p>This page was created by the FromScratch installer and contains example blocks.</p>
+          <!-- /wp:paragraph -->
+          HTML;
+        }
+
+        $page_post_id = wp_insert_post([
+          'post_type'   => 'page',
+          'post_status' => 'publish',
+          'post_title'  => $page['title'],
+          'post_name'   => $page['slug'],
+          'post_content' => $page_content,
+        ]);
+
+        if ($page_id === 'homepage') {
+          update_option('show_on_front', 'page');
+          update_option('page_on_front', (int) $page_post_id);
+          update_option('page_for_posts', 0);
+        }
+
+        if ($page_id === 'privacy') {
+          update_option('wp_page_for_privacy_policy', (int) $page_post_id);
+        }
+      }
+    }
+  }
+
+  /**
+   * Menus
+   */
 
   //   $menu_name = 'Main Menu';
   //   $menu = wp_get_nav_menu_object($menu_name);
@@ -421,25 +512,6 @@ function fromscratch_run_install()
   //   update_option('fromscratch_installed', true);
   //   delete_option('fromscratch_install_skipped');
 }
-
-/**
- * Ensure a page exists by slug
- */
-// function fromscratch_ensure_page(string $slug, string $title): int
-// {
-//   $page = get_page_by_path($slug);
-
-//   if ($page) {
-//     return (int) $page->ID;
-//   }
-
-//   return (int) wp_insert_post([
-//     'post_type'   => 'page',
-//     'post_status' => 'publish',
-//     'post_title'  => $title,
-//     'post_name'   => $slug,
-//   ]);
-// }
 
 /**
  * Ensure a menu item exists for a page
